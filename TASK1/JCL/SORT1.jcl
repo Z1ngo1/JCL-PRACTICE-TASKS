@@ -5,12 +5,15 @@
 //**********************************************************************
 //**********************************************************************
 //* DELETE ALREADY EXISTING DATASETS                                   *
+//* NOTE: SPACE PARAMETR USED IF DATASET NOT EXITS                     *
 //**********************************************************************
 //STEP005  EXEC PGM=IEFBR14                                             
 //DELDD1   DD DSN=Z73460.TASK1.JCL,                                     
-//            DISP=(MOD,DELETE,DELETE)                                  
+//            DISP=(MOD,DELETE,DELETE),                 
+//            SPACE=(TRK,(1,0))                                         
 //DELDD2   DD DSN=Z73460.TASK1.JCL.SORT,                                
-//            DISP=(MOD,DELETE,DELETE)                                  
+//            DISP=(MOD,DELETE,DELETE),        
+//            SPACE=(TRK,(1,0))                                         
 //**********************************************************************
 //* LOAD INPUT DATA INTO DATASET                                       *
 //**********************************************************************
