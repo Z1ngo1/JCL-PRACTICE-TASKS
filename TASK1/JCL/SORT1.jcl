@@ -29,7 +29,7 @@ BOGDANOV  03072008
 //         DCB=(RECFM=FB,LRECL=80,DSORG=PS)                             
 //SYSIN    DD DUMMY                                                     
 //**********************************************************************
-//* LOAD INPUT DATA INTO DATASET                                       *
+//* SORT RECORDS ON DATE OF BIRTHDAY                                   *
 //**********************************************************************
 //STEP020  EXEC PGM=SORT,COND=(04,LT)                                   
 //SYSPRINT DD SYSOUT=*                                                  
