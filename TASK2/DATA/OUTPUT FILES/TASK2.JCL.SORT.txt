@@ -1,0 +1,5 @@
+BROWN     A  NY  000500                                                         
+DAVIS     A  NY  000050                                                         
+GARCIA    A  NY  001200                                                         
+SMITH     A  NY  001500                                                         
+TAYLOR    A  NY  002100                                                         
