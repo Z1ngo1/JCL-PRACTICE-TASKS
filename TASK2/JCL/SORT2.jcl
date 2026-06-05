@@ -1,7 +1,7 @@
 //SORT2    JOB (1337),'INCLUDE AND OMIT',CLASS=A,MSGCLASS=A,            
 //             MSGLEVEL=(1,1),NOTIFY=&SYSUID                            
 //**********************************************************************
-//*          TASK2 INCLUDE PARAMETER                                   *
+//*          TASK2: INCLUDE AND SORT PARAMETERS                        *
 //**********************************************************************
 //**********************************************************************
 //* DELETE ALREADY EXISTING DATASETS IF IT EXISTS                      *
@@ -18,8 +18,7 @@
 //* LOAD INPUT DATA INTO DATASET                                       *
 //**********************************************************************
 //STEP2    EXEC PGM=IEBGENER                                            
-//SYSPRINT DD SYSOUT=*                                                  
-//SYSOUT   DD SYSOUT=*                                                  
+//SYSPRINT DD SYSOUT=*                                                                                                 
 //SYSUT1   DD *                                                         
 SMITH     A  NY  001500                                                 
 JOHNSON   X  NY  002300                                                 
@@ -38,7 +37,7 @@ TAYLOR    A  NY  002100
 //         DCB=(RECFM=FB,LRECL=80,DSORG=PS)                             
 //SYSIN    DD DUMMY                                                     
 //**********************************************************************
-//* SORT RECORDS INCLUDE 'NY' AND OMIT 'X' PARAMETERS                  *
+//* SORT RECORDS BY NAME, INCLUDE ONLY STATE='NY' AND CODE='A'         *
 //**********************************************************************
 //STEP3    EXEC PGM=SORT,COND=(04,LT)                                   
 //SYSPRINT DD SYSOUT=*                                                  
