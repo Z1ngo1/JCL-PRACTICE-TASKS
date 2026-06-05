@@ -5,7 +5,7 @@
 //**********************************************************************
 //**********************************************************************
 //* DELETE ALREADY EXISTING DATASETS IF IT EXISTS                      *
-//* NOTE: SPACE PARAMETR USED IF DATASET NOT EXITS                     *
+//* NOTE: SPACE PARAMETER USED IF DATASET NOT EXITS                    *
 //**********************************************************************
 //STEP1    EXEC PGM=IEFBR14                                             
 //DELDD1   DD DSN=Z73460.TASK2.JCL,                                     
