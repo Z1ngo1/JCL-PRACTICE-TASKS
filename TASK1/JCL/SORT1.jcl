@@ -1,7 +1,7 @@
 //SORT1    JOB (125),'SORT TASK 1',CLASS=A,MSGCLASS=A,MSGLEVEL=(1,1),   
 //             NOTIFY=&SYSUID                                           
 //**********************************************************************
-//*          TASK1 SORT BY AND DATE OF BIRTHDAY                        *
+//*          TASK1: SORT RECORDS BY DATE OF BIRTHDAY                   *
 //**********************************************************************
 //**********************************************************************
 //* DELETE ALREADY EXISTING DATASETS                                   *
@@ -19,7 +19,7 @@
 //**********************************************************************
 //STEP010  EXEC PGM=IEBGENER,COND=(04,LT,STEP005)                       
 //SYSPRINT DD SYSOUT=*                                                  
-//SYSOYT   DD SYSOUT=*                                                  
+//SYSOUT   DD SYSOUT=*                                                  
 //SYSUT1   DD *                                                         
 DMITRIEV  06122007                                                      
 SHERSHUN  30012008                                                      
