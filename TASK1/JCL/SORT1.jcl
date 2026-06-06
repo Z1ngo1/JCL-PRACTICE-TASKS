@@ -4,8 +4,8 @@
 //*          TASK1: SORT RECORDS BY DATE OF BIRTHDAY                   *
 //**********************************************************************
 //**********************************************************************
-//* DELETE ALREADY EXISTING DATASETS                                   *
-//* NOTE: SPACE PARAMETER USED IF DATASET NOT EXITS                    *
+//* DELETE ALREADY EXISTING DATASETS IF THEY EXIST                     *
+//* NOTE: SPACE PARAMETER USED IF DATASET DOES NOT EXIST               *
 //**********************************************************************
 //STEP005  EXEC PGM=IEFBR14                                             
 //DELDD1   DD DSN=Z73460.TASK1.JCL,                                     
