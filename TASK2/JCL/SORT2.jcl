@@ -4,8 +4,8 @@
 //*          TASK2: INCLUDE AND SORT PARAMETERS                        *
 //**********************************************************************
 //**********************************************************************
-//* DELETE ALREADY EXISTING DATASETS IF IT EXISTS                      *
-//* NOTE: SPACE PARAMETER USED IF DATASET NOT EXITS                    *
+//* NOTE: SPACE PARAMETER USED IF DATASET DOES NOT EXIST               *
+//* NOTE: SPACE PARAMETER USED IF DATASET DOES NOT EXIST               *
 //**********************************************************************
 //STEP1    EXEC PGM=IEFBR14                                             
 //DELDD1   DD DSN=Z73460.TASK2.JCL,                                     
