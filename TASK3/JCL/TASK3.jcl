@@ -4,8 +4,8 @@
 //*   TASK3: COPY EMPLOYEES FILE TO NEW DATASET WITH EXACT LENGTH      *
 //**********************************************************************
 //**********************************************************************
-//* DELETE ALREADY EXISTING DATASETS IF IT EXISTS                      *
-//* NOTE: SPACE PARAMETER USED IF DATASET NOT EXITS                    *
+//* DELETE ALREADY EXISTING DATASETS IF THEY EXIST                     *
+//* NOTE: SPACE PARAMETER USED IF DATASET DOES NOT EXIST               *
 //**********************************************************************
 //STEP010  EXEC PGM=IEFBR14                                             
 //DELDD1   DD DSN=Z73460.TASK3.INPUT.JCL,                               
