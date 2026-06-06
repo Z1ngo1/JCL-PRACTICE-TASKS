@@ -4,7 +4,7 @@
 //*          TASK2: INCLUDE AND SORT PARAMETERS                        *
 //**********************************************************************
 //**********************************************************************
-//* NOTE: SPACE PARAMETER USED IF DATASET DOES NOT EXIST               *
+//* DELETE ALREADY EXISTING DATASETS IF THEY EXIST                     *
 //* NOTE: SPACE PARAMETER USED IF DATASET DOES NOT EXIST               *
 //**********************************************************************
 //STEP1    EXEC PGM=IEFBR14                                             
