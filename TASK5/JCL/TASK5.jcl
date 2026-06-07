@@ -56,4 +56,3 @@ POPOV     ANDREY    MANAGER
   SORT FIELDS=COPY                                                      
   INCLUDE COND=(21,9,CH,EQ,C'DEVELOPER')                                
 /*                                                                      
-//                                                                      
