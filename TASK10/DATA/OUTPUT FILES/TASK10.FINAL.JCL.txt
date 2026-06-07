@@ -1,0 +1,4 @@
+NOVIKOV   |006100                                                               
+SOKOLOV   |005500                                                               
+IVANOV    |005000                                                               
+KOZLOV    |004500                                                               
