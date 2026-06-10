@@ -1,0 +1,4 @@
+NOVIKOV   OLEG      DEVELOPER 006100                                            
+SOKOLOV   DENIS     DEVELOPER 005500                                            
+IVANOV    IVAN      DEVELOPER 005000                                            
+KOZLOV    ALEXEY    DEVELOPER 004500                                            
