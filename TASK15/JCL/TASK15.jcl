@@ -24,6 +24,7 @@
 //            SPACE=(TRK,(1,0))                                         
 //**********************************************************************
 //* CREATE EMPLOYEE FILE AND LOAD DATA (ID + NAME) USING IEBGENER      *
+//* ROWS ARE FORMATTED TO AN EXACT RECORD LENGTH OF 20 BYTES           *
 //**********************************************************************
 //STEP020  EXEC PGM=IEBGENER                                            
 //SYSPRINT DD SYSOUT=*                                                  
@@ -45,6 +46,7 @@
 /*                                                                      
 //**********************************************************************
 //* CREATE SALARY FILE AND LOAD DATA (ID + AMOUNT) USING IEBGENER      *
+//* ROWS ARE FORMATTED TO AN EXACT RECORD LENGTH OF 9 BYTES            *
 //**********************************************************************
 //STEP030  EXEC PGM=IEBGENER                                            
 //SYSPRINT DD SYSOUT=*                                                  
