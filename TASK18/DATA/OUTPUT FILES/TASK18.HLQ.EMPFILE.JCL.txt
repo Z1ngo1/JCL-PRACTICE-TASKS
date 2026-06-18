@@ -1,0 +1,5 @@
+IVANOV    IVAN      DEVELOPER 005000                                            
+PETROV    PETR      ANALYST   003200                                            
+SIDOROV   SERGEY    MANAGER   007800                                            
+KOZLOV    ALEXEY    DEVELOPER 004500                                            
+MOROZOV   DMITRY    ANALYST   002900                                            
