@@ -1,0 +1,4 @@
+ICE055I 0 INSERT 0, DELETE 0                                                    
+ICE054I 0 RECORDS - IN: 10, OUT: 10                                             
+ICE267I 0 ZSORT ACCELERATOR PATH NOT USED    RSN=195                            
+ICE052I 0 END OF DFSORT                                                         
