@@ -1,0 +1,6 @@
+IDCAMS  SYSTEM SERVICES                                           
+                                                                  
+  VERIFY DATASET(Z73460.TASK19.HLQ.EMPKSDS.JCL)                   
+IDC0001I FUNCTION COMPLETED, HIGHEST CONDITION CODE WAS 0         
+                                                                  
+IDC0002I IDCAMS PROCESSING COMPLETE. MAXIMUM CONDITION CODE WAS 0 
