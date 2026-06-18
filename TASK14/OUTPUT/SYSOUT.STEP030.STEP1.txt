@@ -1,0 +1,20 @@
+ICE235I 0 OPTIONS: NULLOUT=RC0                                                  
+ICE236I 0 OPTIONS: DYNAPCT=10 ,MOWRK=Y,TUNE=STOR,EXPMAX=MAX    ,EXPOLD=50%    ,EXPRES=10%
+ICE084I 0 EXCP ACCESS METHOD USED FOR SORTOUT                                   
+ICE084I 0 EXCP ACCESS METHOD USED FOR SORTIN                                    
+ICE750I 0 DC 27920 TC 0 CS DSVVV KSZ 6 VSZ 6                                    
+ICE752I 0 FSZ=349 RC  IGN=0 E  AVG=80 0  WSP=37 C  DYN=0 0                      
+ICE751I 1 DE-H61319 D5-NONE   D9-H59846 E8-NONE                                 
+ICE090I 0 OUTPUT LRECL = 80, BLKSIZE = 27920, TYPE = FB                         
+ICE080I 0 IN MAIN STORAGE SORT                                                  
+ICE055I 0 INSERT 0, DELETE 7                                                    
+ICE054I 0 RECORDS - IN: 10, OUT: 3                                              
+ICE134I 0 NUMBER OF BYTES SORTED: 240                                           
+ICE253I 0 RECORDS SORTED - PROCESSED: 3, EXPECTED: 349                          
+ICE199I 0 MEMORY OBJECT USED AS MAIN STORAGE = 0M BYTES                         
+ICE299I 0 MEMORY OBJECT USED AS WORK STORAGE = 0M BYTES                         
+ICE399I 0 MEMORY OBJECT USED IN ZSORT PATH = 0M BYTES                           
+ICE180I 0 HIPERSPACE STORAGE USED = 0K BYTES                                    
+ICE188I 0 DATA SPACE STORAGE USED = 0K BYTES                                    
+ICE267I 0 ZSORT ACCELERATOR PATH NOT USED    RSN=194                            
+ICE052I 0 END OF DFSORT                                                         
