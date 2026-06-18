@@ -1,0 +1,8 @@
+IDCAMS  SYSTEM SERVICES                                          
+                                                                 
+  ALTER Z73460.TASK19.HLQ.EMPKSDS.JCL.DATA -                     
+        FREESPACE(10,30)                                         
+IDC0531I ENTRY Z73460.TASK19.HLQ.EMPKSDS.JCL.DATA ALTERED        
+IDC0001I FUNCTION COMPLETED, HIGHEST CONDITION CODE WAS 0        
+                                                                 
+IDC0002I IDCAMS PROCESSING COMPLETE. MAXIMUM CONDITION CODE WAS 0
