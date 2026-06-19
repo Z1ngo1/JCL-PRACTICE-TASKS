@@ -1,0 +1,4 @@
+ICE090I 0 OUTPUT LRECL = 38, BLKSIZE = 38, TYPE = FB                            
+ICE171I 0 SORTOUT LRECL OF 38 IS DIFFERENT FROM SORTIN(NN) LRECL OF 80 - RC=0   
+ICE055I 0 INSERT 0, DELETE 0                                                    
+ICE054I 0 RECORDS - IN: 7, OUT: 7                                               
