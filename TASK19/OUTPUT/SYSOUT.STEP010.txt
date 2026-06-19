@@ -1,0 +1,15 @@
+IDCAMS  SYSTEM SERVICES                                          
+                                                                 
+  DELETE Z73460.TASK19.HLQ.EMPKSDS.JCL CLUSTER PURGE             
+IDC0550I ENTRY (D) Z73460.TASK19.HLQ.EMPKSDS.JCL.DATA DELETED    
+IDC0550I ENTRY (I) Z73460.TASK19.HLQ.EMPKSDS.JCL.INDEX DELETED   
+IDC0550I ENTRY (C) Z73460.TASK19.HLQ.EMPKSDS.JCL DELETED         
+IDC0001I FUNCTION COMPLETED, HIGHEST CONDITION CODE WAS 0        
+                                                                 
+  DELETE Z73460.TASK19.INFILE.JCL NONVSAM SCRATCH PURGE          
+IDC0550I ENTRY (A) Z73460.TASK19.INFILE.JCL DELETED              
+IDC0001I FUNCTION COMPLETED, HIGHEST CONDITION CODE WAS 0        
+                                                                 
+  IF LASTCC <= 8 THEN SET MAXCC = 0                              
+                                                                 
+IDC0002I IDCAMS PROCESSING COMPLETE. MAXIMUM CONDITION CODE WAS 0
