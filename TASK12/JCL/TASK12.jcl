@@ -1,4 +1,4 @@
-//JOB12    JOB (888),'MULTI STEP JOB',CLASS=A,MSGCLASS=A,               
+//TASK12   JOB (888),'MULTI STEP JOB',CLASS=A,MSGCLASS=A,               
 //             MSGLEVEL=(1,1),NOTIFY=&SYSUID                            
 //         SET INFILE='Z73460.TASK12.INPUT.JCL'                         
 //         SET TMPFILE='Z73460.TASK12.TEMP.JCL'                         
