@@ -1,0 +1,6 @@
+ICE091I 0 OUTPUT LRECL = 20, TYPE = F                                           
+ICE080I 0 IN MAIN STORAGE SORT                                                  
+ICE055I 0 INSERT 0, DELETE 7                                                    
+ICE054I 0 RECORDS - IN: 7, OUT: 0                                               
+ICE134I 0 NUMBER OF BYTES SORTED: 140                                           
+ICE253I 0 RECORDS SORTED - PROCESSED: 7, EXPECTED: 1399                         
