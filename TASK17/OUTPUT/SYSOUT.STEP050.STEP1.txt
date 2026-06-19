@@ -1,0 +1,7 @@
+ICE090I 0 OUTPUT LRECL = 80, BLKSIZE = 27920, TYPE = FB                         
+ICE171I 0 SORTOUT LRECL OF 80 IS DIFFERENT FROM SORTIN(NN) LRECL OF 29 - RC=0   
+ICE080I 0 IN MAIN STORAGE SORT                                                  
+ICE055I 0 INSERT 0, DELETE 6                                                    
+ICE054I 0 RECORDS - IN: 10, OUT: 4                                              
+ICE134I 0 NUMBER OF BYTES SORTED: 116                                           
+ICE253I 0 RECORDS SORTED - PROCESSED: 4, EXPECTED: 965                          
