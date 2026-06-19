@@ -1,7 +1,7 @@
-1IDCAMS  SYSTEM SERVICES                                           TIME: 14:01:2
-0                                                                               
+IDCAMS  SYSTEM SERVICES                                           TIME: 14:01:2
+                                                                               
    LISTCAT ENTRIES(Z73460.TASK19.HLQ.EMPKSDS.JCL) ALL                           
-0CLUSTER ------- Z73460.TASK19.HLQ.EMPKSDS.JCL                                  
+CLUSTER ------- Z73460.TASK19.HLQ.EMPKSDS.JCL                                  
       IN-CAT --- CATALOG.ZOSO                                                   
       HISTORY                                                                   
         DATASET-OWNER-----(NULL)     CREATION--------2026.169                   
@@ -16,7 +16,7 @@
       RLSDATA                                                                   
         LOG ----------------(NULL)   RECOVERY REQUIRED --(NO)     FRLOG ------------(NULL) 
         VSAM QUIESCED -------(NO)    RLS IN USE ---------(NO)     LOGREPLICATE-------------(NO)
-0       LOGSTREAMID-----------------------------(NULL)                          
+       LOGSTREAMID-----------------------------(NULL)                          
         RECOVERY TIMESTAMP LOCAL-----X'0000000000000000'                        
         RECOVERY TIMESTAMP GMT-------X'0000000000000000'                        
         DATABASE -----------------(NULL)                                        
@@ -27,7 +27,7 @@
       ASSOCIATIONS                                                              
         DATA-----Z73460.TASK19.HLQ.EMPKSDS.JCL.DATA                             
         INDEX----Z73460.TASK19.HLQ.EMPKSDS.JCL.INDEX                            
-0   DATA ------- Z73460.TASK19.HLQ.EMPKSDS.JCL.DATA                             
+   DATA ------- Z73460.TASK19.HLQ.EMPKSDS.JCL.DATA                             
       IN-CAT --- CATALOG.ZOSO                                                   
       HISTORY                                                                   
         DATASET-OWNER-----(NULL)     CREATION--------2026.169                   
@@ -47,8 +47,8 @@
         REC-INSERTED-----------0     FREESPACE-%CI---------10     SYSTEM-TIMESTAMP:        
         REC-UPDATED------------0     FREESPACE-%CA---------20          X'E2D9C1668A155752' 
         REC-RETRIEVED----------0     FREESPC------------36864                   
-1IDCAMS  SYSTEM SERVICES                                           TIME: 14:01:28        06/18/26     PAGE      2
-0     ALLOCATION                                          
+IDCAMS  SYSTEM SERVICES                                           TIME: 14:01:28        06/18/26     PAGE      2
+     ALLOCATION                                          
         SPACE-TYPE---------TRACK     HI-A-RBA-----------55296                   
         SPACE-PRI--------------1     HI-U-RBA-----------55296                   
         SPACE-SEC--------------1                                                
@@ -59,7 +59,7 @@
         EXTENTS:                                                                
         LOW-CCHH-----X'06FA0001'     LOW-RBA----------------0     TRACKS-----------------1 
         HIGH-CCHH----X'06FA0001'     HIGH-RBA-----------55295                   
-0   INDEX ------ Z73460.TASK19.HLQ.EMPKSDS.JCL.INDEX                            
+   INDEX ------ Z73460.TASK19.HLQ.EMPKSDS.JCL.INDEX                            
       IN-CAT --- CATALOG.ZOSO                                                   
       HISTORY                                                                   
         DATASET-OWNER-----(NULL)     CREATION--------2026.169                   
@@ -88,8 +88,8 @@
         EXTENTS:                                                                
         LOW-CCHH-----X'06FA0002'     LOW-RBA----------------0     TRACKS-----------------1
         HIGH-CCHH----X'06FA0002'     HIGH-RBA-----------25087                   
-1IDCAMS  SYSTEM SERVICES                                           TIME: 14:01:28        06/18/26     PAGE      3 
-0         THE NUMBER OF ENTRIES PROCESSED WAS:                                  
+IDCAMS  SYSTEM SERVICES                                           TIME: 14:01:28        06/18/26     PAGE      3 
+         THE NUMBER OF ENTRIES PROCESSED WAS:                                  
                     AIX -------------------0                                    
                     ALIAS -----------------0                                    
                     CLUSTER ---------------1                                    
@@ -104,7 +104,7 @@
                     TAPELIBRARY -----------0                                    
                     TAPEVOLUME ------------0                                    
                     TOTAL -----------------3                                    
-0         THE NUMBER OF PROTECTED ENTRIES SUPPRESSED WAS 0                      
-0IDC0001I FUNCTION COMPLETED, HIGHEST CONDITION CODE WAS 0                      
-0                                                                               
-0IDC0002I IDCAMS PROCESSING COMPLETE. MAXIMUM CONDITION CODE WAS 0              
+         THE NUMBER OF PROTECTED ENTRIES SUPPRESSED WAS 0                      
+IDC0001I FUNCTION COMPLETED, HIGHEST CONDITION CODE WAS 0                      
+                                                                               
+IDC0002I IDCAMS PROCESSING COMPLETE. MAXIMUM CONDITION CODE WAS 0              
