@@ -17,7 +17,7 @@
 //SYSIN    DD *                                                         
   DELETE Z73460.TASK19.HLQ.EMPKSDS.JCL CLUSTER PURGE                    
   DELETE Z73460.TASK19.INFILE.JCL NONVSAM SCRATCH PURGE                 
-  IF LASTCC <= 8 THEN SET MAXCC = 0                                     
+  IF MAXCC <= 8 THEN SET MAXCC = 0                                     
 /*                                                                      
 //**********************************************************************
 //* BYPASSED THIS STEP IF STEP010 RC > 8                               *
