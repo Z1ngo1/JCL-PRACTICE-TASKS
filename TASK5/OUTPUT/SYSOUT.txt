@@ -1,0 +1,5 @@
+ICE090I 0 OUTPUT LRECL = 30, BLKSIZE = 27990, TYPE = FB                         
+ICE055I 0 INSERT 0, DELETE 4                                                    
+ICE054I 0 RECORDS - IN: 7, OUT: 3                                               
+ICE267I 0 ZSORT ACCELERATOR PATH NOT USED    RSN=195                            
+ICE052I 0 END OF DFSORT                                                         
