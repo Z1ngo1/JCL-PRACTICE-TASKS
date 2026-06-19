@@ -1,5 +1,3 @@
 ICE091I 0 OUTPUT LRECL = 80, TYPE = F                                           
 ICE055I 0 INSERT 0, DELETE 3                                                    
-ICE054I 0 RECORDS - IN: 3, OUT: 0                                               
-ICE267I 0 ZSORT ACCELERATOR PATH NOT USED    RSN=195                            
-ICE052I 0 END OF DFSORT                                                         
+ICE054I 0 RECORDS - IN: 3, OUT: 0                                                                                                   
