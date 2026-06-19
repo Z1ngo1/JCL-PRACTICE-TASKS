@@ -1,0 +1,7 @@
+ICE627I 0 DFSORT CALL 0001 FOR COPY FROM INDD     TO E35 EXIT COMPLETED         
+ICE628I 0 RECORD COUNT:  000000000000003                                        
+ICE655I 0 COUNT RECORD WRITTEN IN OUTDD    DATA SET - LENGTH IS 00015 BYTES     
+ICE602I 0 OPERATION RETURN CODE:  00                                            
+                                                                                
+                                                                                
+ICE601I 0 DFSORT ICETOOL UTILITY RUN ENDED - RETURN CODE:  00                   
