@@ -1,0 +1,6 @@
+ICE090I 0 OUTPUT LRECL = 20, BLKSIZE = 27980, TYPE = FB                         
+ICE171I 0 SORTOUT LRECL OF 20 IS DIFFERENT FROM SORTIN(NN) LRECL OF 36 - RC=0   
+ICE055I 0 INSERT 0, DELETE 0                                                    
+ICE054I 0 RECORDS - IN: 7, OUT: 7                                               
+ICE267I 0 ZSORT ACCELERATOR PATH NOT USED    RSN=195                            
+ICE052I 0 END OF DFSORT                                                         
