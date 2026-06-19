@@ -3,11 +3,4 @@ ICE080I 0 IN MAIN STORAGE SORT
 ICE055I 0 INSERT 0, DELETE 5                                                    
 ICE054I 0 RECORDS - IN: 10, OUT: 5                                              
 ICE134I 0 NUMBER OF BYTES SORTED: 400                                           
-ICE253I 0 RECORDS SORTED - PROCESSED: 5, EXPECTED: 349                          
-ICE199I 0 MEMORY OBJECT USED AS MAIN STORAGE = 0M BYTES                         
-ICE299I 0 MEMORY OBJECT USED AS WORK STORAGE = 0M BYTES                         
-ICE399I 0 MEMORY OBJECT USED IN ZSORT PATH = 0M BYTES                           
-ICE180I 0 HIPERSPACE STORAGE USED = 0K BYTES                                    
-ICE188I 0 DATA SPACE STORAGE USED = 0K BYTES                                    
-ICE267I 0 ZSORT ACCELERATOR PATH NOT USED    RSN=194                            
-ICE052I 0 END OF DFSORT                                                         
+ICE253I 0 RECORDS SORTED - PROCESSED: 5, EXPECTED: 349                                                                            
