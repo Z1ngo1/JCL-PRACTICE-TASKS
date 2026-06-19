@@ -1,0 +1,20 @@
+IDCAMS  SYSTEM SERVICES                                          
+                                                                 
+  DEFINE CLUSTER -                                               
+    (NAME(Z73460.TASK19.HLQ.EMPKSDS.JCL) -                       
+     KEYS(3 0) -                                                 
+     RECORDSIZE(36,36) -                                         
+     TRACKS(1 1) -                                               
+     INDEXED -                                                   
+     FREESPACE(10,20)) -                                         
+    DATA -                                                       
+    (NAME(Z73460.TASK19.HLQ.EMPKSDS.JCL.DATA)) -                 
+    INDEX -                                                      
+    (NAME(Z73460.TASK19.HLQ.EMPKSDS.JCL.INDEX))                  
+IDC0508I DATA ALLOCATION STATUS FOR VOLUME ZXPL01 IS 0           
+IDC0509I INDEX ALLOCATION STATUS FOR VOLUME ZXPL01 IS 0          
+IDC0181I STORAGECLASS USED IS ZXPS                               
+IDC0181I DATACLASS USED IS ZXPD                                  
+IDC0001I FUNCTION COMPLETED, HIGHEST CONDITION CODE WAS 0        
+                                                                 
+IDC0002I IDCAMS PROCESSING COMPLETE. MAXIMUM CONDITION CODE WAS 0
