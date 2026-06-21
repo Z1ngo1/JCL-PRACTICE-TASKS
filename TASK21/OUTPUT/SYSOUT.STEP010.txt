@@ -1,0 +1,13 @@
+IDCAMS  SYSTEM SERVICES                                          
+                                                                 
+  DELETE Z73460.TASK21.HLQ.SRCLIB.JCL NONVSAM SCRATCH PURGE      
+IDC0550I ENTRY (A) Z73460.TASK21.HLQ.SRCLIB.JCL DELETED          
+IDC0001I FUNCTION COMPLETED, HIGHEST CONDITION CODE WAS 0        
+                                                                 
+  DELETE Z73460.TASK21.HLQ.TGTLIB.JCL NONVSAM SCRATCH PURGE      
+IDC0550I ENTRY (A) Z73460.TASK21.HLQ.TGTLIB.JCL DELETED          
+IDC0001I FUNCTION COMPLETED, HIGHEST CONDITION CODE WAS 0        
+                                                                 
+  IF MAXCC <= 8 THEN SET MAXCC = 0                               
+                                                                 
+IDC0002I IDCAMS PROCESSING COMPLETE. MAXIMUM CONDITION CODE WAS 0
