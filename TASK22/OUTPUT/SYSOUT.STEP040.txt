@@ -1,0 +1,10 @@
+       SYSIN                            NEW MASTER                              
+       ./ CHANGE NAME=EMPDATA                                                   
+       ./ DELETE SEQ1=00000020,SEQ2=00000020                                    
+               002PETROV    ANALYST   003200                                    
+               006NOVIKOV   DEVELOPER 006100                                    
+               007POPOV     MANAGER   008200                                    
+       ./ ENDUP                                                                 
+IEB816I MEMBER NAME (EMPDATA ) FOUND IN NM DIRECTORY. TTR IS NOW ALTERED.       
+IEB818I HIGHEST CONDITION CODE WAS 00000000                                     
+IEB819I END OF JOB IEBUPDTE.                                                    
