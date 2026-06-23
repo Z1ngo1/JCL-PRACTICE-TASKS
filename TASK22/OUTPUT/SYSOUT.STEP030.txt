@@ -1,0 +1,21 @@
+       SYSIN                            NEW MASTER                              
+       ./ ADD NAME=EMPDATA                                                      
+       ./ NUMBER NEW1=00000010,INCR=00000010                                    
+       001IVANOV    DEVELOPER 005000                                            
+       002PETROV    ANALYST   003200                                            
+       003SIDOROV   MANAGER   007800                                            
+       004KOZLOV    DEVELOPER 004500                                            
+       005MOROZOV   ANALYST   002900                                            
+IEB817I MEMBER NAME (EMPDATA ) NOT FOUND IN NM DIRECTORY.  STOWED WITH TTR.     
+       SYSIN                            NEW MASTER                              
+       ./ ADD NAME=SALDATA                                                      
+       ./ NUMBER NEW1=00000010,INCR=00000010                                    
+       001005000RUB                                                             
+       002003200RUB                                                             
+       003007800RUB                                                             
+       004004500RUB                                                             
+       005002900RUB                                                             
+       ./ ENDUP                                                                 
+IEB817I MEMBER NAME (SALDATA ) NOT FOUND IN NM DIRECTORY.  STOWED WITH TTR.     
+IEB818I HIGHEST CONDITION CODE WAS 00000000                                     
+IEB819I END OF JOB IEBUPDTE.                                                    
