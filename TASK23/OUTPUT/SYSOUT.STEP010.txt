@@ -1,0 +1,14 @@
+IDCAMS  SYSTEM SERVICES                                          
+                                                                 
+  DELETE Z73460.TASK23.HLQ.EMPGDG.JCL.*                          
+IDC0550I ENTRY (A) Z73460.TASK23.HLQ.EMPGDG.JCL.G0001V00 DELETED 
+IDC0550I ENTRY (A) Z73460.TASK23.HLQ.EMPGDG.JCL.G0002V00 DELETED 
+IDC0001I FUNCTION COMPLETED, HIGHEST CONDITION CODE WAS 0        
+                                                                 
+  DELETE Z73460.TASK23.HLQ.EMPGDG.JCL GDG PURGE                  
+IDC0550I ENTRY (B) Z73460.TASK23.HLQ.EMPGDG.JCL DELETED          
+IDC0001I FUNCTION COMPLETED, HIGHEST CONDITION CODE WAS 0        
+                                                                 
+  IF MAXCC <=8 THEN SET MAXCC = 0                                
+                                                                 
+IDC0002I IDCAMS PROCESSING COMPLETE. MAXIMUM CONDITION CODE WAS 0
