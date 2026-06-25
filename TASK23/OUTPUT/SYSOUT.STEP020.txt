@@ -1,0 +1,9 @@
+IDCAMS  SYSTEM SERVICES                                          
+                                                                 
+  DEFINE GDG(NAME(Z73460.TASK23.HLQ.EMPGDG.JCL) -                
+         LIMIT(3) -                                              
+         SCRATCH -                                               
+         NOEMPTY)                                                
+IDC0001I FUNCTION COMPLETED, HIGHEST CONDITION CODE WAS 0        
+                                                                 
+IDC0002I IDCAMS PROCESSING COMPLETE. MAXIMUM CONDITION CODE WAS 0
