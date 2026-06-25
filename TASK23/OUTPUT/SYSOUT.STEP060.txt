@@ -1,0 +1,4 @@
+001IVANOV    DEVELOPER 005500                                                   
+002PETROV    ANALYST   003500                                                   
+003SIDOROV   MANAGER   008000                                                   
+004KOZLOV    DEVELOPER 004500                                                   
