@@ -1,0 +1,3 @@
+ICE091I 0 OUTPUT LRECL = 10, TYPE = F                                           
+ICE055I 0 INSERT 0, DELETE 7                                                    
+ICE054I 0 RECORDS - IN: 7, OUT: 0                                               
