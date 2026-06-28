@@ -1,0 +1,25 @@
+IDCAMS  SYSTEM SERVICES                                          
+                                                                 
+  LISTCAT ENTRIES(Z73460.TASK24.HLQ.RESULT.JCL) GDG              
+GDG BASE ------ Z73460.TASK24.HLQ.RESULT.JCL                     
+     IN-CAT --- CATALOG.ZOSO                                     
+IDCAMS  SYSTEM SERVICES                                          
+         THE NUMBER OF ENTRIES PROCESSED WAS:                    
+                   AIX -------------------0                      
+                   ALIAS -----------------0                      
+                   CLUSTER ---------------0                      
+                   DATA ------------------0                      
+                   GDG -------------------1                      
+                   INDEX -----------------0                      
+                   NONVSAM ---------------0                      
+                   PAGESPACE -------------0                      
+                   PATH ------------------0                      
+                   SPACE -----------------0                      
+                   USERCATALOG -----------0                      
+                   TAPELIBRARY -----------0                      
+                   TAPEVOLUME ------------0                      
+                   TOTAL -----------------1                      
+         THE NUMBER OF PROTECTED ENTRIES SUPPRESSED WAS 0        
+IDC0001I FUNCTION COMPLETED, HIGHEST CONDITION CODE WAS 0        
+                                                                 
+IDC0002I IDCAMS PROCESSING COMPLETE. MAXIMUM CONDITION CODE WAS 0
