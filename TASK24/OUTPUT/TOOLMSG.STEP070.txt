@@ -1,0 +1,9 @@
+ICE627I 0 DFSORT CALL 0001 FOR COPY FROM INDD     TO E35 EXIT COMPLETED         
+ICE628I 0 RECORD COUNT:  000000000000007                                        
+ICE607I 0 STATISTICS FOR (37,6,ZD)     :                                        
+ICE608I 0   MINIMUM:  +000000000002900, MAXIMUM:  +000000000008200              
+ICE609I 0   AVERAGE:  +000000000005385, TOTAL  :  +000000000037700              
+ICE602I 0 OPERATION RETURN CODE:  00                                            
+                                                                                
+                                                                                
+ICE601I 0 DFSORT ICETOOL UTILITY RUN ENDED - RETURN CODE:  00                   
