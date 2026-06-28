@@ -9,20 +9,21 @@
 //**********************************************************************
 //**********************************************************************
 //* DELETE ALREADY EXISTING DATASETS IF THEY EXIST                     *
-//* NOTE: SPACE PARAMETER OMITTED - MOD,DELETE,DELETE HANDLES MISSING  *
+//* NOTE: SPACE PARAMETER USED IF DATASET DOES NOT EXIST               *
 //**********************************************************************
 //STEP005  EXEC PGM=IEFBR14                                             
 //DELDD1   DD DSN=Z73460.TASK1.JCL,                                     
-//            DISP=(MOD,DELETE,DELETE)                                  
+//            DISP=(MOD,DELETE,DELETE),  
+//            SPACE=(TRK,(1,0)) 
 //DELDD2   DD DSN=Z73460.TASK1.JCL.SORT,                                
-//            DISP=(MOD,DELETE,DELETE)                                  
+//            DISP=(MOD,DELETE,DELETE),
+//            SPACE=(TRK,(1,0)) 
 //**********************************************************************
 //* BYPASSED THIS STEP IF STEP005 RC > 4                               *
 //* LOAD INPUT DATA INTO DATASET                                       *
 //**********************************************************************
 //STEP010  EXEC PGM=IEBGENER,COND=(04,LT,STEP005)                       
-//SYSPRINT DD SYSOUT=*                                                  
-//SYSOYT   DD SYSOUT=*                                                  
+//SYSPRINT DD SYSOUT=*                                                                                                   
 //SYSUT1   DD *                                                         
 DMITRIEV  06122007                                                      
 SHERSHUN  30012008                                                      
@@ -50,3 +51,4 @@ BOGDANOV  03072008
 //SYSIN    DD *                                                         
  SORT FIELDS=(15,4,CH,A,13,2,CH,A,11,2,CH,A)                            
 /*                                                                      
+//
