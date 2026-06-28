@@ -1,0 +1,5 @@
+ICE421I 0 JOINED RECORDS: COUNT=7                                               
+ICE090I 0 OUTPUT LRECL = 60, BLKSIZE = 27960, TYPE = FB                         
+ICE080I 0 IN MAIN STORAGE SORT                                                  
+ICE055I 0 INSERT 7, DELETE 0                                                    
+ICE054I 0 RECORDS - IN: 0, OUT: 7                                               
