@@ -17,7 +17,7 @@
 //* REFORMAT RECORDS USING OUTREC BUILD TO REORDER THE FIELDS          *
 //* OUTPUT RECORD LENGTH = 6 + 1 + 10 + 1 + 10 = 28 BYTES              *
 //**********************************************************************
-//STEP020  EXEC PGM=SORT                                                
+//STEP020  EXEC PGM=SORT,COND=(04,LT,STEP010)                                                
 //SYSPRINT DD SYSOUT=*                                                  
 //SYSOUT   DD SYSOUT=*                                                  
 //SORTIN   DD DSN=Z73460.TASK7.INPUT.JCL,DISP=SHR                       
