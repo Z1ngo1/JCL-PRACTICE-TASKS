@@ -14,6 +14,7 @@
 //            SPACE=(TRK,(1,0),RLSE),                                   
 //            DISP=(MOD,DELETE,DELETE)                                  
 //**********************************************************************
+//* BYPASSED THIS STEP IF STEP005 RC > 4                               *
 //* SORT DATA FROM TASK3 IN ASCENDING ORDER BY LAST NAME               *
 //**********************************************************************
 //STEP010  EXEC PGM=SORT,COND=(04,LT,STEP005)                                                
