@@ -1,7 +1,11 @@
 //SORT2    JOB (1337),'INCLUDE AND OMIT',CLASS=A,MSGCLASS=A,            
 //             MSGLEVEL=(1,1),NOTIFY=&SYSUID                            
 //**********************************************************************
-//*          TASK2: INCLUDE AND SORT PARAMETERS                        *
+//* TASK2: INCLUDE ONLY RECORDS WHERE STATE=NY AND TYPE=A              *
+//* STEP1 - DELETE ALREADY EXISTING DATASETS (IF EXIST)                *
+//* STEP2 - LOAD INLINE EMPLOYEE DATA INTO INPUT DATASET               *
+//*         RECORD FORMAT: NAME(10)+TYPE(1)+SP+STATE(2)+SP+AMT(6)      *
+//* STEP3 - SORT BY NAME ASC, INCLUDE STATE=NY AND TYPE=A ONLY         *
 //**********************************************************************
 //**********************************************************************
 //* DELETE ALREADY EXISTING DATASETS IF THEY EXIST                     *
@@ -17,7 +21,7 @@
 //**********************************************************************
 //* LOAD INPUT DATA INTO DATASET                                       *
 //**********************************************************************
-//STEP2    EXEC PGM=IEBGENER                                            
+//STEP2    EXEC PGM=IEBGENER,COND=(04,LT,STEP1)                                         
 //SYSPRINT DD SYSOUT=*                                                                                                 
 //SYSUT1   DD *                                                         
 SMITH     A  NY  001500                                                 
@@ -37,7 +41,8 @@ TAYLOR    A  NY  002100
 //         DCB=(RECFM=FB,LRECL=80,DSORG=PS)                             
 //SYSIN    DD DUMMY                                                     
 //**********************************************************************
-//* SORT RECORDS BY NAME, INCLUDE ONLY STATE='NY' AND CODE='A'         *
+//* BYPASSED IF ANY PREVIOUS STEP RC > 4                               *
+//* SORT RECORDS INCLUDE 'NY' AND OMIT 'X' PARAMETERS                  *
 //**********************************************************************
 //STEP3    EXEC PGM=SORT,COND=(04,LT)                                   
 //SYSPRINT DD SYSOUT=*                                                  
@@ -51,3 +56,4 @@ TAYLOR    A  NY  002100
   SORT FIELDS=(1,10,CH,A)                                               
   INCLUDE COND=(14,2,CH,EQ,C'NY',AND,11,1,CH,EQ,C'A')                   
 /*                                                                      
+//
