@@ -1,7 +1,9 @@
 //TASK4    JOB (888),'SORT CUST FILE',CLASS=A,MSGCLASS=A,               
 //             MSGLEVEL=(1,1),NOTIFY=&SYSUID                            
 //**********************************************************************
-//*   TASK4: SORT DATA FROM TASK3 IN ASCENDING ORDER BY LAST NAME      *
+//* TASK4: SORT DATA FROM TASK3 IN ASCENDING ORDER BY LAST NAME        *
+//* STEP005 - DELETE ALREADY EXISTING DATASETS (IF EXIST)              *
+//* STEP010 - SORT TASK3 OUTPUT BY LAST NAME(COL 1-10) ASC             *
 //**********************************************************************
 //**********************************************************************
 //* DELETE ALREADY EXISTING DATASETS IF THEY EXIST                     *
@@ -14,7 +16,7 @@
 //**********************************************************************
 //* SORT DATA FROM TASK3 IN ASCENDING ORDER BY LAST NAME               *
 //**********************************************************************
-//STEP010  EXEC PGM=SORT                                                
+//STEP010  EXEC PGM=SORT,COND=(04,LT,STEP005)                                                
 //SYSPRINT DD SYSOUT=*                                                  
 //SYSOUT   DD SYSOUT=*                                                  
 //SORTIN   DD DSN=Z73460.TASK3.OUTPUT.JCL,DISP=SHR                      
@@ -25,3 +27,4 @@
 //SYSIN    DD *                                                         
   SORT FIELDS=(1,10,CH,A)                                               
 /*                                                                      
+//
