@@ -20,7 +20,7 @@
 //**********************************************************************
 //* INSERT DATA INTO DATASET BY IEBGENER                               *
 //**********************************************************************
-//STEP020  EXEC PGM=IEBGENER                                            
+//STEP020  EXEC PGM=IEBGENER,COND=(04,LT,STEP010)                       
 //SYSPRINT DD SYSOUT=*                                                  
 //SYSIN    DD DUMMY                                                     
 //SYSUT1   DD *                                                         
@@ -57,7 +57,7 @@ SOKOLOV   DENIS     DEVELOPER 005500
 //**********************************************************************
 //* BYPASSES THIS STEP IF STEP030 RETURN CODE IS NOT EQUAL TO 0        *
 //* REFORMAT RECORDS FROM &&TEMP: LASTNAME + '|' + SALARY              *
-//* OUTPUT RECORD LENGTH = 10 + 1 + 6 = 17 BYTES                       *
+//* OUTPUT RECORD LENGTH = 10 + 1 + 6 + 63 SAPCES = 80 BYTES           *
 //**********************************************************************
 //STEP040  EXEC PGM=SORT,COND=(00,NE,STEP030)                           
 //SYSPRINT DD SYSOUT=*                                                  
@@ -82,3 +82,4 @@ SOKOLOV   DENIS     DEVELOPER 005500
 //SYSUT1   DD DSN=Z73460.TASK10.FINAL.JCL,DISP=SHR                      
 //SYSUT2   DD SYSOUT=*                                                  
 //SYSIN    DD DUMMY                                                     
+//
