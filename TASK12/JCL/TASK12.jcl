@@ -28,7 +28,7 @@
 //**********************************************************************
 //* LOAD INPUT DATA INTO &INFILE DATASET USING IEBGENER                *
 //**********************************************************************
-//STEP020  EXEC PGM=IEBGENER                                            
+//STEP020  EXEC PGM=IEBGENER,COND=(04,LT,STEP010)                       
 //SYSPRINT DD SYSOUT=*                                                  
 //SYSIN    DD DUMMY                                                     
 //SYSUT1   DD *                                                         
@@ -88,3 +88,4 @@ ORLOV     NIKITA    ANALYST   003100
   SORT FIELDS=COPY                                                      
   OUTREC BUILD=(C'REPORT DATE: 20260525 ',1,10,31,6)                    
 /*                                                                      
+//
