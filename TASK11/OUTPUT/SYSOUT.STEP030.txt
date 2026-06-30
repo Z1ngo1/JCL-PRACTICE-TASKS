@@ -4,5 +4,3 @@ ICE227I 0 OUT1     : DELETED = 6, REPORT = 0, DATA = 4
 ICE228I 0 OUT1     : TOTAL IN = 10, TOTAL OUT = 4                 
 ICE227I 0 OUT2     : DELETED = 7, REPORT = 0, DATA = 3            
 ICE228I 0 OUT2     : TOTAL IN = 10, TOTAL OUT = 3                 
-ICE134I 0 NUMBER OF BYTES SORTED: 800                             
-ICE253I 0 RECORDS SORTED - PROCESSED: 10, EXPECTED: 349           
