@@ -20,13 +20,14 @@
   IF MAXCC <=8 THEN SET MAXCC = 0                                       
 /*                                                                      
 //**********************************************************************
+//* BYPASSED THIS STEP IF STEP010 RC > 8                               *
 //* CREATE ONE EMPTY PDS LIBRARY VIA IEFBR14                           *
 //* SPACE=(TRK,(2,2,10)):                                              *
 //*   2  - PRIMARY   2 TRACKS ALLOCATED IMMEDIATELY                    *
 //*   2  - SECONDARY 2 TRACKS ADDED WHEN PRIMARY IS EXHAUSTED          *
 //*   10 - DIRECTORY 10 BLOCKS (~6 MEMBERS PER BLOCK)                  *
 //**********************************************************************
-//STEP020  EXEC PGM=IEFBR14                                             
+//STEP020  EXEC PGM=IEFBR14,COND=(08,LT,STEP010)                                            
 //CRTPDS   DD DSN=Z73460.TASK22.HLQ.UPDLIB.JCL,                         
 //            DISP=(NEW,CATLG,DELETE),                                  
 //            UNIT=SYSDA,                                               
@@ -87,3 +88,4 @@
 //SYSUT1   DD DSN=Z73460.TASK22.HLQ.UPDLIB.JCL(EMPDATA),DISP=SHR        
 //SYSUT2   DD SYSOUT=*                                                  
 //SYSIN    DD DUMMY                                                     
+//
