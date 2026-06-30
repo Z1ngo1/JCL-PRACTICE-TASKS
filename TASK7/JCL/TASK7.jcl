@@ -18,11 +18,11 @@
 //            SPACE=(TRK,(1,0)),                                        
 //            DISP=(MOD,DELETE,DELETE)                                  
 //**********************************************************************
-//* BYPASSED THIS STEP IF STEP005 RC > 4                               *
+//* BYPASSED THIS STEP IF STEP010 RC > 4                               *
 //* INSERT DATA INTO DATASET BY USING GENERATE MAXFLDS PARAMETER       *
 //* ROWS ARE FORMATTED TO AN EXACT RECORD LENGTH OF 36 BYTES           *
 //**********************************************************************
-//STEP020  EXEC PGM=IEBGENER,COND=(04,LT,STEP005)                                           
+//STEP020  EXEC PGM=IEBGENER,COND=(04,LT,STEP010)                                           
 //SYSPRINT DD SYSOUT=*                                                  
 //SYSIN    DD *                                                         
   GENERATE MAXFLDS=1                                                    
