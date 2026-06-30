@@ -22,10 +22,11 @@
 //            DISP=(MOD,DELETE,DELETE),                                 
 //            SPACE=(TRK,(1,0))                                         
 //**********************************************************************
+//* BYPASSES THIS STEP IF STEP010 FAILS WITH RETURN CODE > 4           *
 //* CREATE MASTER EMPLOYEE FILE AND LOAD DATA USIING IEBGENER          *
 //* ROWS ARE FORMATTED TO AN EXACT RECORD LENGTH OF 20 BYTES           *
 //**********************************************************************
-//STEP020  EXEC PGM=IEBGENER                                            
+//STEP020  EXEC PGM=IEBGENER,COND=(04,LT,STEP010)                                            
 //SYSPRINT DD SYSOUT=*                                                  
 //SYSUT1   DD *                                                         
 001IVANOV    IVAN                                                       
@@ -45,10 +46,11 @@
   RECORD FIELD=(20,1,,1)                                                
 /*                                                                      
 //**********************************************************************
+//* BYPASSES THIS STEP IF STEP010 FAILS WITH RETURN CODE > 4           *
 //* CREATE SALARY DATASET AND LOAD DATA WITH UNMATCHED RECORDS         *
 //* ROWS ARE FORMATTED TO AN EXACT RECORD LENGTH OF 9 BYTES            *
 //**********************************************************************
-//STEP030  EXEC PGM=IEBGENER                                            
+//STEP030  EXEC PGM=IEBGENER,COND=(04,LT,STEP010)                                           
 //SYSPRINT DD SYSOUT=*                                                  
 //SYSUT1   DD *                                                         
 001005000                                                               
@@ -87,3 +89,4 @@
   JOIN UNPAIRED,F1                                                      
   REFORMAT FIELDS=(F1:1,20,F2:4,6),FILL=C'0'                            
 /*                                                                      
+//
