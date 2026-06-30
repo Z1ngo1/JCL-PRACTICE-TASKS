@@ -19,6 +19,7 @@
 //            DISP=(MOD,DELETE,DELETE),                                 
 //            SPACE=(TRK,(1,0))                                         
 //**********************************************************************
+//* BYPASSED IF ANY PREVIOUS STEP RC > 4                               *
 //* LOAD INPUT DATA INTO DATASET                                       *
 //**********************************************************************
 //STEP2    EXEC PGM=IEBGENER,COND=(04,LT,STEP1)                                         
