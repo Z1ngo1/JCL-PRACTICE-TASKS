@@ -45,7 +45,7 @@ POPOV     ANDREY    MANAGER   008200
 //* REFORMAT INPUT FILE AND ADD CONSTANT PREFIX USING OUTREC BUILD     *
 //* NEW LAYOUT: PREFIX 'REC:' + LASTNAME(1,10) + SALARY(31,6)          *
 //**********************************************************************
-    //STEP030  EXEC PGM=SORT,COND=(04,LT,STEP020)                           
+//STEP030  EXEC PGM=SORT,COND=(04,LT,STEP020)                           
 //SYSPRINT DD SYSOUT=*                                                  
 //SYSOUT   DD SYSOUT=*                                                  
 //SORTIN   DD DSN=Z73460.TASK7.INPUT.JCL,DISP=SHR                       
@@ -57,3 +57,4 @@ POPOV     ANDREY    MANAGER   008200
   SORT FIELDS=COPY                                                      
   OUTREC BUILD=(C'REC:',1,10,31,6)                                      
 /*                                                                      
+//
