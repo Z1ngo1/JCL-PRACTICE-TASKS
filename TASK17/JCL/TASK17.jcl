@@ -23,7 +23,7 @@
 //STEP1    EXEC PGM=SORT                                                
 //SYSPRINT DD SYSOUT=*                                                  
 //SYSOUT   DD SYSOUT=*                                                  
-//SORTIN   DD DSN=&&JOINED,DISP=SHR                                     
+//SORTIN   DD DSN=&&JOINED,(DISP=OLD,PASS)                              
 //SORTOUT  DD DSN=&&ROLEOUT,                                            
 //            DISP=(NEW,PASS,DELETE),                                   
 //            SPACE=(TRK,(1,1)),                                        
@@ -63,7 +63,7 @@
 //* CREATE EMPLOYEE FILE AND LOAD DATA USIING IEBGENER                 *
 //* ROWS ARE FORMATTED TO AN EXACT RECORD LENGTH OF 26 BYTES           *
 //**********************************************************************
-//STEP020  EXEC PGM=IEBGENER                                            
+//STEP020  EXEC PGM=IEBGENER,COND=(04,LT,STEP010)                       
 //SYSPRINT DD SYSOUT=*                                                  
 //SYSUT1   DD *                                                         
 001IVANOV    DEVELOPER                                                  
@@ -89,7 +89,7 @@
 //* CREATE SALARY FILE AND LOAD DATA USIING IEBGENER                   *
 //* ROWS ARE FORMATTED TO AN EXACT RECORD LENGTH OF 9 BYTES            *
 //**********************************************************************
-//STEP030  EXEC PGM=IEBGENER                                            
+//STEP030  EXEC PGM=IEBGENER,COND=(04,LT,STEP010)                       
 //SYSPRINT DD SYSOUT=*                                                  
 //SYSUT1   DD *                                                         
 001005000                                                               
@@ -168,4 +168,5 @@
 //SYSPRINT DD SYSOUT=*                                                  
 //SYSUT1   DD DSN=&&JOINED,DISP=(OLD,DELETE)                            
 //SYSUT2   DD SYSOUT=*                                                  
-//SYSIN    DD DUMMY                                                     
+//SYSIN    DD DUMMY                               
+//
