@@ -14,6 +14,7 @@
 //            DISP=(MOD,DELETE,DELETE),                                 
 //            SPACE=(TRK,(1,0))                                         
 //**********************************************************************
+//* BYPASSED THIS STEP IF STEP010 RC > 4                               *
 //* REFORMAT RECORDS USING OUTREC BUILD TO REORDER THE FIELDS          *
 //* OUTPUT RECORD LENGTH = 6 + 1 + 10 + 1 + 10 = 28 BYTES              *
 //**********************************************************************
