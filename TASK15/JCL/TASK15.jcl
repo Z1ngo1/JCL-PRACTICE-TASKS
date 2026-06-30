@@ -23,10 +23,11 @@
 //            DISP=(MOD,DELETE,DELETE),                                 
 //            SPACE=(TRK,(1,0))                                         
 //**********************************************************************
+//* BYPASSES THIS STEP IF STEP010 FAILS WITH RETURN CODE > 4           *
 //* CREATE EMPLOYEE FILE AND LOAD DATA (ID + NAME) USING IEBGENER      *
 //* ROWS ARE FORMATTED TO AN EXACT RECORD LENGTH OF 20 BYTES           *
 //**********************************************************************
-//STEP020  EXEC PGM=IEBGENER                                            
+//STEP020  EXEC PGM=IEBGENER,COND=(04,LT,STEP010)                                           
 //SYSPRINT DD SYSOUT=*                                                  
 //SYSUT1   DD *                                                         
 001IVANOV    IVAN                                                       
@@ -45,10 +46,11 @@
   RECORD FIELD=(20,1,,1)                                                
 /*                                                                      
 //**********************************************************************
+//* BYPASSES THIS STEP IF STEP010 FAILS WITH RETURN CODE > 4           *
 //* CREATE SALARY FILE AND LOAD DATA (ID + AMOUNT) USING IEBGENER      *
 //* ROWS ARE FORMATTED TO AN EXACT RECORD LENGTH OF 9 BYTES            *
 //**********************************************************************
-//STEP030  EXEC PGM=IEBGENER                                            
+//STEP030  EXEC PGM=IEBGENER,COND=(04,LT,STEP010)                                            
 //SYSPRINT DD SYSOUT=*                                                  
 //SYSUT1   DD *                                                         
 001005000                                                               
