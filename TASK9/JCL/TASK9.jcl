@@ -14,6 +14,7 @@
 //            DISP=(MOD,DELETE,DELETE),                                 
 //            SPACE=(TRK,(1,0))                                         
 //**********************************************************************
+//* BYPASSED THIS STEP IF STEP010 RC > 4                               *
 //* FILTER INPUT FILE BY POSITION AND REFORMAT MATCHING RECORDS        *
 //* INCLUDE EXTRACTS MANAGERS, OUTREC BUILD REORDERS INTO 20 BYTE ROW  *
 //**********************************************************************
