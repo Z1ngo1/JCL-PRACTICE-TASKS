@@ -17,7 +17,7 @@
 //* FILTER INPUT FILE BY POSITION AND REFORMAT MATCHING RECORDS        *
 //* INCLUDE EXTRACTS MANAGERS, OUTREC BUILD REORDERS INTO 20 BYTE ROW  *
 //**********************************************************************
-//STEP020  EXEC PGM=SORT                                                
+//STEP020  EXEC PGM=SORT,COND=(04,LT,STEP010)                                               
 //SYSPRINT DD SYSOUT=*                                                  
 //SYSOUT   DD SYSOUT=*                                                  
 //SORTIN   DD DSN=Z73460.TASK7.INPUT.JCL,DISP=SHR                       
