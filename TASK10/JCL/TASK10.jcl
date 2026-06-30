@@ -18,6 +18,7 @@
 //            DISP=(MOD,DELETE,DELETE),                                 
 //            SPACE=(TRK,(1,0))                                         
 //**********************************************************************
+//* BYPASSED THIS STEP IF STEP010 RC > 4                               *
 //* INSERT DATA INTO DATASET BY IEBGENER                               *
 //**********************************************************************
 //STEP020  EXEC PGM=IEBGENER,COND=(04,LT,STEP010)                       
