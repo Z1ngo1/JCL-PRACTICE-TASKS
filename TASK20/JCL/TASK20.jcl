@@ -27,10 +27,10 @@
 //            DISP=(MOD,DELETE,DELETE),                                 
 //            SPACE=(TRK,(1,1))                                         
 //**********************************************************************
-//* BYPASSED THIS STEP IF STEP020 RETURNED CODE NOT EQUAL 0            *
+//* BYPASSED THIS STEP IF STEP010 OR STEP015 RETURNED CODE NOT EQUAL 0 *
 //* UNLOAD VSAM KSDS CONTENT TO SEQUENTIAL BACKUP FILE                 *
 //**********************************************************************
-//STEP020  EXEC PGM=IDCAMS,COND=(00,NE,STEP010)                         
+//STEP020  EXEC PGM=IDCAMS,COND=((00,NE,STEP010),(00,NE,STEP015))                     
 //SYSPRINT DD SYSOUT=*                                                  
 //INDD     DD DSN=Z73460.TASK19.HLQ.EMPKSDS.JCL,DISP=SHR                
 //OUTDD    DD DSN=Z73460.TASK20.HLQ.EMPBKUP.JCL,                        
