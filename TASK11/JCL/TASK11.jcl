@@ -30,9 +30,10 @@
 //            DISP=(MOD,DELETE,DELETE),                                 
 //            SPACE=(TRK,(1,0))                                         
 //**********************************************************************
+//* BYPASSES THIS STEP IF STEP010 FAILS WITH RETURN CODE > 4           *
 //* INSERT DATA INTO DATASET BY IEBGENER                               *
 //**********************************************************************
-//STEP020  EXEC PGM=IEBGENER                                            
+//STEP020  EXEC PGM=IEBGENER,COND=(04,LT,STEP010)                                            
 //SYSPRINT DD SYSOUT=*                                                  
 //SYSIN    DD DUMMY                                                     
 //SYSUT1   DD *                                                         
@@ -111,3 +112,4 @@ ORLOV     NIKITA    ANALYST   003100
 //SYSUT1   DD DSN=Z73460.TASK11.MERGED.JCL,DISP=SHR                     
 //SYSUT2   DD SYSOUT=*                                                  
 //SYSIN    DD DUMMY                                                     
+//
