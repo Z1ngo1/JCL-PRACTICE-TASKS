@@ -26,6 +26,7 @@
 //            DISP=(MOD,DELETE,DELETE),                                 
 //            SPACE=(TRK,(1,0))                                         
 //**********************************************************************
+//* BYPASSED THIS STEP IF STEP010 RC > 4                               *
 //* LOAD INPUT DATA INTO &INFILE DATASET USING IEBGENER                *
 //**********************************************************************
 //STEP020  EXEC PGM=IEBGENER,COND=(04,LT,STEP010)                       
