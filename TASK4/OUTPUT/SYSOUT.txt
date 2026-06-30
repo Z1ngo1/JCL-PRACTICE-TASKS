@@ -2,5 +2,3 @@ ICE090I 0 OUTPUT LRECL = 30, BLKSIZE = 27990, TYPE = FB
 ICE080I 0 IN MAIN STORAGE SORT                                                  
 ICE055I 0 INSERT 0, DELETE 0                                                    
 ICE054I 0 RECORDS - IN: 5, OUT: 5                                               
-ICE134I 0 NUMBER OF BYTES SORTED: 150                                           
-ICE253I 0 RECORDS SORTED - PROCESSED: 5, EXPECTED: 933                          
