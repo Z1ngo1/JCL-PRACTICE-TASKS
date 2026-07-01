@@ -181,3 +181,4 @@
 //SYSUT1   DD DSN=Z73460.TASK24.HLQ.RESULT.JCL(+1),DISP=SHR             
 //SYSUT2   DD SYSOUT=*                                                  
 //SYSIN    DD DUMMY                                                     
+//
