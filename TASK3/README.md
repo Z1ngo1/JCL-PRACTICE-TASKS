@@ -48,7 +48,7 @@ Record format: `NAME(10) + FIRSTNAME(10) + ROLE(10)` - `LRECL=30`, `RECFM=FB`, `
 | FIRSTNAME | 11       | 10     | CH     | Employee first name |
 | ROLE      | 21       | 10     | CH     | Job role            |
 
-### Sample Input Records ([DATA/TASK3.INPUT.JCL.txt](DATA/TASK3.INPUT.JCL.txt))
+### Sample Input Records ([TASK3.INPUT.JCL.txt](DATA/TASK3.INPUT.JCL.txt))
 
 ```
 IVANOV    IVAN      DEVELOPER 
@@ -78,7 +78,7 @@ This trims any extra trailing data so the output record is exactly 30 bytes.
 
 ## Output
 
-### Output Dataset ([DATA/TASK3.OUTPUT.JCL.txt](DATA/TASK3.OUTPUT.JCL.txt))
+### Output Dataset ([TASK3.OUTPUT.JCL.txt](DATA/TASK3.OUTPUT.JCL.txt))
 
 ```
 IVANOV    IVAN      DEVELOPER 
