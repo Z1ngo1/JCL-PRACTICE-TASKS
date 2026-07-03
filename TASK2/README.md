@@ -40,7 +40,9 @@ This job filters employee records using SORT's `INCLUDE` statement - only record
 
 ## Input Data Layout
 
-Record format: `NAME(10) + TYPE(1) + 2 SPACES + STATE(2) + 2 SPACES + AMT(6)` - `LRECL=80`, `RECFM=FB`, `DSORG=PS`
+Record format: `NAME(10) + TYPE(1) + SP + STATE(2) + SP + AMT(6)` - `LRECL=80`, `RECFM=FB`, `DSORG=PS`
+
+[TASK2.JCL.txt](DATA/TASK2.JCL.txt)
 
 | Field | Position | Length | Format | Description                    |
 |-------|----------|--------|--------|--------------------------------|
@@ -83,21 +85,9 @@ INCLUDE COND=(14,2,CH,EQ,C'NY',AND,11,1,CH,EQ,C'A')
 
 ---
 
-## Datasets
-
-| DD Name | DSN                   | DISP              | RECFM | LRECL | Description                      |
-|---------|-----------------------|-------------------|-------|-------|----------------------------------|
-| DELDD1  | Z73460.TASK2.JCL      | MOD,DELETE,DELETE | -     | -     | Deleted in STEP1                 |
-| DELDD2  | Z73460.TASK2.JCL.SORT | MOD,DELETE,DELETE | -     | -     | Deleted in STEP1                 |
-| SYSUT2  | Z73460.TASK2.JCL      | NEW,CATLG,DELETE  | FB    | 80    | Input dataset loaded by IEBGENER |
-| SORTIN  | Z73460.TASK2.JCL      | SHR               | FB    | 80    | Input to SORT                    |
-| SORTOUT | Z73460.TASK2.JCL.SORT | NEW,CATLG,DELETE  | *     | *     | Filtered and sorted output       |
-
----
-
 ## Output
 
-Statistics from `OUTPUT/SYSOUT.txt`:
+Statistics from [SYSOUT.txt](OUTPUT/SYSOUT.txt):
 
 ```
 ICE090I 0 OUTPUT LRECL = 80, BLKSIZE = 27920, TYPE = FB  (SDB)
@@ -108,7 +98,7 @@ ICE054I 0 RECORDS - IN: 10, OUT: 5
 
 5 out of 10 records were excluded by the INCLUDE filter.
 
-### Filtered and Sorted Result (DATA/TASK2.JCL.SORT.txt)
+### Filtered and Sorted Result ([TASK2.JCL.SORT.txt](DATA/TASK2.JCL.SORT.txt))
 
 ```
 BROWN     A  NY  000500
