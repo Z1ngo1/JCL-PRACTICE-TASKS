@@ -8,23 +8,23 @@ This job sorts a list of employees by their date of birth in **ascending order**
 
 ## Job Details
 
-| Property     | Value        |
-|--------------|--------------|
-| Job Name     | `SORT1`      |
-| Job Class    | `A`          |
-| MSGCLASS     | `A`          |
-| MSGLEVEL     | `(1,1)`      |
-| NOTIFY       | `&SYSUID`    |
+| Property  | Value        |
+|-----------|--------------|
+| Job Name  | `SORT1`      |
+| Job Class | `A`          |
+| MSGCLASS  | `A`          |
+| MSGLEVEL  | `(1,1)`      |
+| NOTIFY    | `&SYSUID`    |
 
 ---
 
 ## Steps
 
 | Step     | Program    | Description                                                                         |
-|----------|------------|-------------------------------------------------------------------------------------|
+|----------|------------|----------------------------------------------------------------------------------|
 | STEP005  | IEFBR14    | Delete existing datasets `Z73460.TASK1.JCL` and `Z73460.TASK1.JCL.SORT` if they exist |
-| STEP010  | IEBGENER   | Load inline employee records into dataset `Z73460.TASK1.JCL`                        |
-| STEP020  | SORT       | Sort employee records by year, month, day of birth (ascending)                      |
+| STEP010  | IEBGENER   | Load inline employee records into dataset `Z73460.TASK1.JCL`                     |
+| STEP020  | SORT       | Sort employee records by year, month, day of birth (ascending)                   |
 
 ---
 
@@ -34,13 +34,15 @@ This job sorts a list of employees by their date of birth in **ascending order**
 |----------|--------------------------|---------------------------------------------------|
 | STEP005  | *(none)*                 | Always runs                                       |
 | STEP010  | `COND=(04,LT,STEP005)`   | Skip if STEP005 RC > 4                            |
-| STEP020  | `COND=(04,LT)`           | Skip if any previous step RC > 4                 |
+| STEP020  | `COND=(04,LT)`           | Skip if any previous step RC > 4                  |
 
 ---
 
 ## Input Data Layout
 
 Record format: `NAME(10) + DDMMYYYY(8)` - `LRECL=80`, `RECFM=FB`, `DSORG=PS`
+
+[TASK1.JCL.txt](DATA/TASK1.JCL.txt)
 
 | Field  | Position | Length | Format | Description          |
 |--------|----------|--------|--------|----------------------|
@@ -74,21 +76,9 @@ SORT FIELDS=(15,4,CH,A,13,2,CH,A,11,2,CH,A)
 
 ---
 
-## Datasets
-
-| DD Name  | DSN                    | DISP              | RECFM | LRECL | Description                      |
-|----------|------------------------|-------------------|-------|-------|----------------------------------|
-| DELDD1   | Z73460.TASK1.JCL       | MOD,DELETE,DELETE | -     | -     | Deleted in STEP005               |
-| DELDD2   | Z73460.TASK1.JCL.SORT  | MOD,DELETE,DELETE | -     | -     | Deleted in STEP005               |
-| SYSUT2   | Z73460.TASK1.JCL       | NEW,CATLG,DELETE  | FB    | 80    | Input dataset loaded by IEBGENER |
-| SORTIN   | Z73460.TASK1.JCL       | SHR               | FB    | 80    | Input to SORT                    |
-| SORTOUT  | Z73460.TASK1.JCL.SORT  | NEW,CATLG,DELETE  | *     | *     | Sorted output (DCB=*.SORTIN)     |
-
----
-
 ## Output
 
-Statistics from `OUTPUT/SYSOUT.txt`:
+Statistics from [SYSOUT.txt](OUTPUT/SYSOUT.txt):
 
 ```
 ICE090I 0 OUTPUT LRECL = 80, BLKSIZE = 27920, TYPE = FB  (SDB)
@@ -97,7 +87,7 @@ ICE055I 0 INSERT 0, DELETE 0
 ICE054I 0 RECORDS - IN: 4, OUT: 4
 ```
 
-### Sorted Result (DATA/TASK1.JCL.SORT.txt)
+### Sorted Result ([TASK1.JCL.SORT.txt](DATA/TASK1.JCL.SORT.txt))
 
 ```
 DEMENTIEV 25042007
