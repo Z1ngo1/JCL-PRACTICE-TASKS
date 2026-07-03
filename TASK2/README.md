@@ -22,8 +22,8 @@ This job filters employee records using SORT's `INCLUDE` statement - only record
 
 | Step  | Program  | Description                                                                            |
 |-------|----------|----------------------------------------------------------------------------------------|
-| STEP1 | IEFBR14  | Delete existing datasets `Z73460.TASK2.JCL` and `Z73460.TASK2.JCL.SORT` if they exist |
-| STEP2 | IEBGENER | Load inline employee records into dataset `Z73460.TASK2.JCL`                           |
+| STEP1 | IEFBR14  | Delete existing datasets [`TASK2.JCL`](DATA/TASK2.JCL.txt) and [`TASK2.JCL.SORT`](DATA/TASK2.JCL.SORT.txt) if they exist |
+| STEP2 | IEBGENER | Load inline employee records into dataset [`TASK2.JCL`](DATA/TASK2.JCL.txt)                           |
 | STEP3 | SORT     | Filter records by STATE=NY AND TYPE=A, sort by name ascending                          |
 
 ---
