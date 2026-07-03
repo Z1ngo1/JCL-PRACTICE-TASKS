@@ -22,7 +22,7 @@ This job copies an employee dataset from one sequential file to another using IE
 
 | Step    | Program  | Description                                                                                    |
 |---------|----------|------------------------------------------------------------------------------------------------|
-| STEP010 | IEFBR14  | Delete existing datasets `Z73460.TASK3.INPUT.JCL` and `Z73460.TASK3.OUTPUT.JCL` if they exist |
+| STEP010 | IEFBR14  | Delete existing datasets [`TASK3.INPUT.JCL`](DATA/TASK3.INPUT.JCL.txt) and [`TASK3.OUTPUT.JCL`](DATA/TASK3.OUTPUT.JCL.txt) if they exist |
 | STEP020 | IEBGENER | Load inline data, trim records to LRECL=30 using GENERATE/RECORD FIELD control statements      |
 | STEP030 | IEBGENER | Copy input dataset to output dataset, DCB inherited from SYSUT1 via referback                  |
 
