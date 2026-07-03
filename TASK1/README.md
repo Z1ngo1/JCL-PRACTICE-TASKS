@@ -22,8 +22,8 @@ This job sorts a list of employees by their date of birth in **ascending order**
 
 | Step     | Program    | Description                                                                         |
 |----------|------------|----------------------------------------------------------------------------------|
-| STEP005  | IEFBR14    | Delete existing datasets `Z73460.TASK1.JCL` and `Z73460.TASK1.JCL.SORT` if they exist |
-| STEP010  | IEBGENER   | Load inline employee records into dataset `Z73460.TASK1.JCL`                     |
+| STEP005  | IEFBR14    | Delete existing datasets [`TASK1.JCL`](DATA/TASK1.JCL.txt) and [`TASK1.JCL.SORT`](DATA/TASK1.JCL.SORT.txt) if they exist |
+| STEP010  | IEBGENER   | Load inline employee records into dataset [`TASK1.JCL`](DATA/TASK1.JCL.txt)                     |
 | STEP020  | SORT       | Sort employee records by year, month, day of birth (ascending)                   |
 
 ---
