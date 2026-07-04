@@ -102,6 +102,16 @@ Output record length: 10 + 1 + 6 + 63 = **80 bytes**
 
 ---
 
+## Output
+
+| File | Description |
+|------|-------------|
+| [SYSOUT.STEP030.txt](OUTPUT/SYSOUT.STEP030.txt) | SORT STEP030 control statements sysout - filter and sort by SALARY descending |
+| [SYSOUT.STEP040.txt](OUTPUT/SYSOUT.STEP040.txt) | SORT STEP040 control statements sysout - reformat records with OUTREC BUILD |
+| [SYSUT2.STEP050.txt](OUTPUT/SYSUT2.STEP050.txt) | Final reformatted DEVELOPER records printed by IEBGENER STEP050 (COND=EVEN) |
+
+---
+
 ## Final Result ([TASK10.FINAL.JCL.txt](DATA/TASK10.FINAL.JCL.txt))
 
 4 DEVELOPER records filtered, sorted by salary descending, then reformatted:
@@ -113,7 +123,7 @@ IVANOV    |005000
 KOZLOV    |004500
 ```
 
-Printed to SYSOUT by STEP050 (IEBGENER with COND=EVEN).
+Printed to SYSOUT by STEP050 [SYSUT2.STEP050.txt](OUTPUT/SYSUT2.STEP050.txt) (IEBGENER with COND=EVEN).
 
 ---
 
