@@ -42,7 +42,7 @@ This job demonstrates SORT JOINKEYS to perform an inner join between two separat
 
 ## Input File Layouts
 
-### File 1 - Employee File ([TASK15.EMPLS.JCL.txt](DATA/TASK15.EMPLS.JCL.txt))
+### File 1 - Employee File 
 
 Format: `ID(3) + NAME(17)` - `LRECL=20`, `RECFM=FB`, `DSORG=PS`
 
@@ -50,6 +50,8 @@ Format: `ID(3) + NAME(17)` - `LRECL=20`, `RECFM=FB`, `DSORG=PS`
 |-------|----------|--------|-------------|
 | ID | 1 | 3 | Employee ID (zero-padded) |
 | NAME | 4 | 17 | Employee name (last + first, space-padded) |
+
+Sample Input Records ([TASK15.EMPLS.JCL.txt](DATA/TASK15.EMPLS.JCL.txt))
 
 ```
 001IVANOV   IVAN
@@ -60,7 +62,7 @@ Format: `ID(3) + NAME(17)` - `LRECL=20`, `RECFM=FB`, `DSORG=PS`
 006NOVIKOV  OLEG
 ```
 
-### File 2 - Salary File ([TASK15.SALARY.JCL.txt](DATA/TASK15.SALARY.JCL.txt))
+### File 2 - Salary File 
 
 Format: `ID(3) + SALARY(6)` - `LRECL=9`, `RECFM=FB`, `DSORG=PS`
 
@@ -68,6 +70,8 @@ Format: `ID(3) + SALARY(6)` - `LRECL=9`, `RECFM=FB`, `DSORG=PS`
 |-------|----------|--------|-------------|
 | ID | 1 | 3 | Employee ID (matches File 1) |
 | SALARY | 4 | 6 | Salary (zero-padded) |
+
+Sample Input Records ([TASK15.SALARY.JCL.txt](DATA/TASK15.SALARY.JCL.txt))
 
 ```
 001005000
@@ -161,5 +165,4 @@ ICE421I in SYSOUT confirms: `JOINED RECORDS: COUNT=5`
 - ID 004 (KOZLOV, ALEX) appears in the employee file but has no entry in the salary file. Because this is an inner join, KOZLOV is excluded from the output entirely.
 - `JOINKEYS FIELDS=(1,3,A)` sorts both files by the ID field before joining. The files do not need to be pre-sorted - SORT handles sorting internally as part of the join process.
 - `REFORMAT FIELDS=(F1:1,3,F1:4,10,F2:4,6)` takes 3 bytes from F1 position 1 (ID), 10 bytes from F1 position 4 (NAME truncated to 10), and 6 bytes from F2 position 4 (SALARY). Total = 19 bytes written into LRECL=25 dataset.
-- STEP020 and STEP030 both depend only on STEP010 (`COND=(04,LT,STEP010)`) and run independently of each other - they can both create their files in parallel if STEP010 succeeds.
 - `JNF1JMSG` and `JNF2JMSG` DD names in the OUTPUT are JOINKEYS diagnostic message DDs automatically allocated by SORT during the join operation.
