@@ -2,7 +2,7 @@
 
 ## Overview
 
-This is a multi-step pipeline job that demonstrates the use of JCL SET symbolic variables, PARM parameter passing, and SORT OUTREC BUILD to generate a formatted report. Employee records are loaded into a dataset referenced by symbolic variable `&INFILE`, filtered by salary greater than 004000 and sorted descending into `&TMPFILE`, then reformatted with a report date header and printed to SYSOUT.
+This is a multi-step pipeline job that demonstrates the use of JCL SET symbolic variables, PARM parameter passing, and SORT OUTREC BUILD to generate a formatted report. Employee records are loaded into a dataset referenced by symbolic variable [`&INFILE`](DATA/TASK12.INPUT.JCL.txt), filtered by salary greater than 004000 and sorted descending into [`&TMPFILE`](DATA/TASK12.TEMP.JCL.txt), then reformatted with a report date header and printed to SYSOUT.
 
 ---
 
