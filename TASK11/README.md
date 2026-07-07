@@ -101,7 +101,7 @@ COUNT FROM(IN) WRITE(CNTDD)
 | FROM | IN | TASK11.DEVS.JCL |
 | WRITE | CNTDD | TASK11.DEVSCNT.JCL |
 
-ICETOOL counted **4 DEVELOPER records** and wrote the count to `TASK11.DEVSCNT.JCL`.
+ICETOOL counted **4 DEVELOPER records** and wrote the count to [`TASK11.DEVSCNT.JCL`](DATA/TASK11.DEVSCNTJCL.txt).
 
 ---
 
