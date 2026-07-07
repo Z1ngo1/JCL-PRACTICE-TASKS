@@ -42,7 +42,7 @@ This job demonstrates SORT JOINKEYS to perform a left outer join between two sep
 
 ## Input File Layouts
 
-### File 1 - Employee File ([TASK16.EMPLLIST.JCL.txt](DATA/TASK16.EMPLLIST.JCL.txt))
+### File 1 - Employee File 
 
 Format: `ID(3) + NAME(17)` - `LRECL=20`, `RECFM=FB`, `DSORG=PS`
 
@@ -50,6 +50,8 @@ Format: `ID(3) + NAME(17)` - `LRECL=20`, `RECFM=FB`, `DSORG=PS`
 |-------|----------|--------|-------------|
 | ID | 1 | 3 | Employee ID (zero-padded) |
 | NAME | 4 | 17 | Employee name (last + first, space-padded) |
+
+Sample Input Records ([TASK16.EMPLLIST.JCL.txt](DATA/TASK16.EMPLLIST.JCL.txt))
 
 ```
 001IVANOV    IVAN
@@ -61,7 +63,7 @@ Format: `ID(3) + NAME(17)` - `LRECL=20`, `RECFM=FB`, `DSORG=PS`
 007SMIRNOV   PAVL
 ```
 
-### File 2 - Salary File ([TASK16.SALARY.JCL.txt](DATA/TASK16.SALARY.JCL.txt))
+### File 2 - Salary File 
 
 Format: `ID(3) + SALARY(6)` - `LRECL=9`, `RECFM=FB`, `DSORG=PS`
 
@@ -69,6 +71,8 @@ Format: `ID(3) + SALARY(6)` - `LRECL=9`, `RECFM=FB`, `DSORG=PS`
 |-------|----------|--------|-------------|
 | ID | 1 | 3 | Employee ID (matches File 1) |
 | SALARY | 4 | 6 | Salary (zero-padded) |
+
+Sample Input Records ([TASK16.SALARY.JCL.txt](DATA/TASK16.SALARY.JCL.txt))
 
 ```
 001005000
@@ -136,7 +140,7 @@ Output record length: 20 + 6 = **26 bytes** (LRECL=26)
 007SMIRNOV   PAVL  000000
 ```
 
-ICE421I in SYSOUT confirms: `JOINED RECORDS: COUNT=7`
+ICE421I in [SYSOUT.STEP040.txt](OUTPUT/SYSOUT.STEP040.txt) confirms: `JOINED RECORDS: COUNT=7`
 
 ---
 
@@ -167,6 +171,5 @@ ICE421I in SYSOUT confirms: `JOINED RECORDS: COUNT=7`
 - ID 008 exists in the salary file only. Because this is a left outer join (`UNPAIRED,F1`), unmatched F2 records are discarded - ID 008 does not appear in the output.
 - `JOINKEYS FIELDS=(1,3,A)` sorts both files by the ID field before joining. The files do not need to be pre-sorted - SORT handles sorting internally as part of the join process.
 - `REFORMAT FIELDS=(F1:1,20,F2:4,6),FILL=C'0'` takes 20 bytes from F1 position 1 (full employee record) and 6 bytes from F2 position 4 (SALARY). Total = 26 bytes written into LRECL=26 dataset.
-- `SPACE=(TRK,(1,0))` in STEP010 prevents the step from failing when a dataset to be deleted does not yet exist.
 - `JNF1JMSG` and `JNF2JMSG` DD names in the OUTPUT are JOINKEYS diagnostic message DDs automatically allocated by SORT during the join operation.
 - `ICE054I 0 RECORDS - IN: 0, OUT: 7` in SYSOUT is expected for JOINKEYS output - the IN counter reflects direct SORTIN records; joined output flows through the join pipeline separately.
