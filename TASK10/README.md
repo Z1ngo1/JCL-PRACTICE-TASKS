@@ -141,5 +141,5 @@ Printed to SYSOUT by STEP050 [SYSUT2.STEP050.txt](OUTPUT/SYSUT2.STEP050.txt) (IE
 
 - PETROV, SIDOROV, MOROZOV, POPOV are excluded in STEP030 because their ROLE is ANALYST or MANAGER.
 - `&&TEMP` is a temporary instream dataset - it is automatically deleted when the job ends or when STEP040 reads and deletes it with `DISP=(OLD,DELETE,DELETE)`.
-- STEP050 uses `SYSIN DD DUMMY` meaning IEBGENER does a straight copy from `TASK10.FINAL.JCL` to SYSOUT with no editing.
+- STEP050 uses `SYSIN DD DUMMY` meaning IEBGENER does a straight copy from [`TASK10.FINAL.JCL`](DATA/TASK10.FINAL.JCL.txt) to SYSOUT with no editing.
 - This task is the first multi-step pipeline in this series where two SORT steps work sequentially on the same data stream.
