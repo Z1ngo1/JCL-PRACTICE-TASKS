@@ -139,9 +139,9 @@ ICE421I in SYSOUT confirms: `JOINED RECORDS: COUNT=5`
 
 | File | Description |
 |------|-------------|
-| [OUTPUT/SYSOUT.STEP040.txt](OUTPUT/SYSOUT.STEP040.txt) | SORT STEP040 sysout - join statistics including ICE421I JOINED RECORDS: COUNT=5 |
-| [OUTPUT/JNF1JMSG.STEP040.txt](OUTPUT/JNF1JMSG.STEP040.txt) | JOINKEYS File 1 (EMPLS) sort messages |
-| [OUTPUT/JNF2JMSG.STEP040.txt](OUTPUT/JNF2JMSG.STEP040.txt) | JOINKEYS File 2 (SALARY) sort messages |
+| [SYSOUT.STEP040.txt](OUTPUT/SYSOUT.STEP040.txt) | SORT STEP040 sysout - join statistics including ICE421I JOINED RECORDS: COUNT=5 |
+| [JNF1JMSG.STEP040.txt](OUTPUT/JNF1JMSG.STEP040.txt) | JOINKEYS File 1 (EMPLS) sort messages |
+| [JNF2JMSG.STEP040.txt](OUTPUT/JNF2JMSG.STEP040.txt) | JOINKEYS File 2 (SALARY) sort messages |
 
 ---
 
