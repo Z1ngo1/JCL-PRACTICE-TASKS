@@ -120,5 +120,5 @@ SALARY now leads each record, FIRSTNAME is gone, pipes separate the fields.
 
 - `SORT FIELDS=COPY` means no sorting is applied - records keep their original order, only the layout changes.
 - FIRSTNAME (bytes 11-20) is not referenced in OUTREC BUILD, so it is silently dropped from the output.
-- This task depends on TASK7 having already run and produced `Z73460.TASK7.INPUT.JCL` - no inline data is loaded here.
+- This task depends on TASK7 having already run and produced [`TASK7.INPUT.JCL`](DATA/TASK7.INPUT.JCL.txt) - no inline data is loaded here.
 - ICE171I in SYSOUT is not an error - it is SORT informing that the output LRECL differs from input LRECL due to OUTREC reformatting.
