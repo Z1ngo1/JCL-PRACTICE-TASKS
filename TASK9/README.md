@@ -82,7 +82,9 @@ Output record length: 10 + 1 + 6 + 3 = **20 bytes**
 
 ---
 
-## Output Statistics from [SYSOUT.txt](OUTPUT/SYSOUT.txt)
+## Output
+
+Statistics from [SYSOUT.txt](OUTPUT/SYSOUT.txt)
 
 ```
 ICE090I 0 OUTPUT LRECL = 20, BLKSIZE = 27980, TYPE = FB
@@ -93,7 +95,7 @@ ICE054I 0 RECORDS - IN: 7, OUT: 2
 
 5 out of 7 records were excluded - only MANAGER employees passed through.
 
-### Filtered and Reformatted Result ([TASK9.INCLOUTR.JCL.txt](DATA/TASK9.INCLOUTR.JCL.txt))
+## Filtered and Reformatted Result ([TASK9.INCLOUTR.JCL.txt](DATA/TASK9.INCLOUTR.JCL.txt))
 
 ```
 SERGEY    007800RUB
