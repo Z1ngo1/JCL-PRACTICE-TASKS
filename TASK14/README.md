@@ -127,7 +127,7 @@ COUNT FROM(INDD) WRITE(OUTDD)
 
 ---
 
-## Final Result
+## Final Result ([SYSUT2.STEP040.txt](OUTPUT/SYSUT2.STEP040.txt))
 
 Two count values concatenated and printed by STEP040:
 
