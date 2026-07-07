@@ -137,11 +137,11 @@ Printed to SYSOUT by STEP060 (IEBGENER with COND=EVEN).
 
 | File | Description |
 |------|-------------|
-| [OUTPUT/SYSOUT.STEP030.txt](OUTPUT/SYSOUT.STEP030.txt) | SORT STEP030 sysout - OUTFIL split by DEVELOPER and MANAGER |
-| [OUTPUT/SYSOUT.STEP050.txt](OUTPUT/SYSOUT.STEP050.txt) | SORT STEP050 sysout - MERGE by SALARY descending |
-| [OUTPUT/DFSMSG.STEP040.txt](OUTPUT/DFSMSG.STEP040.txt) | ICETOOL STEP040 DFSMSG - data facility messages |
-| [OUTPUT/TOOLMSG.STEP040.txt](OUTPUT/TOOLMSG.STEP040.txt) | ICETOOL STEP040 TOOLMSG - count result: 4 DEVELOPER records |
-| [OUTPUT/SYSUT2.STEP060.txt](OUTPUT/SYSUT2.STEP060.txt) | Final merged output printed by IEBGENER STEP060 (COND=EVEN) |
+| [SYSOUT.STEP030.txt](OUTPUT/SYSOUT.STEP030.txt) | SORT STEP030 sysout - OUTFIL split by DEVELOPER and MANAGER |
+| [SYSOUT.STEP050.txt](OUTPUT/SYSOUT.STEP050.txt) | SORT STEP050 sysout - MERGE by SALARY descending |
+| [DFSMSG.STEP040.txt](OUTPUT/DFSMSG.STEP040.txt) | ICETOOL STEP040 DFSMSG - data facility messages |
+| [TOOLMSG.STEP040.txt](OUTPUT/TOOLMSG.STEP040.txt) | ICETOOL STEP040 TOOLMSG - count result: 4 DEVELOPER records |
+| [SYSUT2.STEP060.txt](OUTPUT/SYSUT2.STEP060.txt) | Final merged output printed by IEBGENER STEP060 (COND=EVEN) |
 
 ---
 
@@ -161,4 +161,4 @@ Printed to SYSOUT by STEP060 (IEBGENER with COND=EVEN).
 - OUTFIL uses `INCLUDE=(21,9,CH,EQ,C'DEVELOPER')` (9 chars) and `INCLUDE=(21,7,CH,EQ,C'MANAGER')` (7 chars) to match exact role name lengths in the fixed-length field.
 - STEP050 uses `SORTIN01` and `SORTIN02` DD names instead of `SORTIN` - this is required for SORT MERGE with multiple input files.
 - TOOLMSG message ICE628I shows `RECORD COUNT: 00000000000000004` confirming 4 DEVELOPER records counted by ICETOOL.
-- STEP060 uses `SYSIN DD DUMMY` meaning IEBGENER does a straight copy from `TASK11.MERGED.JCL` to SYSOUT with no editing.
+- STEP060 uses `SYSIN DD DUMMY` meaning IEBGENER does a straight copy from [`TASK11.MERGED.JCL`](DATA/TASK11.MERGED.JCL.txt) to SYSOUT with no editing.
