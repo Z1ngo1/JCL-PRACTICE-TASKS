@@ -130,7 +130,6 @@ Printed to SYSOUT by STEP050 [SYSUT2.STEP050.txt](OUTPUT/SYSUT2.STEP050.txt) (IE
 ## Key JCL Concepts Used
 
 - **`&&TEMP` temporary dataset** - created in STEP030 with `DISP=(NEW,PASS,DELETE)` and consumed in STEP040 with `DISP=(OLD,DELETE,DELETE)`, it exists only during the job
-- **`COND=(00,NE,STEP030)`** - STEP040 runs only if STEP030 ended with RC=0; any non-zero RC skips the reformat step
 - **`COND=EVEN`** - STEP050 always executes regardless of previous step return codes or abends, ensuring the print step always runs
 - **Descending SORT on SALARY** - `SORT FIELDS=(31,6,CH,D)` sorts character field in reverse order, highest salary first
 - **63X filler in OUTREC** - pads the output record with 63 spaces to maintain the original LRECL=80
@@ -143,5 +142,5 @@ Printed to SYSOUT by STEP050 [SYSUT2.STEP050.txt](OUTPUT/SYSUT2.STEP050.txt) (IE
 - PETROV, SIDOROV, MOROZOV, POPOV are excluded in STEP030 because their ROLE is ANALYST or MANAGER.
 - `&&TEMP` is a temporary instream dataset - it is automatically deleted when the job ends or when STEP040 reads and deletes it with `DISP=(OLD,DELETE,DELETE)`.
 - STEP050 uses `SYSIN DD DUMMY` meaning IEBGENER does a straight copy from [`TASK10.FINAL.JCL`](DATA/TASK10.FINAL.JCL.txt) to SYSOUT with no editing.
-- This task is the first multi-step pipeline in this series where two SORT steps work sequentially on the same data stream.
+- This task is the first multi-step pipeline in this repositorie where two SORT steps work sequentially on the same data stream.
 - `INCLUDE COND=(21,9,CH,EQ,C'DEVELOPER')` compares 9 bytes from position 21 in the record against the 9-char literal `DEVELOPER`. The remaining 1 byte of the ROLE field (position 30, which contains a space) is not compared at all - so no trailing space padding is needed in the literal. This is different from TASK13 where the INCLUDE length is `10` (full field width) and the literal must be padded to match.
