@@ -117,5 +117,5 @@ Only SIDOROV (SERGEY) and POPOV (ANDREY) matched ROLE=MANAGER. LASTNAME and ROLE
 
 - `SORT FIELDS=COPY` means no sorting is applied - records keep their original order, only filtering and reformatting.
 - LASTNAME (bytes 1-10) and ROLE (bytes 21-30) are not referenced in OUTREC BUILD, so they are silently dropped.
-- This task depends on TASK7 having already run and produced `Z73460.TASK7.INPUT.JCL` - no inline data is loaded here.
+- This task depends on TASK7 having already run and produced [`TASK7.INPUT.JCL`](DATA/TASK7.INPUT.JCL.txt) - no inline data is loaded here.
 - ICE171I in SYSOUT is not an error - it is SORT informing that the output LRECL differs from input LRECL due to OUTREC reformatting.
