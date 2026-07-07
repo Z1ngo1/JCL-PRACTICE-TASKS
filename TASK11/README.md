@@ -22,12 +22,12 @@ This is a multi-step pipeline job that splits employee records into separate DEV
 
 | Step | Program | Description |
 |---------|----------|---------------------------------------------------------------------------------------------------------------|
-| STEP010 | IEFBR14 | Delete existing datasets [`TASK11.INITIAL.JCL`](DATA/TASK11.INITIALJCL.txt), [`TASK11.DEVS.JCL`](DATA/TASK11.DEVSJCL.txt), [`TASK11.MGRS.JCL`](DATA/TASK11.MGRSJCL.txt), [`TASK11.DEVSCNT.JCL`](DATA/TASK11.DEVSCNTJCL.txt), [`TASK11.MERGED.JCL`](DATA/TASK11.MERGEDJCL.txt) if they exist |
-| STEP020 | IEBGENER | Load 10 inline employee records into [`TASK11.INITIAL.JCL`](DATA/TASK11.INITIALJCL.txt), LRECL=80 |
-| STEP030 | SORT | Sort all records by SALARY descending, split into [`TASK11.DEVS.JCL`](DATA/TASK11.DEVSJCL.txt) (DEVELOPER) and [`TASK11.MGRS.JCL`](DATA/TASK11.MGRSJCL.txt) (MANAGER) using OUTFIL |
-| STEP040 | ICETOOL | Count records in [`TASK11.DEVS.JCL`](DATA/TASK11.DEVSJCL.txt) and write count to [`TASK11.DEVSCNT.JCL`](DATA/TASK11.DEVSCNTJCL.txt) |
-| STEP050 | SORT | Merge [`TASK11.DEVS.JCL`](DATA/TASK11.DEVSJCL.txt) and [`TASK11.MGRS.JCL`](DATA/TASK11.MGRSJCL.txt) by SALARY descending into [`TASK11.MERGED.JCL`](DATA/TASK11.MERGEDJCL.txt) |
-| STEP060 | IEBGENER | Print [`TASK11.MERGED.JCL`](DATA/TASK11.MERGEDJCL.txt) to SYSOUT - runs even if previous steps failed (`COND=EVEN`) |
+| STEP010 | IEFBR14 | Delete existing datasets [`TASK11.INITIAL.JCL`](DATA/TASK11.INITIAL.JCL.txt), [`TASK11.DEVS.JCL`](DATA/TASK11.DEVS.JCL.txt), [`TASK11.MGRS.JCL`](DATA/TASK11.MGRS.JCL.txt), [`TASK11.DEVSCNT.JCL`](DATA/TASK11.DEVSCNT.JCL.txt), [`TASK11.MERGED.JCL`](DATA/TASK11.MERGED.JCL.txt) if they exist |
+| STEP020 | IEBGENER | Load 10 inline employee records into [`TASK11.INITIAL.JCL`](DATA/TASK11.INITIAL.JCL.txt), LRECL=80 |
+| STEP030 | SORT | Sort all records by SALARY descending, split into [`TASK11.DEVS.JCL`](DATA/TASK11.DEVS.JCL.txt) (DEVELOPER) and [`TASK11.MGRS.JCL`](DATA/TASK11.MGRS.JCL.txt) (MANAGER) using OUTFIL |
+| STEP040 | ICETOOL | Count records in [`TASK11.DEVS.JCL`](DATA/TASK11.DEVS.JCL.txt) and write count to [`TASK11.DEVSCNT.JCL`](DATA/TASK11.DEVSCNT.JCL.txt) |
+| STEP050 | SORT | Merge [`TASK11.DEVS.JCL`](DATA/TASK11.DEVS.JCL.txt) and [`TASK11.MGRS.JCL`](DATA/TASK11.MGRS.JCL.txt) by SALARY descending into [`TASK11.MERGED.JCL`](DATA/TASK11.MERGED.JCL.txt) |
+| STEP060 | IEBGENER | Print [`TASK11.MERGED.JCL`](DATA/TASK11.MERGED.JCL.txt) to SYSOUT - runs even if previous steps failed (`COND=EVEN`) |
 
 ---
 
@@ -55,7 +55,7 @@ Record format: `LASTNAME(10) + FIRSTNAME(10) + ROLE(10) + SALARY(6)` - `LRECL=80
 | ROLE | 21 | 10 | CH | Job role |
 | SALARY | 31 | 6 | CH | Salary (zero-padded) |
 
-### Sample Input Records ([TASK11.INITIALJCL.txt](DATA/TASK11.INITIALJCL.txt))
+### Sample Input Records ([TASK11.INITIALJCL.txt](DATA/TASK11.INITIAL.JCL.txt))
 
 ```
 IVANOV     IVAN       DEVELOPER  005000
@@ -101,7 +101,7 @@ COUNT FROM(IN) WRITE(CNTDD)
 | FROM | IN | TASK11.DEVS.JCL |
 | WRITE | CNTDD | TASK11.DEVSCNT.JCL |
 
-ICETOOL counted **4 DEVELOPER records** and wrote the count to [`TASK11.DEVSCNT.JCL`](DATA/TASK11.DEVSCNTJCL.txt).
+ICETOOL counted **4 DEVELOPER records** and wrote the count to [`TASK11.DEVSCNT.JCL`](DATA/TASK11.DEVSCNT.JCL.txt).
 
 ---
 
@@ -115,7 +115,7 @@ Merges `SORTIN01` (DEVS.JCL) and `SORTIN02` (MGRS.JCL) into a single dataset sor
 
 ---
 
-## Final Result ([TASK11.MERGEDJCL.txt](DATA/TASK11.MERGEDJCL.txt))
+## Final Result ([TASK11.MERGEDJCL.txt](DATA/TASK11.MERGED.JCL.txt))
 
 7 records (4 DEVELOPER + 3 MANAGER) merged by salary descending, printed by STEP060:
 
