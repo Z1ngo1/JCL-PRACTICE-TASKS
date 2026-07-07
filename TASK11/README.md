@@ -129,7 +129,7 @@ IVANOV     IVAN       DEVELOPER  005000
 KOZLOV     ALEXEY     DEVELOPER  004500
 ```
 
-Printed to SYSOUT by STEP060 (IEBGENER with COND=EVEN).
+Printed to [SYSUT2.STEP060.txt](OUTPUT/SYSUT2.STEP060.txt) (IEBGENER with COND=EVEN) .
 
 ---
 
@@ -151,7 +151,6 @@ Printed to SYSOUT by STEP060 (IEBGENER with COND=EVEN).
 - **ICETOOL COUNT** - counts records in an input dataset and writes the numeric count to an output dataset; uses `FROM(ddname)` and `WRITE(ddname)` operands
 - **SORT MERGE** - combines two or more pre-sorted input datasets (`SORTIN01`, `SORTIN02`) into one sorted output without re-sorting; requires `MERGE FIELDS=` instead of `SORT FIELDS=`
 - **`COND=EVEN`** - STEP060 always executes regardless of previous step return codes or abends, ensuring the print step always runs
-- **`COND=(00,NE,STEPxxx)`** - chained dependency: each step runs only if the previous step ended with RC=0, creating a clean pipeline
 
 ---
 
