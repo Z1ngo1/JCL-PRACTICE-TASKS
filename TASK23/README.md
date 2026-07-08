@@ -22,14 +22,14 @@ This job demonstrates Generation Data Group (GDG) operations: defining a GDG bas
 | STEP020 | IDCAMS | Define GDG base with LIMIT(3) SCRATCH NOEMPTY; skip if STEP010 RC > 8 |
 | STEP030 | IEBGENER | Write first generation (+1): 3 employees with GENERATE MAXFLDS; becomes G0001V00 |
 | STEP040 | IEBGENER | Write second generation (+2 same job): 4 employees; becomes G0002V00 |
-| STEP050 | IEBGENER | Read current generation (+1 after cataloging): print G0001V00 (3 employees) |
-| STEP060 | IEBGENER | Read previous generation (+2 after cataloging): print G0002V00 (4 employees) |
+| STEP050 | IEBGENER | Read generation (+1): print G0001V00 (3 employees) |
+| STEP060 | IEBGENER | Read generation (+2): print G0002V00 (4 employees) |
 
 ## COND Logic
 
 | Step | COND Parameter | Meaning |
 |------|----------------|----------|
-| STEP020 | (08,LT,STEP010) | Skip if STEP010 RC < 8 (unexpected error during DELETE) |
+| STEP020 | (08,LT,STEP010) | Skip if STEP010 RC > 8 (unexpected error during DELETE) |
 | STEP030 | (00,NE,STEP020) | Skip if STEP020 RC ≠ 0 (GDG base definition failed) |
 | STEP040 | (00,NE,STEP030) | Skip if STEP030 RC ≠ 0 (first generation write failed) |
 | STEP050 | (00,NE,STEP040) | Skip if STEP040 RC ≠ 0 (second generation write failed) |
@@ -89,8 +89,6 @@ Sample records:
 - **GDG PURGE** - DELETE command option to remove GDG base and all associated generations in one operation
 - **Relative generation number (+n)** - References generation relative to current job; (+1) creates next generation
 - **Absolute generation number (GnnnnVmm)** - Physical name assigned at job end; nnnn=generation, mm=version (usually 00)
-- **Generation (0)** - Current/most recent generation after cataloging; in STEP050 refers to G0001V00
-- **Generation (-1)** - Previous generation (one before current); in STEP060 refers to G0002V00
 - **GENERATE MAXFLDS** - IEBGENER control statement to format records to exact LRECL; MAXFLDS=1 means single field spans entire record
 - **RECORD FIELD=(36,1,,1)** - Field definition: 36 bytes starting position 1, copied to output position 1
 - **(+1) and (+2) in same job** - Both resolve at job end; (+1)→G0001V00, (+2)→G0002V00
