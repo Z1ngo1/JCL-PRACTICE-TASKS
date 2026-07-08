@@ -111,12 +111,7 @@ Employees born in **2007** appear before those born in **2008**. Within the same
 
 ## Notes
 
-> 💡 **Key behavior**
-
 - Date is stored in **DDMMYYYY** format, but sort keys are specified as YEAR (pos 15) → MONTH (pos 13) → DAY (pos 11). The key order in `SORT FIELDS` intentionally does not match the physical field order in the record.
 - `ICE055I INSERT 0, DELETE 0` confirms no records were added or removed — SORT only reordered.
-
-> ⚠️ **Common pitfalls**
-
-- `SYSIN DD DUMMY` in STEP010 is required by IEBGENER even when no editing is needed — omitting it causes the step to fail with an error.
-- Sorting DDMMYYYY as a single 8-byte key would produce wrong results; always split into YYYY, MM, DD components when sorting European-format dates.
+- `SYSIN DD DUMMY` in STEP010 is required by IEBGENER even when no editing is needed — omitting it causes the step to fail.
+- Sorting DDMMYYYY as a single 8-byte key produces incorrect chronological order; always split into YYYY, MM, DD components.
