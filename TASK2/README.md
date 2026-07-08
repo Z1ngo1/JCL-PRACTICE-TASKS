@@ -124,4 +124,3 @@ Only TYPE=A records from STATE=NY remain, sorted alphabetically by name.
 
 - `DELETE 5` in SYSOUT means 5 records were dropped - JOHNSON (X/NY), WILLIAMS (A/CA), JONES (X/TX), MILLER (A/FL), WILSON (X/NY). Either wrong type or wrong state.
 - WILSON has STATE=NY but TYPE=X, so it is excluded - both conditions must be true at the same time.
-- The INCLUDE statement is more readable than OMIT for this case since we know exactly what we want to keep.
