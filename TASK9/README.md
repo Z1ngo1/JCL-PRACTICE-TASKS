@@ -109,7 +109,7 @@ Only SIDOROV (SERGEY) and POPOV (ANDREY) matched ROLE=MANAGER. LASTNAME and ROLE
 ## Key JCL Concepts Used
 
 - **INCLUDE + OUTREC in a single SORT step** - filtering and reformatting happen together: only matching records are passed to OUTREC BUILD
-- **`INCLUDE COND` length equals keyword length, not field width** - `INCLUDE COND=(21,7,CH,EQ,C'MANAGER')` uses length `7` which is the exact length of the word `MANAGER`, not the full ROLE field width of `10`. SORT compares only the specified 7 bytes from the record against the 7-byte literal - this works correctly. Contrast this with TASK13 where `INCLUDE COND=(21,10,...)` uses the full field width `10`, so the literal must be padded to 10 chars: `ROLE='MANAGER   '`issues
+- **`INCLUDE COND` length equals keyword length, not field width** - `(21,7,CH,EQ,C'MANAGER')` compares exactly 7 bytes against the 7-char literal; trailing spaces in the ROLE field are not compared and do not need to be included in the literal
 - **C'RUB' literal suffix in OUTREC** - appends a currency label directly to each output record
 - **LRECL reduction via OUTREC** - input LRECL=36, output LRECL=20; ICE171I in SYSOUT is informational only
 
@@ -120,5 +120,5 @@ Only SIDOROV (SERGEY) and POPOV (ANDREY) matched ROLE=MANAGER. LASTNAME and ROLE
 - `SORT FIELDS=COPY` means no sorting is applied - records keep their original order, only filtering and reformatting.
 - LASTNAME (bytes 1-10) and ROLE (bytes 21-30) are not referenced in OUTREC BUILD, so they are silently dropped.
 - This task depends on TASK7 having already run and produced [`TASK7.INPUT.JCL`](DATA/TASK7.INPUT.JCL.txt) - no inline data is loaded here.
-- `INCLUDE COND=(21,7,CH,EQ,C'MANAGER')` compares 7 bytes from position 21 in the record against the 7-char literal `MANAGER`. The remaining 3 bytes of the ROLE field (positions 28-30, which contain spaces) are not compared at all - so no trailing spaces are needed in the literal. This is different from TASK13 where the INCLUDE length is `10` (full field width) and the literal must be padded to match.
+- `INCLUDE COND=(21,7,CH,EQ,C'MANAGER')` compares 7 bytes from position 21 in the record against the 7-char literal `MANAGER`. The remaining 3 bytes of the ROLE field (positions 28-30, which contain spaces) are not compared at all - so no trailing spaces are needed in the literal.
 - ICE171I in SYSOUT is not an error - it is SORT informing that the output LRECL differs from input LRECL due to OUTREC reformatting.
