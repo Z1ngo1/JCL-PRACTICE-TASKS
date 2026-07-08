@@ -28,7 +28,7 @@ This job demonstrates PDS member maintenance using IEBUPDTE utility: creating a 
 
 | Step | COND Parameter | Meaning |
 |------|----------------|----------|
-| STEP020 | (08,LT,STEP010) | Skip if STEP010 RC < 8 (unexpected error during DELETE) |
+| STEP020 | (08,LT,STEP010) | Skip if STEP010 RC > 8 (unexpected error during DELETE) |
 | STEP030 | (00,NE,STEP020) | Skip if STEP020 RC ≠ 0 (PDS creation failed) |
 | STEP040 | (00,NE,STEP030) | Skip if STEP030 RC ≠ 0 (adding members failed) |
 | STEP050 | (00,NE,STEP040) | Skip if STEP040 RC ≠ 0 (update failed) |
