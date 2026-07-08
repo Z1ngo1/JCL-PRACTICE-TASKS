@@ -25,7 +25,7 @@ This job demonstrates SORT JOINKEYS to perform a left outer join between two sep
 | STEP010 | IEFBR14 | Delete existing datasets [`TASK16.EMPLLIST.JCL`](DATA/TASK16.EMPLLIST.JCL.txt), [`TASK16.SALARY.JCL`](DATA/TASK16.SALARY.JCL.txt), [`TASK16.RESULT.JCL`](DATA/TASK16.RESULT.JCL.txt) if they exist |
 | STEP020 | IEBGENER | Load 7 inline employee records (ID + NAME) into [`TASK16.EMPLLIST.JCL`](DATA/TASK16.EMPLLIST.JCL.txt), LRECL=20 |
 | STEP030 | IEBGENER | Load 6 inline salary records (ID + SALARY) into [`TASK16.SALARY.JCL`](DATA/TASK16.SALARY.JCL.txt), LRECL=9 |
-| STEP040 | SORT | Left outer join [`TASK16.EMPLLIST.JCL`](DATA/TASK16.EMPLLIST.JCL.txt) and [`TASK16.SALARY.JCL`](DATA/TASK16.SALARY.JCL.txt) by ID (pos 1-3), output to [`TASK16.RESULT.JCL`](DATA/TASK16.RESULT.JCL.txt), LRECL=26 |
+| STEP040 | SORT | Left outer join [`TASK16.EMPLLIST.JCL`](DATA/TASK16.EMPLLIST.JCL.txt) and [`TASK16.SALARY.JCL`](DATA/TASK16.SALARY.JCL.txt) by ID (pos 1-3), output to [`TASK16.RESULT.JCL`](DATA/TASK16.RESULT.JCL.txt), LRECL=29 |
 
 ---
 
@@ -112,7 +112,7 @@ REFORMAT FIELDS=(F1:1,20,F2:4,6),FILL=C'0'
 | F1:1,20 | EMPLLIST | 1 | 20 | 1 | Full employee record (ID + NAME) |
 | F2:4,6 | SALARY | 4 | 6 | 21 | SALARY (or `000000` if no match) |
 
-Output record length: 20 + 6 = **26 bytes** (LRECL=26)
+Output record length: 20 + 6 + 3 = **29 bytes** (LRECL=29)
 
 ---
 
@@ -170,6 +170,6 @@ ICE421I in [SYSOUT.STEP040.txt](OUTPUT/SYSOUT.STEP040.txt) confirms: `JOINED REC
 - IDs 004 (KOZLOV, ALEX) and 007 (SMIRNOV, PAVL) appear in the employee file but have no entry in the salary file. Because this is a left outer join, both are included in the output with salary field `000000`.
 - ID 008 exists in the salary file only. Because this is a left outer join (`UNPAIRED,F1`), unmatched F2 records are discarded - ID 008 does not appear in the output.
 - `JOINKEYS FIELDS=(1,3,A)` sorts both files by the ID field before joining. The files do not need to be pre-sorted - SORT handles sorting internally as part of the join process.
-- `REFORMAT FIELDS=(F1:1,20,F2:4,6),FILL=C'0'` takes 20 bytes from F1 position 1 (full employee record) and 6 bytes from F2 position 4 (SALARY). Total = 26 bytes written into LRECL=26 dataset.
+- `REFORMAT FIELDS=(F1:1,20,F2:4,6),FILL=C'0'` takes 20 bytes from F1 position 1 (full employee record) and 6 bytes from F2 position 4 (SALARY). Total = 29 bytes written into LRECL=29 dataset.
 - `JNF1JMSG` and `JNF2JMSG` DD names in the OUTPUT are JOINKEYS diagnostic message DDs automatically allocated by SORT during the join operation.
 - `ICE054I 0 RECORDS - IN: 0, OUT: 7` in SYSOUT is expected for JOINKEYS output - the IN counter reflects direct SORTIN records; joined output flows through the join pipeline separately.
