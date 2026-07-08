@@ -55,7 +55,7 @@ Record format: `LASTNAME(10) + FIRSTNAME(10) + ROLE(10) + SALARY(6)` - `LRECL=80
 | ROLE | 21 | 10 | CH | Job role |
 | SALARY | 31 | 6 | CH | Salary (zero-padded) |
 
-### Sample Input Records ([TASK11.INITIALJCL.txt](DATA/TASK11.INITIAL.JCL.txt))
+### Sample Input Records ([TASK11.INITIAL.JCL.txt](DATA/TASK11.INITIAL.JCL.txt))
 
 ```
 IVANOV     IVAN       DEVELOPER  005000
@@ -115,7 +115,7 @@ Merges `SORTIN01` (DEVS.JCL) and `SORTIN02` (MGRS.JCL) into a single dataset sor
 
 ---
 
-## Final Result ([TASK11.MERGEDJCL.txt](DATA/TASK11.MERGED.JCL.txt))
+## Final Result ([TASK11.MERGED.JCL.txt](DATA/TASK11.MERGED.JCL.txt))
 
 7 records (4 DEVELOPER + 3 MANAGER) merged by salary descending, printed by STEP060:
 
@@ -159,5 +159,5 @@ Printed to [SYSUT2.STEP060.txt](OUTPUT/SYSUT2.STEP060.txt) (IEBGENER with COND=E
 - ANALYST records (PETROV, MOROZOV, ORLOV) are excluded in STEP030 because neither OUTFIL condition matches ANALYST - they are dropped silently.
 - OUTFIL uses `INCLUDE=(21,9,CH,EQ,C'DEVELOPER')` (9 chars) and `INCLUDE=(21,7,CH,EQ,C'MANAGER')` (7 chars) to match exact role name lengths in the fixed-length field.
 - STEP050 uses `SORTIN01` and `SORTIN02` DD names instead of `SORTIN` - this is required for SORT MERGE with multiple input files.
-- TOOLMSG message ICE628I shows `RECORD COUNT: 00000000000000004` confirming 4 DEVELOPER records counted by ICETOOL.
+- TOOLMSG message ICE628I shows `RECORD COUNT: 000000000000004` confirming 4 DEVELOPER records counted by ICETOOL.
 - STEP060 uses `SYSIN DD DUMMY` meaning IEBGENER does a straight copy from [`TASK11.MERGED.JCL`](DATA/TASK11.MERGED.JCL.txt) to SYSOUT with no editing.
