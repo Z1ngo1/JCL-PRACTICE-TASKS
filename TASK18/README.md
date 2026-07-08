@@ -55,28 +55,6 @@ IF LASTCC <= 8 THEN SET MAXCC = 0
 
 ---
 
-## STEP020 - IEFBR14 Allocate
-
-`COND=(08,LT,STEP010)` - Skip if STEP010 RC > 8 (unexpected error)
-
-Allocates an empty sequential file using IEFBR14 (a null program).
-
-**DD Statement:**
-```
-//EMPFILE DD DSN=Z73460.TASK18.HLQ.EMPFILE.JCL,
-// DISP=(NEW,CATLG,DELETE),
-// SPACE=(TRK,(1,1)),
-// DCB=(RECFM=FB,DSORG=PS,LRECL=80)
-```
-
-- `DISP=(NEW,CATLG,DELETE)` - Create new dataset; catalog if step succeeds, delete if step fails
-- `SPACE=(TRK,(1,1))` - Allocate 1 primary track, 1 secondary track
-- `RECFM=FB` - Fixed blocked records
-- `DSORG=PS` - Physical sequential organization
-- `LRECL=80` - Logical record length 80 bytes
-
----
-
 ## STEP030 - IDCAMS REPRO
 
 `COND=(00,NE,STEP020)` - Skip if STEP020 RC != 0
