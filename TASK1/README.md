@@ -21,10 +21,10 @@ This job sorts a list of employees by their date of birth in **ascending order**
 ## Steps
 
 | Step     | Program    | Description                                                                         |
-|----------|------------|----------------------------------------------------------------------------------|
+|----------|------------|-------------------------------------------------------------------------------------|
 | STEP005  | IEFBR14    | Delete existing datasets [`TASK1.JCL`](DATA/TASK1.JCL.txt) and [`TASK1.JCL.SORT`](DATA/TASK1.JCL.SORT.txt) if they exist |
-| STEP010  | IEBGENER   | Load inline employee records into dataset [`TASK1.JCL`](DATA/TASK1.JCL.txt)                     |
-| STEP020  | SORT       | Sort employee records by year, month, day of birth (ascending)                   |
+| STEP010  | IEBGENER   | Load inline employee records into dataset [`TASK1.JCL`](DATA/TASK1.JCL.txt)         |
+| STEP020  | SORT       | Sort employee records by year, month, day of birth (ascending)                      |
 
 ---
 
@@ -102,15 +102,21 @@ Employees born in **2007** appear before those born in **2008**. Within the same
 
 ## Key JCL Concepts Used
 
-- **SORT FIELDS** - multi-key sort with positional key definitions (position, length, type, order)
-- **SORT on DDMMYYYY** - date stored in European format, keys applied in YYYY/MM/DD order to sort correctly
-- **DCB=*.SORTIN** - referback: SORTOUT inherits DCB attributes directly from SORTIN DD
-- **DISP=(MOD,DELETE,DELETE) + SPACE** - safe delete pattern with IEFBR14, no ABEND if dataset does not exist
+- **SORT FIELDS** — multi-key sort; each key defined as `(position, length, type, order)`
+- **Positional key order** — keys applied in logical order (YYYY → MM → DD), not in the order fields appear in the record
+- **DCB=*.SORTIN** — referback; SORTOUT inherits DCB attributes directly from SORTIN DD
+- **DISP=(MOD,DELETE,DELETE)** — safe delete pattern with IEFBR14; no ABEND if dataset does not exist
 
 ---
 
 ## Notes
 
-- Input date is in **DDMMYYYY** format but the sort picks YEAR first (pos 15), then MONTH (pos 13), then DAY (pos 11) - that is why the key order in `SORT FIELDS` does not match the field order in the record.
-- All 4 records passed through unchanged (INSERT 0, DELETE 0) - SORT only reordered them, no filtering applied.
-- `SYSIN DD DUMMY` in STEP010 is required by IEBGENER even when no editing is needed - without it the step would fail.
+> 💡 **Key behavior**
+
+- Date is stored in **DDMMYYYY** format, but sort keys are specified as YEAR (pos 15) → MONTH (pos 13) → DAY (pos 11). The key order in `SORT FIELDS` intentionally does not match the physical field order in the record.
+- `ICE055I INSERT 0, DELETE 0` confirms no records were added or removed — SORT only reordered.
+
+> ⚠️ **Common pitfalls**
+
+- `SYSIN DD DUMMY` in STEP010 is required by IEBGENER even when no editing is needed — omitting it causes the step to fail with an error.
+- Sorting DDMMYYYY as a single 8-byte key would produce wrong results; always split into YYYY, MM, DD components when sorting European-format dates.
