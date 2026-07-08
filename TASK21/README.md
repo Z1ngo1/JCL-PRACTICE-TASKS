@@ -30,7 +30,7 @@ This job demonstrates PDS (Partitioned Data Set) operations using IEBCOPY utilit
 
 | Step | COND Parameter | Meaning |
 |------|----------------|----------|
-| STEP020 | (08,LT,STEP010) | Skip if STEP010 RC < 8 (unexpected error during DELETE) |
+| STEP020 | (08,LT,STEP010) | Skip if STEP010 RC > 8 (unexpected error during DELETE) |
 | STEP030 | (00,NE,STEP020) | Skip if STEP020 RC ≠ 0 (PDS creation failed) |
 | STEP033 | (00,NE,STEP020) | Skip if STEP020 RC ≠ 0 (PDS creation failed) |
 | STEP036 | (00,NE,STEP020) | Skip if STEP020 RC ≠ 0 (PDS creation failed) |
