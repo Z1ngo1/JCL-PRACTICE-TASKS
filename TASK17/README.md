@@ -89,7 +89,7 @@ COUNT FROM(INDD) WRITE(OUTDD)
 
 ## Input File Layouts
 
-### File 1 - Employee File ([TASK17.EMPLLIST.JCL.txt](DATA/TASK17.EMPLLIST.JCL.txt))
+### File 1 - Employee File 
 
 Format: `ID(3) + NAME(10) + ROLE(13)` - `LRECL=26`, `RECFM=FB`, `DSORG=PS`
 
@@ -98,6 +98,8 @@ Format: `ID(3) + NAME(10) + ROLE(13)` - `LRECL=26`, `RECFM=FB`, `DSORG=PS`
 | ID | 1 | 3 | Employee ID (zero-padded) |
 | NAME | 4 | 10 | Employee last name |
 | ROLE | 14 | 13 | Job role (space-padded) |
+
+Sample Input Records ([TASK17.EMPLLIST.JCL.txt](DATA/TASK17.EMPLLIST.JCL.txt))
 
 ```
 001IVANOV    DEVELOPER
@@ -112,7 +114,7 @@ Format: `ID(3) + NAME(10) + ROLE(13)` - `LRECL=26`, `RECFM=FB`, `DSORG=PS`
 010ORLOV     ANALYST
 ```
 
-### File 2 - Salary File ([TASK17.SALARY.JCL.txt](DATA/TASK17.SALARY.JCL.txt))
+### File 2 - Salary File 
 
 Format: `ID(3) + SALARY(6)` - `LRECL=9`, `RECFM=FB`, `DSORG=PS`
 
@@ -120,6 +122,8 @@ Format: `ID(3) + SALARY(6)` - `LRECL=9`, `RECFM=FB`, `DSORG=PS`
 |-------|----------|--------|-------------|
 | ID | 1 | 3 | Employee ID (matches File 1) |
 | SALARY | 4 | 6 | Salary (zero-padded) |
+
+Sample Input Records ([TASK17.SALARY.JCL.txt](DATA/TASK17.SALARY.JCL.txt))
 
 ```
 001005000
@@ -165,7 +169,7 @@ Output record length: 23 + 6 = **29 bytes** (LRECL=29)
 
 ---
 
-## Final Result
+## Final Result ([SYSUT2.STEP080.txt](OUTPUT/SYSUT2.STEP080.txt))
 
 ### Joined Dataset (&&JOINED) - Printed by STEP080
 
@@ -184,7 +188,7 @@ All 10 employee records with salary. IDs 005 and 010 have `000000` salary:
 010ORLOV     ANALYST    000000
 ```
 
-### Totals by Role - Printed by STEP070
+### Totals by Role - Printed by [SORTOUT.STEP070.txt](OUTPUT/SORTOUT.STEP070.txt)
 
 ```
 TOTAL: 000000000000004
