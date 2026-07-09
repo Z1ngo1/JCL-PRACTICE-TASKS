@@ -18,11 +18,11 @@ This job demonstrates PDS (Partitioned Data Set) operations using IEBCOPY utilit
 
 | Step | Program | Description |
 |------|---------|-------------|
-| STEP010 | IDCAMS | Delete [SRCLIB.JCL](JCL/TASK21.jcl) and [TGTLIB.JCL](JCL/TASK21.jcl) if they exist; SET MAXCC=0 if RC<=8 |
+| STEP010 | IDCAMS | Delete [SRCLIB](DATA/TASK21.HLQ.SRCLIB.JCL) and [TGTLIB](DATA/TASK21.HLQ.TGTLIB.JCL) if they exist; SET MAXCC=0 if RC<=8 |
 | STEP020 | IEFBR14 | Create two empty PDS libraries with directory blocks SPACE=(TRK,(2,2,10)); skip if STEP010 RC < 8 |
-| STEP030 | IEBGENER | Load inline [MEMBER1](DATA/MEMBER1.txt) (4 developers) into SRCLIB; skip if STEP020 RC ≠ 0 |
-| STEP033 | IEBGENER | Load inline [MEMBER2](DATA/MEMBER2.txt) (3 analysts) into SRCLIB; skip if STEP020 RC ≠ 0 |
-| STEP036 | IEBGENER | Load inline [MEMBER3](DATA/MEMBER3.txt) (3 managers) into SRCLIB; skip if STEP020 RC ≠ 0 |
+| STEP030 | IEBGENER | Load inline [MEMBER1](DATA/TASK21.HLQ.SRCLIB.JCL/MEMBER1.txt) (4 developers) into SRCLIB; skip if STEP020 RC ≠ 0 |
+| STEP033 | IEBGENER | Load inline [MEMBER2](DATA/TASK21.HLQ.SRCLIB.JCL/MEMBER2.txt) (3 analysts) into SRCLIB; skip if STEP020 RC ≠ 0 |
+| STEP036 | IEBGENER | Load inline [MEMBER3](DATA/TASK21.HLQ.SRCLIB.JCL/MEMBER3.txt) (3 managers) into SRCLIB; skip if STEP020 RC ≠ 0 |
 | STEP040 | IEBCOPY | Selective COPY: copy only MEMBER1 and MEMBER3 to TGTLIB using SELECT; skip if any STEP030/033/036 failed |
 | STEP050 | IEBCOPY | COMPRESS SRCLIB in place (INDD=OUTDD=SYSUT1); reclaim space from deleted/replaced members |
 
