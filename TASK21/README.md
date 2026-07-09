@@ -23,8 +23,8 @@ This job demonstrates PDS (Partitioned Data Set) operations using IEBCOPY utilit
 | STEP030 | IEBGENER | Load inline [MEMBER1](DATA/TASK21.HLQ.SRCLIB.JCL/MEMBER1.txt) (4 developers) into SRCLIB; skip if STEP020 RC ≠ 0 |
 | STEP033 | IEBGENER | Load inline [MEMBER2](DATA/TASK21.HLQ.SRCLIB.JCL/MEMBER2.txt) (3 analysts) into SRCLIB; skip if STEP020 RC ≠ 0 |
 | STEP036 | IEBGENER | Load inline [MEMBER3](DATA/TASK21.HLQ.SRCLIB.JCL/MEMBER3.txt) (3 managers) into SRCLIB; skip if STEP020 RC ≠ 0 |
-| STEP040 | IEBCOPY | Selective COPY: copy only MEMBER1 and MEMBER3 to TGTLIB using SELECT; skip if any STEP030/033/036 failed |
-| STEP050 | IEBCOPY | COMPRESS SRCLIB in place (INDD=OUTDD=SYSUT1); reclaim space from deleted/replaced members |
+| STEP040 | IEBCOPY | Selective COPY: copy only [MEMBER1](DATA/TASK21.HLQ.TGTLIB.JCL/MEMBER1.txt) and [MEMBER3](DATA/TASK21.HLQ.TGTLIB.JCL/MEMBER3.txt) to [TGTLIB](DATA/TASK21.HLQ.TGTLIB.JCL) using SELECT; skip if any STEP030/033/036 failed |
+| STEP050 | IEBCOPY | COMPRESS [SRCLIB](DATA/TASK21.HLQ.SRCLIB.JCL) in place (INDD=OUTDD=SYSUT1); reclaim space from deleted/replaced members |
 
 ## COND Logic
 
