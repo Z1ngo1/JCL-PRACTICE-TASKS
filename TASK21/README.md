@@ -29,7 +29,7 @@ This job demonstrates PDS (Partitioned Data Set) operations using IEBCOPY utilit
 ## COND Logic
 
 | Step | COND Parameter | Meaning |
-|------|----------------|----------|
+|------|----------------|---------|
 | STEP020 | (08,LT,STEP010) | Skip if STEP010 RC > 8 (unexpected error during DELETE) |
 | STEP030 | (00,NE,STEP020) | Skip if STEP020 RC ≠ 0 (PDS creation failed) |
 | STEP033 | (00,NE,STEP020) | Skip if STEP020 RC ≠ 0 (PDS creation failed) |
@@ -39,7 +39,9 @@ This job demonstrates PDS (Partitioned Data Set) operations using IEBCOPY utilit
 
 ## Member Data Layout
 
-### [MEMBER1](DATA/TASK21.HLQ.SRCLIB.JCL/MEMBER1.txt) (Developers) - LRECL=80, 4 records
+### SRCLIB Members (DATA/TASK21.HLQ.SRCLIB.JCL)
+
+#### [MEMBER1](DATA/TASK21.HLQ.SRCLIB.JCL/MEMBER1.txt) (Developers) - LRECL=80, 4 records
 
 | Position | Length | Type | Description |
 |----------|--------|------|-------------|
@@ -49,14 +51,15 @@ This job demonstrates PDS (Partitioned Data Set) operations using IEBCOPY utilit
 | 24-29 | 6 | CH | Salary |
 
 Sample inline data:
+
 ```
-001IVANOV   DEVELOPER  005000
-004KOZLOV   DEVELOPER  004500
-006NOVIKOV  DEVELOPER  006100
-008SOKOLOV  DEVELOPER  005500
+001IVANOV    DEVELOPER   005000
+004KOZLOV    DEVELOPER   004500
+006NOVIKOV   DEVELOPER   006100
+008SOKOLOV   DEVELOPER   005500
 ```
 
-### [MEMBER2](DATA/TASK21.HLQ.SRCLIB.JCL/MEMBER2.txt) (Analysts) - LRECL=80, 3 records (NOT copied to TGTLIB)
+#### [MEMBER2](DATA/TASK21.HLQ.SRCLIB.JCL/MEMBER2.txt) (Analysts) - LRECL=80, 3 records
 
 | Position | Length | Type | Description |
 |----------|--------|------|-------------|
@@ -66,13 +69,14 @@ Sample inline data:
 | 24-29 | 6 | CH | Salary |
 
 Sample inline data:
+
 ```
-002PETROV   ANALYST    003200
-005MOROZOV  ANALYST    002900
-010ORLOV    ANALYST    003100
+002PETROV    ANALYST     003200
+005MOROZOV   ANALYST     002900
+010ORLOV     ANALYST     003100
 ```
 
-### [MEMBER3](DATA/TASK21.HLQ.SRCLIB.JCL/MEMBER3.txt) (Managers) - LRECL=80, 3 records
+#### [MEMBER3](DATA/TASK21.HLQ.SRCLIB.JCL/MEMBER3.txt) (Managers) - LRECL=80, 3 records
 
 | Position | Length | Type | Description |
 |----------|--------|------|-------------|
@@ -82,11 +86,38 @@ Sample inline data:
 | 24-29 | 6 | CH | Salary |
 
 Sample inline data:
+
 ```
-003SIDOROV  MANAGER    007800
-007POPOV    MANAGER    008200
-009LEBEDEV  MANAGER    006800
+003SIDOROV   MANAGER     007800
+007POPOV     MANAGER     008200
+009LEBEDEV   MANAGER     006800
 ```
+
+### TGTLIB Members (DATA/TASK21.HLQ.TGTLIB.JCL)
+
+> Copied from SRCLIB via IEBCOPY SELECT in STEP040 (MEMBER2 excluded intentionally)
+
+#### [MEMBER1](DATA/TASK21.HLQ.TGTLIB.JCL/MEMBER1.txt) (Developers) - LRECL=80, 4 records
+
+| Position | Length | Type | Description |
+|----------|--------|------|-------------|
+| 1-3 | 3 | CH | Employee ID |
+| 4-11 | 8 | CH | Last Name |
+| 12-23 | 12 | CH | Role (DEVELOPER) |
+| 24-29 | 6 | CH | Salary |
+
+Same data as SRCLIB MEMBER1 (copied via SELECT MEMBER=((MEMBER1,,R)))
+
+#### [MEMBER3](DATA/TASK21.HLQ.TGTLIB.JCL/MEMBER3.txt) (Managers) - LRECL=80, 3 records
+
+| Position | Length | Type | Description |
+|----------|--------|------|-------------|
+| 1-3 | 3 | CH | Employee ID |
+| 4-11 | 8 | CH | Last Name |
+| 12-23 | 12 | CH | Role (MANAGER) |
+| 24-29 | 6 | CH | Salary |
+
+Same data as SRCLIB MEMBER3 (copied via SELECT MEMBER=((MEMBER3,,R)))
 
 ## Output
 
