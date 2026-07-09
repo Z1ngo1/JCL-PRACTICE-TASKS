@@ -39,7 +39,7 @@ This job demonstrates PDS (Partitioned Data Set) operations using IEBCOPY utilit
 
 ## Member Data Layout
 
-### [MEMBER1](DATA/MEMBER1.txt) (Developers) - LRECL=80, 4 records
+### [MEMBER1](DATA/TASK21.HLQ.SRCLIB.JCL/MEMBER1.txt) (Developers) - LRECL=80, 4 records
 
 | Position | Length | Type | Description |
 |----------|--------|------|-------------|
@@ -56,7 +56,7 @@ Sample inline data:
 008SOKOLOV  DEVELOPER  005500
 ```
 
-### [MEMBER2](DATA/MEMBER2.txt) (Analysts) - LRECL=80, 3 records (NOT copied to TGTLIB)
+### [MEMBER2](DATA/TASK21.HLQ.SRCLIB.JCL/MEMBER2.txt) (Analysts) - LRECL=80, 3 records (NOT copied to TGTLIB)
 
 | Position | Length | Type | Description |
 |----------|--------|------|-------------|
@@ -72,7 +72,7 @@ Sample inline data:
 010ORLOV    ANALYST    003100
 ```
 
-### [MEMBER3](DATA/MEMBER3.txt) (Managers) - LRECL=80, 3 records
+### [MEMBER3](DATA/TASK21.HLQ.SRCLIB.JCL/MEMBER3.txt) (Managers) - LRECL=80, 3 records
 
 | Position | Length | Type | Description |
 |----------|--------|------|-------------|
