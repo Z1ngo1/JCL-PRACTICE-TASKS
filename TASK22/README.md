@@ -27,7 +27,7 @@ This job demonstrates PDS member maintenance using IEBUPDTE utility: creating a 
 ## COND Logic
 
 | Step | COND Parameter | Meaning |
-|------|----------------|----------|
+|------|----------------|---------|
 | STEP020 | (08,LT,STEP010) | Skip if STEP010 RC > 8 (unexpected error during DELETE) |
 | STEP030 | (00,NE,STEP020) | Skip if STEP020 RC ≠ 0 (PDS creation failed) |
 | STEP040 | (00,NE,STEP030) | Skip if STEP030 RC ≠ 0 (adding members failed) |
@@ -35,7 +35,9 @@ This job demonstrates PDS member maintenance using IEBUPDTE utility: creating a 
 
 ## Member Data Layout
 
-### EMPDATA Member (Initial) - LRECL=80, 5 records with sequence numbers
+### UPDLIB Members (DATA/TASK22.HLQ.UPDLIB.JCL)
+
+#### [EMPDATA](DATA/TASK22.HLQ.UPDLIB.JCL/EMPDATA.txt) (Initial) - LRECL=80, 5 records with sequence numbers
 
 | Position | Length | Type | Description |
 |----------|--------|------|-------------|
@@ -46,41 +48,55 @@ This job demonstrates PDS member maintenance using IEBUPDTE utility: creating a 
 | 73-80 | 8 | NUM | Sequence number (00000010, 00000020, etc.) |
 
 Initial records (STEP030):
+
 ```
-001IVANOV   DEVELOPER  005000                                             00000010
-002PETROV   ANALYST    003200                                             00000020
-003SIDOROV  MANAGER    007800                                             00000030
-004KOZLOV   DEVELOPER  004500                                             00000040
-005MOROZOV  ANALYST    002900                                             00000050
+001IVANOV    DEVELOPER   005000                                              00000010
+002PETROV    ANALYST     003200                                              00000020
+003SIDOROV   MANAGER     007800                                              00000030
+004KOZLOV    DEVELOPER   004500                                              00000040
+005MOROZOV   ANALYST     002900                                              00000050
 ```
 
-### EMPDATA Member (After STEP040) - 6 records
+#### [EMPDATA](DATA/TASK22.HLQ.UPDLIB.JCL/EMPDATA.txt) (After STEP040) - 6 records
 
-After DELETE SEQ1=00000020,SEQ2=00000020 and adding 2 new records:
-```
-001IVANOV   DEVELOPER  005000                                             00000010
-003SIDOROV  MANAGER    007800                                             00000030
-004KOZLOV   DEVELOPER  004500                                             00000040
-005MOROZOV  ANALYST    002900                                             00000050
-006NOVIKOV  DEVELOPER  006100                                             00000060
-007POPOV    MANAGER    008200                                             00000070
-```
-
-### SALDATA Member - LRECL=80, 5 records with sequence numbers
+> Updated in-place via IEBUPDTE PARM=MOD: DELETE SEQ1=00000020,SEQ2=00000020 (PETROV removed), 2 new records appended
 
 | Position | Length | Type | Description |
 |----------|--------|------|-------------|
 | 1-3 | 3 | CH | Employee ID |
-| 4-12 | 9 | CH | Salary + Currency (RUB) |
+| 4-11 | 8 | CH | Last Name |
+| 12-23 | 12 | CH | Role |
+| 24-29 | 6 | CH | Salary |
+| 73-80 | 8 | NUM | Sequence number |
+
+Records after update:
+
+```
+001IVANOV    DEVELOPER   005000                                              00000010
+003SIDOROV   MANAGER     007800                                              00000030
+004KOZLOV    DEVELOPER   004500                                              00000040
+005MOROZOV   ANALYST     002900                                              00000050
+006NOVIKOV   DEVELOPER   006100                                              00000060
+007POPOV     MANAGER     008200                                              00000070
+```
+
+#### [SALDATA](DATA/TASK22.HLQ.UPDLIB.JCL/SALDATA.txt) (Salary Records) - LRECL=80, 5 records with sequence numbers
+
+| Position | Length | Type | Description |
+|----------|--------|------|-------------|
+| 1-3 | 3 | CH | Employee ID |
+| 4-9 | 6 | CH | Salary |
+| 10-12 | 3 | CH | Currency (RUB) |
 | 73-80 | 8 | NUM | Sequence number |
 
 Sample records:
+
 ```
-001005000RUB                                                               00000010
-002003200RUB                                                               00000020
-003007800RUB                                                               00000030
-004004500RUB                                                               00000040
-005002900RUB                                                               00000050
+001005000RUB                                                                00000010
+002003200RUB                                                                00000020
+003007800RUB                                                                00000030
+004004500RUB                                                                00000040
+005002900RUB                                                                00000050
 ```
 
 ## Output
