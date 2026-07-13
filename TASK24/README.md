@@ -89,7 +89,7 @@ Sample inline data:
 
 ### Output Dataset (DATA/TASK24.HLQ.RESULT.JCL)
 
-#### [RESULT GDG (+1)](DATA/TASK24.HLQ.RESULT.JCL/G0001V00.txt) - LRECL=60, 7 records
+#### [RESULT GDG (+1)](DATA/TASK24.HLQ.RESULT.JCL.G0001V00.txt) - LRECL=60, 7 records
 
 > REFORMAT FIELDS=(F1:1,32,F2:1,28) = 60 bytes total; written by STEP060 SORT JOINKEYS
 
