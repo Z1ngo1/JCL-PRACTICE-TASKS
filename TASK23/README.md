@@ -28,7 +28,7 @@ This job demonstrates Generation Data Group (GDG) operations: defining a GDG bas
 ## COND Logic
 
 | Step | COND Parameter | Meaning |
-|------|----------------|----------|
+|------|----------------|---------|
 | STEP020 | (08,LT,STEP010) | Skip if STEP010 RC > 8 (unexpected error during DELETE) |
 | STEP030 | (00,NE,STEP020) | Skip if STEP020 RC ≠ 0 (GDG base definition failed) |
 | STEP040 | (00,NE,STEP030) | Skip if STEP030 RC ≠ 0 (first generation write failed) |
@@ -37,7 +37,9 @@ This job demonstrates Generation Data Group (GDG) operations: defining a GDG bas
 
 ## Generation Data Layout
 
-### G0001V00 (First Generation) - LRECL=36, 3 records
+### GDG Generations (DATA/TASK23.HLQ.EMPGDG.JCL)
+
+#### [G0001V00](DATA/TASK23.HLQ.EMPGDG.JCL/G0001V00.txt) (First Generation) - LRECL=36, 3 records
 
 | Position | Length | Type | Description |
 |----------|--------|------|-------------|
@@ -46,14 +48,15 @@ This job demonstrates Generation Data Group (GDG) operations: defining a GDG bas
 | 12-23 | 12 | CH | Role |
 | 24-29 | 6 | CH | Salary |
 
-Sample records:
+Sample inline data:
+
 ```
-001IVANOV   DEVELOPER  005000
-002PETROV   ANALYST    003200
-003SIDOROV  MANAGER    007800
+001IVANOV    DEVELOPER   005000
+002PETROV    ANALYST     003200
+003SIDOROV   MANAGER     007800
 ```
 
-### G0002V00 (Second Generation) - LRECL=36, 4 records (updated salaries)
+#### [G0002V00](DATA/TASK23.HLQ.EMPGDG.JCL/G0002V00.txt) (Second Generation) - LRECL=36, 4 records (updated salaries)
 
 | Position | Length | Type | Description |
 |----------|--------|------|-------------|
@@ -62,12 +65,13 @@ Sample records:
 | 12-23 | 12 | CH | Role |
 | 24-29 | 6 | CH | Salary (updated) |
 
-Sample records:
+Sample inline data:
+
 ```
-001IVANOV   DEVELOPER  005500
-002PETROV   ANALYST    003500
-003SIDOROV  MANAGER    008000
-004KOZLOV   DEVELOPER  004500
+001IVANOV    DEVELOPER   005500
+002PETROV    ANALYST     003500
+003SIDOROV   MANAGER     008000
+004KOZLOV    DEVELOPER   004500
 ```
 
 ## Output
@@ -76,8 +80,8 @@ Sample records:
 |------|-------------|
 | [SYSOUT.STEP010.txt](OUTPUT/SYSOUT.STEP010.txt) | IDCAMS DELETE output - GDG base and generations deleted; MAXCC reset to 0 |
 | [SYSOUT.STEP020.txt](OUTPUT/SYSOUT.STEP020.txt) | IDCAMS DEFINE GDG output - GDG base created with LIMIT(3) SCRATCH NOEMPTY |
-| [SYSUT2.STEP050.txt](OUTPUT/SYSUT2.STEP050.txt) | Current generation (0) content - G0001V00 with 3 employees |
-| [SYSUT2.STEP060.txt](OUTPUT/SYSUT2.STEP060.txt) | Previous generation (-1) content - G0002V00 with 4 employees and updated salaries |
+| [SYSUT2.STEP050.txt](OUTPUT/SYSUT2.STEP050.txt) | G0001V00 content - 3 employees (first generation) |
+| [SYSUT2.STEP060.txt](OUTPUT/SYSUT2.STEP060.txt) | G0002V00 content - 4 employees with updated salaries (second generation) |
 
 ## Key JCL Concepts Used
 
