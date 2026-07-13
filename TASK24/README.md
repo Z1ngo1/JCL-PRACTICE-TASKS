@@ -14,17 +14,6 @@ This job is a comprehensive multi-step pipeline combining multiple JCL technique
 | MSGLEVEL | (1,1) |
 | NOTIFY | &SYSUID |
 
-## Inline PROC: SORTPROC
-
-Reusable sort template defined at the top of the JCL with two symbolic parameters:
-
-| Parameter | Description |
-|-----------|-------------|
-| &SORTIN | Input dataset name passed by caller |
-| &SORTOUT | Output dataset name passed by caller |
-
-SYSIN DD DUMMY in the PROC is overridden by the caller using STEP1.SYSIN to supply actual SORT FIELDS.
-
 ## Steps
 
 | Step | Program | Description |
@@ -43,7 +32,7 @@ SYSIN DD DUMMY in the PROC is overridden by the caller using STEP1.SYSIN to supp
 ## COND Logic
 
 | Step | COND Parameter | Meaning |
-|------|----------------|----------|
+|------|----------------|---------|
 | STEP007 | IF STEP005.RC>=4 THEN ... ENDIF | Execute only when GDG base does not exist (LISTCAT returned RC=4) |
 | STEP030 | (00,NE,STEP020) | Skip if STEP020 RC ≠ 0 (dataset creation failed) |
 | STEP040 | (00,NE,STEP030) | Skip if STEP030 RC ≠ 0 (EMPBASE load failed) |
@@ -54,7 +43,9 @@ SYSIN DD DUMMY in the PROC is overridden by the caller using STEP1.SYSIN to supp
 
 ## Input Data Layout
 
-### EMPBASE - LRECL=40, 7 records
+### Input Datasets (DATA/TASK24.HLQ)
+
+#### [EMPBASE](DATA/TASK24.HLQ.EMPBASE.JCL.txt) - LRECL=40, 7 records
 
 | Position | Length | Type | Description |
 |----------|--------|------|-------------|
@@ -64,18 +55,19 @@ SYSIN DD DUMMY in the PROC is overridden by the caller using STEP1.SYSIN to supp
 | 24-25 | 2 | CH | Gender (M/F) |
 | 26-29 | 4 | CH | Birth Year |
 
-Sample records:
+Sample inline data:
+
 ```
-0001IVANOV  DEVELOPER M 1985
-0002PETROV  ANALYST   M 1990
-0003SIDOROV MANAGER   M 1978
-0004KOZLOV  DEVELOPER M 1992
-0005MOROZOV ANALYST   F 1988
-0006NOVIKOV DEVELOPER M 1995
-0007POPOV   MANAGER   F 1982
+0001IVANOV     DEVELOPER  M 1985
+0002PETROV     ANALYST    M 1990
+0003SIDOROV    MANAGER    M 1978
+0004KOZLOV     DEVELOPER  M 1992
+0005MOROZOV    ANALYST    F 1988
+0006NOVIKOV    DEVELOPER  M 1995
+0007POPOV      MANAGER    F 1982
 ```
 
-### SALBASE - LRECL=30, 7 records
+#### [SALBASE](DATA/TASK24.HLQ.SALBASE.JCL.txt) - LRECL=30, 7 records
 
 | Position | Length | Type | Description |
 |----------|--------|------|-------------|
@@ -83,7 +75,8 @@ Sample records:
 | 5-10 | 6 | CH | Salary amount |
 | 11-20 | 10 | CH | Role (DEVELOPER/ANALYST/MANAGER) |
 
-Sample records:
+Sample inline data:
+
 ```
 0001005000DEVELOPER
 0002003200ANALYST
@@ -94,9 +87,11 @@ Sample records:
 0007008200MANAGER
 ```
 
-### RESULT GDG (Output) - LRECL=60, 7 records
+### Output Dataset (DATA/TASK24.HLQ.RESULT.JCL)
 
-REFORMAT FIELDS=(F1:1,32,F2:1,28) = 60 bytes total
+#### [RESULT GDG (+1)](DATA/TASK24.HLQ.RESULT.JCL/G0001V00.txt) - LRECL=60, 7 records
+
+> REFORMAT FIELDS=(F1:1,32,F2:1,28) = 60 bytes total; written by STEP060 SORT JOINKEYS
 
 | Position | Length | Source | Description |
 |----------|--------|--------|-------------|
@@ -111,18 +106,6 @@ REFORMAT FIELDS=(F1:1,32,F2:1,28) = 60 bytes total
 | 43-52 | 10 | F2 | Role (from SALBASE) |
 | 53-60 | 8 | F2 | Padding |
 
-## ICETOOL Statistics (STEP070)
-
-STATS FROM(INDD) ON(37,6,ZD) computed on salary field at position 37, length 6, zoned decimal:
-
-| Statistic | Value |
-|-----------|-------|
-| Count | 7 records |
-| Minimum | 002900 |
-| Maximum | 008200 |
-| Average | 005385 |
-| Total | 037700 |
-
 ## Output
 
 | File | Description |
@@ -132,13 +115,13 @@ STATS FROM(INDD) ON(37,6,ZD) computed on salary field at position 37, length 6, 
 | [SYSOUT.STEP060.txt](OUTPUT/SYSOUT.STEP060.txt) | SORT JOINKEYS output - inner join messages and statistics |
 | [JNF1JMSG.STEP060.txt](OUTPUT/JNF1JMSG.STEP060.txt) | Join messages for F1 (EMPSORT) |
 | [JNF2JMSG.STEP060.txt](OUTPUT/JNF2JMSG.STEP060.txt) | Join messages for F2 (SALBASE) |
-| [TOOLMSG.STEP070.txt](OUTPUT/TOOLMSG.STEP070.txt) | ICETOOL STATS output - MIN=002900, MAX=008200, AVG=005385, TOTAL=037700 |
+| [TOOLMSG.STEP070.txt](OUTPUT/TOOLMSG.STEP070.txt) | ICETOOL STATS output - COUNT=7, MIN=002900, MAX=008200, AVG=005385, TOTAL=037700 |
 | [DFSMSG.STEP070.txt](OUTPUT/DFSMSG.STEP070.txt) | ICETOOL DFSMSdss messages |
 | [SYSUT2.STEP080.txt](OUTPUT/SYSUT2.STEP080.txt) | Final joined GDG content - 7 employees sorted by ROLE then ID |
 
 ## Key JCL Concepts Used
 
-- **Inline PROC (SORTPROC)** - Procedure defined within the same JCL using PROC/PEND statements; reusable sort template with symbolic parameters &SORTIN and &SORTOUT
+- **Inline PROC (SORTPROC)** - Procedure defined within the same JCL using PROC/PEND statements; reusable sort template with symbolic parameters &SORTIN and &SORTOUT; SYSIN DD DUMMY overridden by caller via STEP1.SYSIN
 - **Symbolic parameters** - Parameters like &SORTIN passed at EXEC SORTPROC,SORTIN=dsname; resolved at execution time
 - **STEP1.SYSIN DD** - Overrides SYSIN=DUMMY inside the PROC with actual SORT FIELDS; uses stepname.ddname notation
 - **LISTCAT ENTRIES() GDG** - IDCAMS command to check if GDG base exists in catalog; returns RC=0 (found) or RC=4 (not found)
@@ -155,12 +138,12 @@ STATS FROM(INDD) ON(37,6,ZD) computed on salary field at position 37, length 6, 
 
 - STEP005/007 use IF/ENDIF (JCL conditional) rather than COND parameter; allows defining GDG base only on first job run
 - STEP010 uses DISP=(MOD,DELETE,DELETE) with IEFBR14 instead of IDCAMS DELETE; SPACE=(TRK,(1,0)) needed if dataset does not exist yet
-- SORTPROC defined with SYSIN DD DUMMY; actual sort fields supplied by STEP050 via STEP1.SYSIN override
-- STEP050 passes symbolic parameters SORTIN and SORTOUT at EXEC time; SORTOUT DCB (LRECL=40) is defined inside PROC
+- SORTPROC defined with SYSIN DD DUMMY; actual sort fields supplied by STEP050 via STEP1.SYSIN override; symbolic parameters SORTIN and SORTOUT resolved at EXEC time
 - STEP060 COND references STEP050.STEP1 - the STEP1 substep inside SORTPROC; dotted notation identifies proc step
 - SORT FIELDS=(15,10,CH,A,1,4,CH,A) sorts by Role (pos 15, len 10) ascending then by ID (pos 1, len 4) ascending
 - JOINKEYS inner join: only records with matching ID in both F1 and F2 appear in output; all 7 employees have matching salary records
 - REFORMAT creates 60-byte output: 32 bytes from employee record + 28 bytes from salary record
 - Salary position in output record: starts at byte 37 (F2 starts at byte 33, salary is bytes 5-10 of F2 = bytes 37-42 in output)
-- ICETOOL STATS ON(37,6,ZD): MIN=2900, MAX=8200, AVG=5385, TOTAL=37700 across 7 records
+- ICETOOL STATS ON(37,6,ZD): COUNT=7, MIN=002900, MAX=008200, AVG=005385, TOTAL=037700
 - Final output sorted by role alphabetically (ANALYST, DEVELOPER, MANAGER) then by ID within each role
+- GDG naming: RESULT.JCL is base name; actual generation written as RESULT.JCL.G0001V00 on first run; LIMIT(5) allows up to 5 generations
