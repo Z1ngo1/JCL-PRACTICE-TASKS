@@ -10,7 +10,7 @@
 //* NOTE: SPACE PARAMETER USED IF DATASET DOES NOT EXIST               *
 //**********************************************************************
 //STEP005  EXEC PGM=IEFBR14                                             
-//DELDD1   DD DSN=Z73460.TASK4.SORT.JCL,                                
+//DELDD1   DD DSN=Z73460.TASK4.JCL.SORT,                                
 //            SPACE=(TRK,(1,0),RLSE),                                   
 //            DISP=(MOD,DELETE,DELETE)                                  
 //**********************************************************************
@@ -20,8 +20,8 @@
 //STEP010  EXEC PGM=SORT,COND=(04,LT,STEP005)                                                
 //SYSPRINT DD SYSOUT=*                                                  
 //SYSOUT   DD SYSOUT=*                                                  
-//SORTIN   DD DSN=Z73460.TASK3.OUTPUT.JCL,DISP=SHR                      
-//SORTOUT  DD DSN=Z73460.TASK4.SORT.JCL,                                
+//SORTIN   DD DSN=Z73460.TASK3.JCL.OUTPUT,DISP=SHR                      
+//SORTOUT  DD DSN=Z73460.TASK4.JCL.SORT,                                
 //            DISP=(NEW,CATLG,DELETE),                                  
 //            SPACE=(TRK,(1,1),RLSE),                                   
 //            DCB=(RECFM=FB,DSORG=PS,LRECL=30)                          
