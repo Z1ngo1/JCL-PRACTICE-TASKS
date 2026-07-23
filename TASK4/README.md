@@ -2,7 +2,7 @@
 
 ## Overview
 
-This job sorts the output dataset produced by TASK3 by employee last name in ascending order. It reuses [`TASK3.OUTPUT.JCL`](DATA/TASK3.OUTPUT.JCL.txt) directly as input without reloading any inline data, demonstrating how jobs can chain together across tasks.
+This job sorts the output dataset produced by TASK3 by employee last name in ascending order. It reuses [`TASK3.JCL.OUTPUT`](DATA/TASK3.JCL.OUTPUT.txt) directly as input without reloading any inline data, demonstrating how jobs can chain together across tasks.
 
 ---
 
@@ -22,8 +22,8 @@ This job sorts the output dataset produced by TASK3 by employee last name in asc
 
 | Step    | Program | Description                                                              |
 |---------|---------|--------------------------------------------------------------------------|
-| STEP005 | IEFBR14 | Delete existing dataset [`TASK4.SORT.JCL`](DATA/TASK4.SORT.JCL.txt) if it exists            |
-| STEP010 | SORT    | Sort [`TASK3.OUTPUT.JCL`](DATA/TASK3.OUTPUT.JCL.txt) by last name (pos 1-10) ascending        |
+| STEP005 | IEFBR14 | Delete existing dataset [`TASK4.JCL.SORT`](DATA/TASK4.JCL.SORT.txt) if it exists            |
+| STEP010 | SORT    | Sort [`TASK3.JCL.OUTPUT`](DATA/TASK3.JCL.OUTPUT.txt) by last name (pos 1-10) ascending        |
 
 ---
 
@@ -46,7 +46,7 @@ Record format: `NAME(10) + FIRSTNAME(10) + ROLE(10)` - `LRECL=30`, `RECFM=FB`, `
 | FIRSTNAME | 11       | 10     | CH     | Employee first name |
 | ROLE      | 21       | 10     | CH     | Job role            |
 
-### Input Dataset ([TASK3.OUTPUT.JCL.txt](DATA/TASK3.OUTPUT.JCL.txt))
+### Input Dataset ([`TASK3.JCL.OUTPUT`](DATA/TASK3.JCL.OUTPUT.txt))
 
 ```
 IVANOV    IVAN      DEVELOPER 
@@ -81,7 +81,7 @@ ICE055I 0 INSERT 0, DELETE 0
 ICE054I 0 RECORDS - IN: 5, OUT: 5
 ```
 
-### Sorted Result ([TASK4.SORT.JCL.txt](DATA/TASK4.SORT.JCL.txt))
+### Sorted Result ([`TASK4.JCL.SORT`](DATA/TASK4.JCL.SORT.txt))
 
 ```
 IVANOV    IVAN      DEVELOPER 
@@ -97,7 +97,7 @@ All 5 records sorted alphabetically by last name.
 
 ## Key JCL Concepts Used
 
-- **Cross-task dataset reuse** - SORTIN reads [`TASK3.OUTPUT.JCL`](DATA/TASK3.OUTPUT.JCL.txt) directly, linking TASK4 to the output of TASK3
+- **Cross-task dataset reuse** - SORTIN reads [`TASK3.JCL.OUTPUT`](DATA/TASK3.JCL.OUTPUT.txt) directly, linking TASK4 to the output of TASK3
 - **SORT FIELDS on NAME** - single-key sort on a character field at position 1, length 10
 - **DCB specified on SORTOUT** - LRECL=30 explicitly set because SORTOUT is a new dataset with no existing DCB to inherit
 
@@ -105,6 +105,6 @@ All 5 records sorted alphabetically by last name.
 
 ## Notes
 
-- This task has no inline data - it depends on TASK3 having already run and produced [`TASK3.OUTPUT.JCL`](DATA/TASK3.OUTPUT.JCL.txt).
+- This task has no inline data - it depends on TASK3 having already run and produced [`TASK3.JCL.OUTPUT`](DATA/TASK3.JCL.OUTPUT.txt).
 - STEP005 only deletes the SORT output dataset, not the TASK3 input - that belongs to TASK3 to manage.
 - LRECL=30 on SORTOUT matches the record length established in TASK3, keeping the chain consistent.
