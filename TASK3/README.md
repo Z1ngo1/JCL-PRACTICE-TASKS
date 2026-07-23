@@ -22,7 +22,7 @@ This job copies an employee dataset from one sequential file to another using IE
 
 | Step    | Program  | Description                                                                                    |
 |---------|----------|------------------------------------------------------------------------------------------------|
-| STEP010 | IEFBR14  | Delete existing datasets [`TASK3.INPUT.JCL`](DATA/TASK3.INPUT.JCL.txt) and [`TASK3.OUTPUT.JCL`](DATA/TASK3.OUTPUT.JCL.txt) if they exist |
+| STEP010 | IEFBR14  | Delete existing datasets [`TASK3.JCL.INPUT`](DATA/TASK3.JCL.INPUT.txt) and [`TASK3.JCL.OUTPUT`](DATA/TASK3.JCL.OUTPUT.txt) if they exist |
 | STEP020 | IEBGENER | Load inline data, trim records to LRECL=30 using GENERATE/RECORD FIELD control statements      |
 | STEP030 | IEBGENER | Copy input dataset to output dataset, DCB inherited from SYSUT1 via referback                  |
 
@@ -48,7 +48,7 @@ Record format: `NAME(10) + FIRSTNAME(10) + ROLE(10)` - `LRECL=30`, `RECFM=FB`, `
 | FIRSTNAME | 11       | 10     | CH     | Employee first name |
 | ROLE      | 21       | 10     | CH     | Job role            |
 
-### Sample Input Records ([TASK3.INPUT.JCL.txt](DATA/TASK3.INPUT.JCL.txt))
+### Sample Input Records ([`TASK3.JCL.INPUT`](DATA/TASK3.JCL.INPUT.txt))
 
 ```
 IVANOV    IVAN      DEVELOPER 
@@ -78,7 +78,7 @@ This trims any extra trailing data so the output record is exactly 30 bytes.
 
 ## Output
 
-### Output Dataset ([TASK3.OUTPUT.JCL.txt](DATA/TASK3.OUTPUT.JCL.txt))
+### Output Dataset ([`TASK3.JCL.OUTPUT`](DATA/TASK3.JCL.OUTPUT.txt))
 
 ```
 IVANOV    IVAN      DEVELOPER 
