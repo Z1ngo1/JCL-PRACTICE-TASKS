@@ -12,10 +12,10 @@
 //* NOTE: SPACE PARAMETER USED IF DATASET DOES NOT EXIST               *
 //**********************************************************************
 //STEP010  EXEC PGM=IEFBR14                                             
-//DELDD1   DD DSN=Z73460.TASK3.INPUT.JCL,                               
+//DELDD1   DD DSN=Z73460.TASK3.JCL.INPUT,                               
 //            SPACE=(TRK,(1,0),RLSE),                                   
 //            DISP=(MOD,DELETE,DELETE)                                  
-//DELDD2   DD DSN=Z73460.TASK3.OUTPUT.JCL,                              
+//DELDD2   DD DSN=Z73460.TASK3.JCL.OUTPUT,                              
 //            SPACE=(TRK,(1,0),RLSE),                                   
 //            DISP=(MOD,DELETE,DELETE)                                  
 //**********************************************************************
@@ -37,7 +37,7 @@ SIDOROV   SERGEY    MANAGER
 KOZLOV    ALEXEY    DEVELOPER                                           
 MOROZOV   DMITRY    ANALYST                                             
 /*                                                                      
-//SYSUT2   DD DSN=Z73460.TASK3.INPUT.JCL,                               
+//SYSUT2   DD DSN=Z73460.TASK3.JCL.INPUT,                               
 //            DISP=(NEW,CATLG,DELETE),                                  
 //            SPACE=(TRK,(2,2),RLSE),                                   
 //            DCB=(RECFM=FB,DSORG=PS,LRECL=30)                          
@@ -48,8 +48,8 @@ MOROZOV   DMITRY    ANALYST
 //**********************************************************************
 //STEP030  EXEC PGM=IEBGENER,COND=(04,LT,STEP020)                       
 //SYSPRINT DD SYSOUT=*                                                  
-//SYSUT1   DD DSN=Z73460.TASK3.INPUT.JCL,DISP=SHR                       
-//SYSUT2   DD DSN=Z73460.TASK3.OUTPUT.JCL,                              
+//SYSUT1   DD DSN=Z73460.TASK3.JCL.INPUT,DISP=SHR                       
+//SYSUT2   DD DSN=Z73460.TASK3.JCL.OUTPUT,                              
 //            DISP=(NEW,CATLG,DELETE),                                  
 //            SPACE=(TRK,(1,1),RLSE),                                   
 //            DCB=*.STEP030.SYSUT1                                      
