@@ -1,10 +1,10 @@
 IDCAMS  SYSTEM SERVICES                                          
                                                                  
-  DELETE Z73460.TASK21.HLQ.SRCLIB.JCL NONVSAM SCRATCH PURGE      
+  DELETE Z73460.TASK21.JCL.SRCLIB NONVSAM SCRATCH PURGE      
 IDC0550I ENTRY (A) Z73460.TASK21.JCL.SRCLIB DELETED          
 IDC0001I FUNCTION COMPLETED, HIGHEST CONDITION CODE WAS 0        
                                                                  
-  DELETE Z73460.TASK21.HLQ.TGTLIB.JCL NONVSAM SCRATCH PURGE      
+  DELETE Z73460.TASK21.JCL.TGTLIB NONVSAM SCRATCH PURGE      
 IDC0550I ENTRY (A) Z73460.TASK21.JCL.TGTLIB DELETED          
 IDC0001I FUNCTION COMPLETED, HIGHEST CONDITION CODE WAS 0        
                                                                  
