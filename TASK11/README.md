@@ -22,12 +22,12 @@ This is a multi-step pipeline job that splits employee records into separate DEV
 
 | Step | Program | Description |
 |---------|----------|---------------------------------------------------------------------------------------------------------------|
-| STEP010 | IEFBR14 | Delete existing datasets [`TASK11.INITIAL.JCL`](DATA/TASK11.INITIAL.JCL.txt), [`TASK11.DEVS.JCL`](DATA/TASK11.DEVS.JCL.txt), [`TASK11.MGRS.JCL`](DATA/TASK11.MGRS.JCL.txt), [`TASK11.DEVSCNT.JCL`](DATA/TASK11.DEVSCNT.JCL.txt), [`TASK11.MERGED.JCL`](DATA/TASK11.MERGED.JCL.txt) if they exist |
-| STEP020 | IEBGENER | Load 10 inline employee records into [`TASK11.INITIAL.JCL`](DATA/TASK11.INITIAL.JCL.txt), LRECL=80 |
-| STEP030 | SORT | Sort all records by SALARY descending, split into [`TASK11.DEVS.JCL`](DATA/TASK11.DEVS.JCL.txt) (DEVELOPER) and [`TASK11.MGRS.JCL`](DATA/TASK11.MGRS.JCL.txt) (MANAGER) using OUTFIL |
-| STEP040 | ICETOOL | Count records in [`TASK11.DEVS.JCL`](DATA/TASK11.DEVS.JCL.txt) and write count to [`TASK11.DEVSCNT.JCL`](DATA/TASK11.DEVSCNT.JCL.txt) |
-| STEP050 | SORT | Merge [`TASK11.DEVS.JCL`](DATA/TASK11.DEVS.JCL.txt) and [`TASK11.MGRS.JCL`](DATA/TASK11.MGRS.JCL.txt) by SALARY descending into [`TASK11.MERGED.JCL`](DATA/TASK11.MERGED.JCL.txt) |
-| STEP060 | IEBGENER | Print [`TASK11.MERGED.JCL`](DATA/TASK11.MERGED.JCL.txt) to SYSOUT - runs even if previous steps failed (`COND=EVEN`) |
+| STEP010 | IEFBR14 | Delete existing datasets [`TASK11.JCL.INITIAL`](DATA/TASK11.JCL.INITIAL.txt), [`TASK11.JCL.DEVS`](DATA/TASK11.JCL.DEVS.txt), [`TASK11.JCL.MGRS`](DATA/TASK11.JCL.MGRS.txt), [`TASK11.JCL.DEVSCNT`](DATA/TASK11.JCL.DEVSCNT.txt), [`TASK11.JCL.MERGED`](DATA/TASK11.JCL.MERGED.txt) if they exist |
+| STEP020 | IEBGENER | Load 10 inline employee records into [`TASK11.JCL.INITIAL`](DATA/TASK11.JCL.INITIAL.txt), LRECL=80 |
+| STEP030 | SORT | Sort all records by SALARY descending, split into [`TASK11.JCL.DEVS`](DATA/TASK11.JCL.DEVS.txt) (DEVELOPER) and [`TASK11.JCL.MGRS`](DATA/TASK11.JCL.MGRS.txt) (MANAGER) using OUTFIL |
+| STEP040 | ICETOOL | Count records in [`TASK11.JCL.DEVS`](DATA/TASK11.JCL.DEVS.txt) and write count to [`TASK11.JCL.DEVSCNT`](DATA/TASK11.JCL.DEVSCNT.txt) |
+| STEP050 | SORT | Merge [`TASK11.JCL.DEVS`](DATA/TASK11.JCL.DEVS.txt) and [`TASK11.JCL.MGRS`](DATA/TASK11.JCL.MGRS.txt) by SALARY descending into [`TASK11.JCL.MERGED`](DATA/TASK11.JCL.MERGED.txt) |
+| STEP060 | IEBGENER | Print [`TASK11.JCL.MERGED`](DATA/TASK11.JCL.MERGED.txt) to SYSOUT - runs even if previous steps failed (`COND=EVEN`) |
 
 ---
 
@@ -55,7 +55,7 @@ Record format: `LASTNAME(10) + FIRSTNAME(10) + ROLE(10) + SALARY(6)` - `LRECL=80
 | ROLE | 21 | 10 | CH | Job role |
 | SALARY | 31 | 6 | CH | Salary (zero-padded) |
 
-### Sample Input Records ([TASK11.INITIAL.JCL.txt](DATA/TASK11.INITIAL.JCL.txt))
+### Sample Input Records ([`TASK11.JCL.INITIAL`](DATA/TASK11.JCL.INITIAL.txt))
 
 ```
 IVANOV     IVAN       DEVELOPER  005000
@@ -101,7 +101,7 @@ COUNT FROM(IN) WRITE(CNTDD)
 | FROM | IN | TASK11.DEVS.JCL |
 | WRITE | CNTDD | TASK11.DEVSCNT.JCL |
 
-ICETOOL counted **4 DEVELOPER records** and wrote the count to [`TASK11.DEVSCNT.JCL`](DATA/TASK11.DEVSCNT.JCL.txt).
+ICETOOL counted **4 DEVELOPER records** and wrote the count to [`TASK11.JCL.DEVSCNT`](DATA/TASK11.JCL.DEVSCNT.txt).
 
 ---
 
@@ -115,7 +115,7 @@ Merges `SORTIN01` (DEVS.JCL) and `SORTIN02` (MGRS.JCL) into a single dataset sor
 
 ---
 
-## Final Result ([TASK11.MERGED.JCL.txt](DATA/TASK11.MERGED.JCL.txt))
+## Final Result ([`TASK11.JCL.MERGED`](DATA/TASK11.JCL.MERGED.txt))
 
 7 records (4 DEVELOPER + 3 MANAGER) merged by salary descending, printed by STEP060:
 
@@ -160,4 +160,4 @@ Printed to [SYSUT2.STEP060.txt](OUTPUT/SYSUT2.STEP060.txt) (IEBGENER with COND=E
 - OUTFIL uses `INCLUDE=(21,9,CH,EQ,C'DEVELOPER')` (9 chars) and `INCLUDE=(21,7,CH,EQ,C'MANAGER')` (7 chars) to match exact role name lengths in the fixed-length field.
 - STEP050 uses `SORTIN01` and `SORTIN02` DD names instead of `SORTIN` - this is required for SORT MERGE with multiple input files.
 - TOOLMSG message ICE628I shows `RECORD COUNT: 000000000000004` confirming 4 DEVELOPER records counted by ICETOOL.
-- STEP060 uses `SYSIN DD DUMMY` meaning IEBGENER does a straight copy from [`TASK11.MERGED.JCL`](DATA/TASK11.MERGED.JCL.txt) to SYSOUT with no editing.
+- STEP060 uses `SYSIN DD DUMMY` meaning IEBGENER does a straight copy from [`TASK11.JCL.MERGED`](DATA/TASK11.JCL.MERGED.txt) to SYSOUT with no editing.
