@@ -18,13 +18,13 @@ This job demonstrates PDS (Partitioned Data Set) operations using IEBCOPY utilit
 
 | Step | Program | Description |
 |------|---------|-------------|
-| STEP010 | IDCAMS | Delete [SRCLIB](DATA/TASK21.HLQ.SRCLIB.JCL) and [TGTLIB](DATA/TASK21.HLQ.TGTLIB.JCL) if they exist; SET MAXCC=0 if RC<=8 |
+| STEP010 | IDCAMS | Delete [SRCLIB](DATA/TASK21.JCL.SRCLIB) and [TGTLIB](DATA/TASK21.JCL.TGTLIB) if they exist; SET MAXCC=0 if RC<=8 |
 | STEP020 | IEFBR14 | Create two empty PDS libraries with directory blocks SPACE=(TRK,(2,2,10)); skip if STEP010 RC < 8 |
-| STEP030 | IEBGENER | Load inline [MEMBER1](DATA/TASK21.HLQ.SRCLIB.JCL/MEMBER1.txt) (4 developers) into SRCLIB; skip if STEP020 RC ≠ 0 |
-| STEP033 | IEBGENER | Load inline [MEMBER2](DATA/TASK21.HLQ.SRCLIB.JCL/MEMBER2.txt) (3 analysts) into SRCLIB; skip if STEP020 RC ≠ 0 |
-| STEP036 | IEBGENER | Load inline [MEMBER3](DATA/TASK21.HLQ.SRCLIB.JCL/MEMBER3.txt) (3 managers) into SRCLIB; skip if STEP020 RC ≠ 0 |
-| STEP040 | IEBCOPY | Selective COPY: copy only [MEMBER1](DATA/TASK21.HLQ.TGTLIB.JCL/MEMBER1.txt) and [MEMBER3](DATA/TASK21.HLQ.TGTLIB.JCL/MEMBER3.txt) to [TGTLIB](DATA/TASK21.HLQ.TGTLIB.JCL) using SELECT; skip if any STEP030/033/036 failed |
-| STEP050 | IEBCOPY | COMPRESS [SRCLIB](DATA/TASK21.HLQ.SRCLIB.JCL) in place (INDD=OUTDD=SYSUT1); reclaim space from deleted/replaced members |
+| STEP030 | IEBGENER | Load inline [MEMBER1](DATA/TASK21.JCL.SRCLIB/MEMBER1.txt) (4 developers) into SRCLIB; skip if STEP020 RC ≠ 0 |
+| STEP033 | IEBGENER | Load inline [MEMBER2](DATA/TASK21.JCL.SRCLIB/MEMBER2.txt) (3 analysts) into SRCLIB; skip if STEP020 RC ≠ 0 |
+| STEP036 | IEBGENER | Load inline [MEMBER3](DATA/TASK21.JCL.SRCLIB/MEMBER3.txt) (3 managers) into SRCLIB; skip if STEP020 RC ≠ 0 |
+| STEP040 | IEBCOPY | Selective COPY: copy only [MEMBER1](DATA/TASK21.JCL.TGTLIB/MEMBER1.txt) and [MEMBER3](DATA/TASK21.JCL.TGTLIB/MEMBER3.txt) to [TGTLIB](DATA/TASK21.JCL.TGTLIB) using SELECT; skip if any STEP030/033/036 failed |
+| STEP050 | IEBCOPY | COMPRESS [SRCLIB](DATA/TASK21.JCL.SRCLIB) in place (INDD=OUTDD=SYSUT1); reclaim space from deleted/replaced members |
 
 ## COND Logic
 
@@ -39,9 +39,9 @@ This job demonstrates PDS (Partitioned Data Set) operations using IEBCOPY utilit
 
 ## Member Data Layout
 
-### SRCLIB Members (DATA/TASK21.HLQ.SRCLIB.JCL)
+### SRCLIB Members (DATA/TASK21.JCL.SRCLIB)
 
-#### [MEMBER1](DATA/TASK21.HLQ.SRCLIB.JCL/MEMBER1.txt) (Developers) - LRECL=80, 4 records
+#### [MEMBER1](DATA/TASK21.JCL.SRCLIB/MEMBER1.txt) (Developers) - LRECL=80, 4 records
 
 | Position | Length | Type | Description |
 |----------|--------|------|-------------|
@@ -59,7 +59,7 @@ Sample inline data:
 008SOKOLOV   DEVELOPER   005500
 ```
 
-#### [MEMBER2](DATA/TASK21.HLQ.SRCLIB.JCL/MEMBER2.txt) (Analysts) - LRECL=80, 3 records
+#### [MEMBER2](DATA/TASK21.JCL.SRCLIB/MEMBER2.txt) (Analysts) - LRECL=80, 3 records
 
 | Position | Length | Type | Description |
 |----------|--------|------|-------------|
@@ -76,7 +76,7 @@ Sample inline data:
 010ORLOV     ANALYST     003100
 ```
 
-#### [MEMBER3](DATA/TASK21.HLQ.SRCLIB.JCL/MEMBER3.txt) (Managers) - LRECL=80, 3 records
+#### [MEMBER3](DATA/TASK21.JCL.SRCLIB/MEMBER3.txt) (Managers) - LRECL=80, 3 records
 
 | Position | Length | Type | Description |
 |----------|--------|------|-------------|
@@ -93,11 +93,11 @@ Sample inline data:
 009LEBEDEV   MANAGER     006800
 ```
 
-### TGTLIB Members (DATA/TASK21.HLQ.TGTLIB.JCL)
+### TGTLIB Members (DATA/TASK21.JCL.TGTLIB)
 
 > Copied from SRCLIB via IEBCOPY SELECT in STEP040 (MEMBER2 excluded intentionally)
 
-#### [MEMBER1](DATA/TASK21.HLQ.TGTLIB.JCL/MEMBER1.txt) (Developers) - LRECL=80, 4 records
+#### [MEMBER1](DATA/TASK21.JCL.TGTLIB/MEMBER1.txt) (Developers) - LRECL=80, 4 records
 
 | Position | Length | Type | Description |
 |----------|--------|------|-------------|
@@ -108,7 +108,7 @@ Sample inline data:
 
 Same data as SRCLIB MEMBER1 (copied via SELECT MEMBER=((MEMBER1,,R)))
 
-#### [MEMBER3](DATA/TASK21.HLQ.TGTLIB.JCL/MEMBER3.txt) (Managers) - LRECL=80, 3 records
+#### [MEMBER3](DATA/TASK21.JCL.TGTLIB/MEMBER3.txt) (Managers) - LRECL=80, 3 records
 
 | Position | Length | Type | Description |
 |----------|--------|------|-------------|
