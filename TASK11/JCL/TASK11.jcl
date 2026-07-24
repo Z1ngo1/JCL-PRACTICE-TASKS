@@ -14,19 +14,19 @@
 //* NOTE: SPACE PARAMETER USED IF DATASET DOES NOT EXIST               *
 //**********************************************************************
 //STEP010  EXEC PGM=IEFBR14                                             
-//DELDD1   DD DSN=Z73460.TASK11.INITIAL.JCL,                            
+//DELDD1   DD DSN=Z73460.TASK11.JCL.INITIAL,                            
 //            DISP=(MOD,DELETE,DELETE),                                 
 //            SPACE=(TRK,(1,0))                                         
-//DELDD2   DD DSN=Z73460.TASK11.DEVS.JCL,                               
+//DELDD2   DD DSN=Z73460.TASK11.JCL.DEVS,                               
 //            DISP=(MOD,DELETE,DELETE),                                 
 //            SPACE=(TRK,(1,0))                                         
-//DELDD3   DD DSN=Z73460.TASK11.MGRS.JCL,                               
+//DELDD3   DD DSN=Z73460.TASK11.JCL.MGRS,                               
 //            DISP=(MOD,DELETE,DELETE),                                 
 //            SPACE=(TRK,(1,0))                                         
-//DELDD4   DD DSN=Z73460.TASK11.DEVSCNT.JCL,                            
+//DELDD4   DD DSN=Z73460.TASK11.JCL.DEVSCNT,                            
 //            DISP=(MOD,DELETE,DELETE),                                 
 //            SPACE=(TRK,(1,0))                                         
-//DELDD5   DD DSN=Z73460.TASK11.MERGED.JCL,                             
+//DELDD5   DD DSN=Z73460.TASK11.JCL.MERGED,                             
 //            DISP=(MOD,DELETE,DELETE),                                 
 //            SPACE=(TRK,(1,0))                                         
 //**********************************************************************
@@ -48,7 +48,7 @@ SOKOLOV   DENIS     DEVELOPER 005500
 LEBEDEV   ROMAN     MANAGER   006800                                    
 ORLOV     NIKITA    ANALYST   003100                                    
 /*                                                                      
-//SYSUT2   DD DSN=Z73460.TASK11.INITIAL.JCL,                            
+//SYSUT2   DD DSN=Z73460.TASK11.JCL.INITIAL,                            
 //            DISP=(NEW,CATLG,DELETE),                                  
 //            SPACE=(TRK,(1,1),RLSE),                                   
 //            DCB=(RECFM=FB,DSORG=PS,LRECL=80)                          
@@ -59,12 +59,12 @@ ORLOV     NIKITA    ANALYST   003100
 //STEP030  EXEC PGM=SORT,COND=(04,LT,STEP020)                           
 //SYSPRINT DD SYSOUT=*                                                  
 //SYSOUT   DD SYSOUT=*                                                  
-//SORTIN   DD DSN=Z73460.TASK11.INITIAL.JCL,DISP=SHR                    
-//OUT1     DD DSN=Z73460.TASK11.DEVS.JCL,                               
+//SORTIN   DD DSN=Z73460.TASK11.JCL.INITIAL,DISP=SHR                    
+//OUT1     DD DSN=Z73460.TASK11.JCL.DEVS,                               
 //            DISP=(NEW,CATLG,DELETE),                                  
 //            SPACE=(TRK,(1,1),RLSE),                                   
 //            DCB=(RECFM=FB,DSORG=PS,LRECL=80)                          
-//OUT2     DD DSN=Z73460.TASK11.MGRS.JCL,                               
+//OUT2     DD DSN=Z73460.TASK11.JCL.MGRS,                               
 //            DISP=(NEW,CATLG,DELETE),                                  
 //            SPACE=(TRK,(1,1),RLSE),                                   
 //            DCB=(RECFM=FB,DSORG=PS,LRECL=80)                          
@@ -80,8 +80,8 @@ ORLOV     NIKITA    ANALYST   003100
 //STEP040  EXEC PGM=ICETOOL,COND=(00,NE,STEP030)                        
 //TOOLMSG  DD SYSOUT=*                                                  
 //DFSMSG   DD SYSOUT=*                                                  
-//IN       DD DSN=Z73460.TASK11.DEVS.JCL,DISP=SHR                       
-//CNTDD    DD DSN=Z73460.TASK11.DEVSCNT.JCL,                            
+//IN       DD DSN=Z73460.TASK11.JCL.DEVS,DISP=SHR                       
+//CNTDD    DD DSN=Z73460.TASK11.JCL.DEVSCNT,                            
 //            DISP=(NEW,CATLG,DELETE),                                  
 //            SPACE=(TRK,(1,1),RLSE),                                   
 //            DCB=(RECFM=FB,DSORG=PS,LRECL=80)                          
@@ -95,9 +95,9 @@ ORLOV     NIKITA    ANALYST   003100
 //STEP050  EXEC PGM=SORT,COND=(00,NE,STEP040)                           
 //SYSPRINT DD SYSOUT=*                                                  
 //SYSOUT   DD SYSOUT=*                                                  
-//SORTIN01 DD DSN=Z73460.TASK11.DEVS.JCL,DISP=SHR                       
-//SORTIN02 DD DSN=Z73460.TASK11.MGRS.JCL,DISP=SHR                       
-//SORTOUT  DD DSN=Z73460.TASK11.MERGED.JCL,                             
+//SORTIN01 DD DSN=Z73460.TASK11.JCL.DEVS,DISP=SHR                       
+//SORTIN02 DD DSN=Z73460.TASK11.JCL.MGRS,DISP=SHR                       
+//SORTOUT  DD DSN=Z73460.TASK11.JCL.MERGED,                             
 //            DISP=(NEW,CATLG,DELETE),                                  
 //            SPACE=(TRK,(1,1),RLSE),                                   
 //            DCB=(RECFM=FB,DSORG=PS,LRECL=80)                          
@@ -109,7 +109,7 @@ ORLOV     NIKITA    ANALYST   003100
 //**********************************************************************
 //STEP060  EXEC PGM=IEBGENER,COND=EVEN                                  
 //SYSPRINT DD SYSOUT=*                                                  
-//SYSUT1   DD DSN=Z73460.TASK11.MERGED.JCL,DISP=SHR                     
+//SYSUT1   DD DSN=Z73460.TASK11.JCL.MERGED,DISP=SHR                     
 //SYSUT2   DD SYSOUT=*                                                  
 //SYSIN    DD DUMMY                                                     
 //
