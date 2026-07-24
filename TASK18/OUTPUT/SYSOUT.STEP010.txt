@@ -1,7 +1,7 @@
 IDCAMS  SYSTEM SERVICES                                          
                                                                  
-  DELETE Z73460.TASK18.HLQ.EMPFILE.JCL NONVSAM SCRATCH PURGE     
-IDC0550I ENTRY (A) Z73460.TASK18.HLQ.EMPFILE.JCL DELETED         
+  DELETE Z73460.TASK18.JCL.EMPFILE NONVSAM SCRATCH PURGE     
+IDC0550I ENTRY (A) Z73460.TASK18.JCL.EMPFILE DELETED         
 IDC0001I FUNCTION COMPLETED, HIGHEST CONDITION CODE WAS 0        
                                                                  
   IF LASTCC <= 8 THEN SET MAXCC = 0                              
