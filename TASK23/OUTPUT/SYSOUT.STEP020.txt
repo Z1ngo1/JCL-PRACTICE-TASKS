@@ -1,6 +1,6 @@
 IDCAMS  SYSTEM SERVICES                                          
                                                                  
-  DEFINE GDG(NAME(Z73460.TASK23.HLQ.EMPGDG.JCL) -                
+  DEFINE GDG(NAME(Z73460.TASK23.JCL.EMPGDG) -                
          LIMIT(3) -                                              
          SCRATCH -                                               
          NOEMPTY)                                                
