@@ -16,7 +16,7 @@
 //STEP010  EXEC PGM=IDCAMS                                              
 //SYSPRINT DD SYSOUT=*                                                  
 //SYSIN    DD *                                                         
-  DELETE Z73460.TASK22.HLQ.UPDLIB.JCL NONVSAM SCRATCH PURGE             
+  DELETE Z73460.TASK22.JCL.UPDLIB NONVSAM SCRATCH PURGE             
   IF MAXCC <=8 THEN SET MAXCC = 0                                       
 /*                                                                      
 //**********************************************************************
@@ -28,7 +28,7 @@
 //*   10 - DIRECTORY 10 BLOCKS (~6 MEMBERS PER BLOCK)                  *
 //**********************************************************************
 //STEP020  EXEC PGM=IEFBR14,COND=(08,LT,STEP010)                                            
-//CRTPDS   DD DSN=Z73460.TASK22.HLQ.UPDLIB.JCL,                         
+//CRTPDS   DD DSN=Z73460.TASK22.JCL.UPDLIB,                         
 //            DISP=(NEW,CATLG,DELETE),                                  
 //            UNIT=SYSDA,                                               
 //            SPACE=(TRK,(2,2,10)),                                     
@@ -42,7 +42,7 @@
 //STEP030  EXEC PGM=IEBUPDTE,COND=(00,NE,STEP020),PARM=NEW              
 //SYSPRINT DD SYSOUT=*                                                  
 //SYSUT1   DD DUMMY                                                     
-//SYSUT2   DD DSN=Z73460.TASK22.HLQ.UPDLIB.JCL,DISP=OLD                 
+//SYSUT2   DD DSN=Z73460.TASK22.JCL.UPDLIB,DISP=OLD                 
 //SYSIN    DD DATA                                                      
 ./ ADD NAME=EMPDATA                                                     
 ./ NUMBER NEW1=00000010,INCR=00000010                                   
@@ -70,8 +70,8 @@
 //**********************************************************************
 //STEP040  EXEC PGM=IEBUPDTE,COND=(00,NE,STEP030),PARM=MOD              
 //SYSPRINT DD SYSOUT=*                                                  
-//SYSUT1   DD DSN=Z73460.TASK22.HLQ.UPDLIB.JCL,DISP=SHR                 
-//SYSUT2   DD DSN=Z73460.TASK22.HLQ.UPDLIB.JCL,DISP=OLD                 
+//SYSUT1   DD DSN=Z73460.TASK22.JCL.UPDLIB,DISP=SHR                 
+//SYSUT2   DD DSN=Z73460.TASK22.JCL.UPDLIB,DISP=OLD                 
 //SYSIN    DD DATA                                                      
 ./ CHANGE NAME=EMPDATA                                                  
 ./ DELETE SEQ1=00000020,SEQ2=00000020                                   
@@ -85,7 +85,7 @@
 //**********************************************************************
 //STEP050  EXEC PGM=IEBGENER,COND=(00,NE,STEP040)                       
 //SYSPRINT DD SYSOUT=*                                                  
-//SYSUT1   DD DSN=Z73460.TASK22.HLQ.UPDLIB.JCL(EMPDATA),DISP=SHR        
+//SYSUT1   DD DSN=Z73460.TASK22.JCL.UPDLIB(EMPDATA),DISP=SHR        
 //SYSUT2   DD SYSOUT=*                                                  
 //SYSIN    DD DUMMY                                                     
 //
