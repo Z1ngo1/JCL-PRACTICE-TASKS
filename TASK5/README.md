@@ -22,7 +22,7 @@ This job loads a list of employees and filters out all records where the role is
 
 | Step    | Program  | Description                                                                                   |
 |---------|----------|-----------------------------------------------------------------------------------------------|
-| STEP005 | IEFBR14  | Delete existing datasets [`TASK5.INPUT.JCL`](DATA/TASK5.INPUT.JCL.txt) and [`TASK5.SORT.JCL`](DATA/TASK5.SORT.JCL.txt) if they exist  |
+| STEP005 | IEFBR14  | Delete existing datasets [`TASK5.JCL.INPUT`](DATA/TASK5.JCL.INPUT.txt) and [`TASK5.JCL.SORT`](DATA/TASK5.JCL.SORT.txt) if they exist  |
 | STEP010 | IEBGENER | Load inline data, trim records to LRECL=30 using GENERATE/RECORD FIELD                        |
 | STEP015 | SORT     | Filter records: keep only those where ROLE=DEVELOPER, copy order unchanged                    |
 
@@ -48,7 +48,7 @@ Record format: `NAME(10) + FIRSTNAME(10) + ROLE(10)` - `LRECL=30`, `RECFM=FB`, `
 | FIRSTNAME | 11       | 10     | CH     | Employee first name |
 | ROLE      | 21       | 9      | CH     | Job role            |
 
-### Sample Input Records ([TASK5.INPUT.JCL.txt](DATA/TASK5.INPUT.JCL.txt))
+### Sample Input Records ([`TASK5.JCL.INPUT`](DATA/TASK5.JCL.INPUT.txt))
 
 ```
 IVANOV    IVAN      DEVELOPER 
@@ -88,7 +88,7 @@ ICE054I 0 RECORDS - IN: 7, OUT: 3
 
 4 out of 7 records were excluded - only DEVELOPER employees passed through.
 
-### Filtered Result ([TASK5.SORT.JCL.txt](DATA/TASK5.SORT.JCL.txt))
+### Filtered Result ([`TASK5.JCL.SORT`](DATA/TASK5.JCL.SORT.txt))
 
 ```
 IVANOV    IVAN      DEVELOPER 
