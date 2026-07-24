@@ -22,7 +22,7 @@ This job reformats employee records into a new output layout using SORT's `OUTRE
 
 | Step    | Program  | Description                                                                                      |
 |---------|----------|--------------------------------------------------------------------------------------------------|
-| STEP010 | IEFBR14  | Delete existing datasets [`TASK6.INPUT.JCL`](DATA/TASK6.INPUT.JCL.txt) and [`TASK6.NEWFORM.JCL`](DATA/TASK6.NEWFORM.JCL.txt) if they exist  |
+| STEP010 | IEFBR14  | Delete existing datasets [`TASK6.JCL.INPUT`](DATA/TASK6.JCL.INPUT.txt) and [`TASK6.JCL.NEWFORM`](DATA/TASK6.JCL.NEWFORM.txt) if they exist  |
 | STEP020 | IEBGENER | Load inline data, trim records to LRECL=30 using GENERATE/RECORD FIELD                           |
 | STEP030 | SORT     | Reformat all records using OUTREC FIELDS: NAME + '|' + ROLE, output LRECL=21                    |
 
@@ -48,7 +48,7 @@ Record format: `NAME(10) + FIRSTNAME(10) + ROLE(10)` - `LRECL=30`, `RECFM=FB`, `
 | FIRSTNAME | 11       | 10     | CH     | Employee first name |
 | ROLE      | 21       | 10     | CH     | Job role            |
 
-### Sample Input Records ([TASK6.INPUT.JCL.txt](DATA/TASK6.INPUT.JCL.txt))
+### Sample Input Records ([`TASK6.JCL.INPUT`](DATA/TASK6.JCL.INPUT.txt))
 
 ```
 IVANOV    IVAN      DEVELOPER 
@@ -92,7 +92,7 @@ ICE054I 0 RECORDS - IN: 7, OUT: 7
 
 All 7 records reformatted. ICE171I is an informational message - SORT detected the LRECL change from 30 to 21, which is expected and not an error.
 
-### Reformatted Result ([TASK6.NEWFORM.JCL.txt](DATA/TASK6.NEWFORM.JCL.txt))
+### Reformatted Result ([`TASK6.JCL.NEWFORM`](DATA/TASK6.JCL.NEWFORM.txt))
 
 ```
 IVANOV    |DEVELOPER 
