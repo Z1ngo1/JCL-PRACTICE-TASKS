@@ -1,7 +1,7 @@
 IDCAMS  SYSTEM SERVICES                                           TIME: 14:01:2
                                                                                
-   LISTCAT ENTRIES(Z73460.TASK19.HLQ.EMPKSDS.JCL) ALL                           
-CLUSTER ------- Z73460.TASK19.HLQ.EMPKSDS.JCL                                  
+   LISTCAT ENTRIES(Z73460.TASK19.JCL.EMPKSDS) ALL                           
+CLUSTER ------- Z73460.TASK19.JCL.EMPKSDS                                  
       IN-CAT --- CATALOG.ZOSO                                                   
       HISTORY                                                                   
         DATASET-OWNER-----(NULL)     CREATION--------2026.169                   
@@ -25,9 +25,9 @@ CLUSTER ------- Z73460.TASK19.HLQ.EMPKSDS.JCL
         DATA SET ENCRYPTION-----(NO)                                            
       PROTECTION-PSWD-----(NULL)     RACF----------------(NO)                   
       ASSOCIATIONS                                                              
-        DATA-----Z73460.TASK19.HLQ.EMPKSDS.JCL.DATA                             
-        INDEX----Z73460.TASK19.HLQ.EMPKSDS.JCL.INDEX                            
-   DATA ------- Z73460.TASK19.HLQ.EMPKSDS.JCL.DATA                             
+        DATA-----Z73460.TASK19.JCL.EMPKSDS.DATA                             
+        INDEX----Z73460.TASK19.JCL.EMPKSDS.INDEX                            
+   DATA ------- Z73460.TASK19.JCL.EMPKSDS.DATA                             
       IN-CAT --- CATALOG.ZOSO                                                   
       HISTORY                                                                   
         DATASET-OWNER-----(NULL)     CREATION--------2026.169                   
@@ -35,7 +35,7 @@ CLUSTER ------- Z73460.TASK19.HLQ.EMPKSDS.JCL
         ACCOUNT-INFO-----------------------------------(NULL)                   
       PROTECTION-PSWD-----(NULL)     RACF----------------(NO)                   
       ASSOCIATIONS                                                              
-        CLUSTER--Z73460.TASK19.HLQ.EMPKSDS.JCL                                  
+        CLUSTER--Z73460.TASK19.JCL.EMPKSDS                                  
       ATTRIBUTES                                                                
         KEYLEN-----------------3     AVGLRECL--------------36     BUFSPACE-----------37376     CISIZE-------------18432
         RKP--------------------0     MAXLRECL--------------36     EXCPEXIT----------(NULL)     CI/CA------------------3  
@@ -59,14 +59,14 @@ IDCAMS  SYSTEM SERVICES                                           TIME: 14:01:28
         EXTENTS:                                                                
         LOW-CCHH-----X'06FA0001'     LOW-RBA----------------0     TRACKS-----------------1 
         HIGH-CCHH----X'06FA0001'     HIGH-RBA-----------55295                   
-   INDEX ------ Z73460.TASK19.HLQ.EMPKSDS.JCL.INDEX                            
+   INDEX ------ Z73460.TASK19.JCL.EMPKSDS.INDEX                            
       IN-CAT --- CATALOG.ZOSO                                                   
       HISTORY                                                                   
         DATASET-OWNER-----(NULL)     CREATION--------2026.169                   
         RELEASE----------------2     EXPIRATION------0000.000                   
       PROTECTION-PSWD-----(NULL)     RACF----------------(NO)                   
       ASSOCIATIONS                                                              
-        CLUSTER--Z73460.TASK19.HLQ.EMPKSDS.JCL                                  
+        CLUSTER--Z73460.TASK19.JCL.EMPKSDS                                  
       ATTRIBUTES                                                                
         KEYLEN-----------------3     AVGLRECL---------------0     BUFSPACE---------------0     CISIZE---------------512
         RKP--------------------0     MAXLRECL-------------505     EXCPEXIT----------(NULL)     CI/CA-----------------49 
