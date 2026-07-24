@@ -59,10 +59,10 @@ COUNT FROM(INDD) WRITE(OUTDD)
 
 | Step | Program | Description |
 |---------|----------|-----------------------------------------------------------------------------------------------------------------------------------------|
-| STEP010 | IEFBR14 | Delete existing datasets [`TASK17.EMPLLIST.JCL`](DATA/TASK17.EMPLLIST.JCL.txt) and [`TASK17.SALARY.JCL`](DATA/TASK17.SALARY.JCL.txt) if they exist |
-| STEP020 | IEBGENER | Load 10 inline employee records (ID + NAME + ROLE) into [`TASK17.EMPLLIST.JCL`](DATA/TASK17.EMPLLIST.JCL.txt), LRECL=26 |
-| STEP030 | IEBGENER | Load 8 inline salary records (ID + SALARY) into [`TASK17.SALARY.JCL`](DATA/TASK17.SALARY.JCL.txt), LRECL=9 |
-| STEP040 | SORT | Left outer join [`TASK17.EMPLLIST.JCL`](DATA/TASK17.EMPLLIST.JCL.txt) and [`TASK17.SALARY.JCL`](DATA/TASK17.SALARY.JCL.txt) by ID (pos 1-3), output to `&&JOINED`, LRECL=29 |
+| STEP010 | IEFBR14 | Delete existing datasets [`TASK17.JCL.EMPLLIST`](DATA/TASK17.JCL.EMPLLIST.txt) and [`TASK17.JCL.SALARY`](DATA/TASK17.JCL.SALARY.txt) if they exist |
+| STEP020 | IEBGENER | Load 10 inline employee records (ID + NAME + ROLE) into [`TASK17.JCL.EMPLLIST`](DATA/TASK17.JCL.EMPLLIST.txt), LRECL=26 |
+| STEP030 | IEBGENER | Load 8 inline salary records (ID + SALARY) into [`TASK17.JCL.SALARY`](DATA/TASK17.JCL.SALARY.txt), LRECL=9 |
+| STEP040 | SORT | Left outer join [`TASK17.JCL.EMPLLIST`](DATA/TASK17.JCL.EMPLLIST.txt) and [`TASK17.JCL.SALARY`](DATA/TASK17.JCL.SALARY.txt) by ID (pos 1-3), output to `&&JOINED`, LRECL=29 |
 | STEP050 | SALPROC | Call SALPROC with `ROLE='DEVELOPER '`, filter developers, count -> `&&DEVCNT` |
 | STEP060 | SALPROC | Call SALPROC with `ROLE='MANAGER '`, filter managers, count -> `&&MGRCNT` |
 | STEP070 | SORT | Concatenate `&&DEVCNT` and `&&MGRCNT`, add prefix `TOTAL: ` to each line, output to SYSOUT |
@@ -99,7 +99,7 @@ Format: `ID(3) + NAME(10) + ROLE(13)` - `LRECL=26`, `RECFM=FB`, `DSORG=PS`
 | NAME | 4 | 10 | Employee last name |
 | ROLE | 14 | 13 | Job role (space-padded) |
 
-Sample Input Records ([TASK17.EMPLLIST.JCL.txt](DATA/TASK17.EMPLLIST.JCL.txt))
+Sample Input Records ([`TASK17.JCL.EMPLLIST`](DATA/TASK17.JCL.EMPLLIST.txt))
 
 ```
 001IVANOV    DEVELOPER
@@ -123,7 +123,7 @@ Format: `ID(3) + SALARY(6)` - `LRECL=9`, `RECFM=FB`, `DSORG=PS`
 | ID | 1 | 3 | Employee ID (matches File 1) |
 | SALARY | 4 | 6 | Salary (zero-padded) |
 
-Sample Input Records ([TASK17.SALARY.JCL.txt](DATA/TASK17.SALARY.JCL.txt))
+Sample Input Records ([`TASK17.JCL.SALARY`](DATA/TASK17.JCL.SALARY.txt))
 
 ```
 001005000
