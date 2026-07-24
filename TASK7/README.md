@@ -22,7 +22,7 @@ This job reformats employee records by building a new output layout using SORT's
 
 | Step    | Program  | Description                                                                 |
 |---------|----------|-----------------------------------------------------------------------------|
-| STEP010 | IEFBR14  | Delete existing datasets [`TASK7.INPUT.JCL`](DATA/TASK7.INPUT.JCL.txt) and [`TASK7.OUTPUT.JCL`](DATA/TASK7.OUTPUT.JCL.txt) if they exist |
+| STEP010 | IEFBR14  | Delete existing datasets [`TASK7.JCL.INPUT`](DATA/TASK7.JCL.INPUT.txt) and [`TASK7.JCL.OUTPUT`](DATA/TASK7.JCL.OUTPUT.txt) if they exist |
 | STEP020 | IEBGENER | Load inline data, trim records to LRECL=36 using GENERATE/RECORD FIELD      |
 | STEP030 | SORT     | Reformat all records using OUTREC BUILD: `REC:` + LASTNAME + SALARY, output LRECL=20 |
 
@@ -49,7 +49,7 @@ Record format: `LASTNAME(10) + FIRSTNAME(10) + ROLE(10) + SALARY(6)` - `LRECL=36
 | ROLE      | 21       | 10     | CH     |
 | SALARY    | 31       | 6      | CH     |
 
-### Sample Input Records ([TASK7.INPUT.JCL.txt](DATA/TASK7.INPUT.JCL.txt))
+### Sample Input Records ([`TASK7.JCL.INPUT`](DATA/TASK7.JCL.INPUT.txt))
 
 ```
 IVANOV    IVAN      DEVELOPER 005000
@@ -85,7 +85,7 @@ ICE055I 0 INSERT 0, DELETE 0
 ICE054I 0 RECORDS - IN: 7, OUT: 7                                               
 ```
 
-## Reformatted Result ([TASK7.OUTPUT.JCL.txt](DATA/TASK7.OUTPUT.JCL.txt))
+## Reformatted Result ([`TASK7.JCL.OUTPUT`](DATA/TASK7.JCL.OUTPUT.txt))
 
 ```
 REC:IVANOV    005000
