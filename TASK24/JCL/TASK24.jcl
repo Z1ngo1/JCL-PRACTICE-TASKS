@@ -40,7 +40,7 @@
 //STEP005  EXEC PGM=IDCAMS                                              
 //SYSPRINT DD SYSOUT=*                                                  
 //SYSIN    DD *                                                         
-  LISTCAT ENTRIES(Z73460.TASK24.HLQ.RESULT.JCL) GDG                     
+  LISTCAT ENTRIES(Z73460.TASK24.JCL.RESULT) GDG                     
 /*                                                                      
 //**********************************************************************
 //* BYPASSES THIS STEP IF RETURN CODE STEP005 LOWER THAN 4             *
@@ -53,7 +53,7 @@
 //STEP007  EXEC PGM=IDCAMS                                              
 //SYSPRINT DD SYSOUT=*                                                  
 //SYSIN    DD *                                                         
-  DEFINE GDG(NAME(Z73460.TASK24.HLQ.RESULT.JCL) -                       
+  DEFINE GDG(NAME(Z73460.TASK24.JCL.RESULT) -                       
          LIMIT(5) -                                                     
          SCRATCH -                                                      
          NOEMPTY)                                                       
@@ -64,24 +64,24 @@
 //* NOTE: SPACE PARAMETER USED IF DATASET DOES NOT EXIST               *
 //**********************************************************************
 //STEP010  EXEC PGM=IEFBR14                                             
-//DELDD1   DD DSN=Z73460.TASK24.HLQ.EMPBASE.JCL,                        
+//DELDD1   DD DSN=Z73460.TASK24.JCL.EMPBASE,                        
 //            DISP=(MOD,DELETE,DELETE),                                 
 //            SPACE=(TRK,(1,0))                                         
-//DELDD2   DD DSN=Z73460.TASK24.HLQ.SALBASE.JCL,                        
+//DELDD2   DD DSN=Z73460.TASK24.JCL.SALBASE,                        
 //            DISP=(MOD,DELETE,DELETE),                                 
 //            SPACE=(TRK,(1,0))                                         
-//DELDD3   DD DSN=Z73460.TASK24.HLQ.EMPSORT.JCL,                        
+//DELDD3   DD DSN=Z73460.TASK24.JCL.EMPSORT,                        
 //            DISP=(MOD,DELETE,DELETE),                                 
 //            SPACE=(TRK,(1,0))                                         
 //**********************************************************************
 //* CREATE TWO EMPTY SEQUENTIAL DATASETS VIA IEFBR14                   *
 //**********************************************************************
 //STEP020  EXEC PGM=IEFBR14                                             
-//CREATE1  DD DSN=Z73460.TASK24.HLQ.EMPBASE.JCL,                        
+//CREATE1  DD DSN=Z73460.TASK24.JCL.EMPBASE,                        
 //            DISP=(NEW,CATLG,DELETE),                                  
 //            SPACE=(TRK,(2,1)),                                        
 //            DCB=(RECFM=FB,DSORG=PS,LRECL=40)                          
-//CREATE2  DD DSN=Z73460.TASK24.HLQ.SALBASE.JCL,                        
+//CREATE2  DD DSN=Z73460.TASK24.JCL.SALBASE,                        
 //            DISP=(NEW,CATLG,DELETE),                                  
 //            SPACE=(TRK,(2,1)),                                        
 //            DCB=(RECFM=FB,DSORG=PS,LRECL=30)                          
@@ -101,7 +101,7 @@
 0006NOVIKOV   DEVELOPER  M  1995                                        
 0007POPOV     MANAGER    F  1982                                        
 /*                                                                      
-//SYSUT2   DD DSN=Z73460.TASK24.HLQ.EMPBASE.JCL,DISP=SHR                
+//SYSUT2   DD DSN=Z73460.TASK24.JCL.EMPBASE,DISP=SHR                
 //SYSIN    DD *                                                         
   GENERATE MAXFLDS=1                                                    
   RECORD FIELD=(40,1,,1)                                                
@@ -122,7 +122,7 @@
 0006006100DEVELOPER                                                     
 0007008200MANAGER                                                       
 /*                                                                      
-//SYSUT2   DD DSN=Z73460.TASK24.HLQ.SALBASE.JCL,DISP=SHR                
+//SYSUT2   DD DSN=Z73460.TASK24.JCL.SALBASE,DISP=SHR                
 //SYSIN    DD *                                                         
   GENERATE MAXFLDS=1                                                    
   RECORD FIELD=(30,1,,1)                                                
@@ -133,8 +133,8 @@
 //* STEP1.SYSIN OVERRIDES SYSIN=DUMMY DEFINED IN THE PROC              *
 //**********************************************************************
 //STEP050  EXEC SORTPROC,COND=(00,NE,STEP040),                          
-//            SORTIN=Z73460.TASK24.HLQ.EMPBASE.JCL,                     
-//            SORTOUT=Z73460.TASK24.HLQ.EMPSORT.JCL                     
+//            SORTIN=Z73460.TASK24.JCL.EMPBASE,                     
+//            SORTOUT=Z73460.TASK24.JCL.EMPSORT                     
 //STEP1.SYSIN DD *                                                      
   SORT FIELDS=(15,10,CH,A,1,4,CH,A)                                     
 /*                                                                      
@@ -148,9 +148,9 @@
 //STEP060  EXEC PGM=SORT,COND=(00,NE,STEP050.STEP1)                     
 //SYSPRINT DD SYSOUT=*                                                  
 //SYSOUT   DD SYSOUT=*                                                  
-//SORTJNF1 DD DSN=Z73460.TASK24.HLQ.EMPSORT.JCL,DISP=SHR                
-//SORTJNF2 DD DSN=Z73460.TASK24.HLQ.SALBASE.JCL,DISP=SHR                
-//SORTOUT  DD DSN=Z73460.TASK24.HLQ.RESULT.JCL(+1),                     
+//SORTJNF1 DD DSN=Z73460.TASK24.JCL.EMPSORT,DISP=SHR                
+//SORTJNF2 DD DSN=Z73460.TASK24.JCL.SALBASE,DISP=SHR                
+//SORTOUT  DD DSN=Z73460.TASK24.JCL.RESULT(+1),                     
 //            DISP=(NEW,CATLG,DELETE),                                  
 //            SPACE=(TRK,(3,1)),                                        
 //            DCB=(RECFM=FB,DSORG=PS,LRECL=60)                          
@@ -168,7 +168,7 @@
 //STEP070  EXEC PGM=ICETOOL,COND=(00,NE,STEP060)                        
 //TOOLMSG  DD SYSOUT=*                                                  
 //DFSMSG   DD SYSOUT=*                                                  
-//INDD     DD DSN=Z73460.TASK24.HLQ.RESULT.JCL(+1),DISP=SHR             
+//INDD     DD DSN=Z73460.TASK24.JCL.RESULT(+1),DISP=SHR             
 //TOOLIN   DD *                                                         
   STATS FROM(INDD) ON(37,6,ZD)                                          
 /*                                                                      
@@ -178,7 +178,7 @@
 //**********************************************************************
 //STEP080  EXEC PGM=IEBGENER,COND=(00,NE,STEP070)                       
 //SYSPRINT DD SYSOUT=*                                                  
-//SYSUT1   DD DSN=Z73460.TASK24.HLQ.RESULT.JCL(+1),DISP=SHR             
+//SYSUT1   DD DSN=Z73460.TASK24.JCL.RESULT(+1),DISP=SHR             
 //SYSUT2   DD SYSOUT=*                                                  
 //SYSIN    DD DUMMY                                                     
 //
