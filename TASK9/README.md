@@ -22,8 +22,8 @@ This job reads the employee dataset from TASK7, filters out only MANAGER records
 
 | Step    | Program | Description                                                                                             |
 |---------|---------|----------------------------------------------------------------------------------------------------------|
-| STEP010 | IEFBR14 | Delete existing dataset [`TASK9.INCLOUTR.JCL`](DATA/TASK9.INCLOUTR.JCL.txt) if it exists                |
-| STEP020 | SORT    | Read [`TASK7.INPUT.JCL`](DATA/TASK7.INPUT.JCL.txt), filter MANAGERs, reformat with OUTREC BUILD, output LRECL=20 |
+| STEP010 | IEFBR14 | Delete existing dataset [`TASK9.JCL.INCLOUTR`](DATA/TASK9.JCL.INCLOUTR.txt) if it exists                |
+| STEP020 | SORT    | Read [`TASK7.JCL.INPUT`](DATA/TASK7.JCL.INPUT.txt), filter MANAGERs, reformat with OUTREC BUILD, output LRECL=20 |
 
 ---
 
@@ -47,7 +47,7 @@ Record format: `LASTNAME(10) + FIRSTNAME(10) + ROLE(10) + SALARY(6)` - `LRECL=36
 | ROLE      | 21       | 10     | CH     | Job role             |
 | SALARY    | 31       | 6      | CH     | Salary (zero-padded) |
 
-### Input Dataset ([TASK7.INPUT.JCL.txt](DATA/TASK7.INPUT.JCL.txt))
+### Input Dataset ([`TASK7.JCL.INPUT`](DATA/TASK7.JCL.INPUT.txt))
 
 ```
 IVANOV    IVAN      DEVELOPER 005000
@@ -95,7 +95,7 @@ ICE054I 0 RECORDS - IN: 7, OUT: 2
 
 5 out of 7 records were excluded - only MANAGER employees passed through.
 
-## Filtered and Reformatted Result ([TASK9.INCLOUTR.JCL.txt](DATA/TASK9.INCLOUTR.JCL.txt))
+## Filtered and Reformatted Result ([`TASK9.JCL.INCLOUTR`](DATA/TASK9.JCL.INCLOUTR.txt))
 
 ```
 SERGEY    007800RUB
@@ -119,6 +119,6 @@ Only SIDOROV (SERGEY) and POPOV (ANDREY) matched ROLE=MANAGER. LASTNAME and ROLE
 
 - `SORT FIELDS=COPY` means no sorting is applied - records keep their original order, only filtering and reformatting.
 - LASTNAME (bytes 1-10) and ROLE (bytes 21-30) are not referenced in OUTREC BUILD, so they are silently dropped.
-- This task depends on TASK7 having already run and produced [`TASK7.INPUT.JCL`](DATA/TASK7.INPUT.JCL.txt) - no inline data is loaded here.
+- This task depends on TASK7 having already run and produced [`TASK7.JCL.INPUT`](DATA/TASK7.JCL.INPUT.txt) - no inline data is loaded here.
 - `INCLUDE COND=(21,7,CH,EQ,C'MANAGER')` compares 7 bytes from position 21 in the record against the 7-char literal `MANAGER`. The remaining 3 bytes of the ROLE field (positions 28-30, which contain spaces) are not compared at all - so no trailing spaces are needed in the literal.
 - ICE171I in SYSOUT is not an error - it is SORT informing that the output LRECL differs from input LRECL due to OUTREC reformatting.
