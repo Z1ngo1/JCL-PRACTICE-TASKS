@@ -2,7 +2,7 @@
 
 ## Overview
 
-This is a multi-step pipeline job that demonstrates the use of JCL SET symbolic variables, PARM parameter passing, and SORT OUTREC BUILD to generate a formatted report. Employee records are loaded into a dataset referenced by symbolic variable [`&INFILE`](DATA/TASK12.INPUT.JCL.txt), filtered by salary greater than 004000 and sorted descending into [`&TMPFILE`](DATA/TASK12.TEMP.JCL.txt), then reformatted with a report date header and printed to SYSOUT.
+This is a multi-step pipeline job that demonstrates the use of JCL SET symbolic variables, PARM parameter passing, and SORT OUTREC BUILD to generate a formatted report. Employee records are loaded into a dataset referenced by symbolic variable [`&INFILE`](DATA/TASK12.JCL.INPUT.txt), filtered by salary greater than 004000 and sorted descending into [`&TMPFILE`](DATA/TASK12.JCL.TEMP.txt), then reformatted with a report date header and printed to SYSOUT.
 
 ---
 
@@ -22,9 +22,9 @@ This is a multi-step pipeline job that demonstrates the use of JCL SET symbolic 
 
 | Variable | Value |
 |------------|------------------------------|
-| `&INFILE` | [`TASK12.INPUT.JCL`](DATA/TASK12.INPUT.JCL.txt) |
-| `&TMPFILE` | [`TASK12.TEMP.JCL`](DATA/TASK12.TEMP.JCL.txt) |
-| `&RPTFILE` | [`TASK12.REPORT.JCL`](DATA/TASK12.REPORT.JCL.txt) |
+| `&INFILE` | [`TASK12.JCL.INPUT`](DATA/TASK12.JCL.INPUT.txt) |
+| `&TMPFILE` | [`TASK12.JCL.TEMP`](DATA/TASK12.JCL.TEMP.txt) |
+| `&RPTFILE` | [`TASK12.JCL.REPORT`](DATA/TASK12.JCL.REPORT.txt) |
 
 All DD statements in the job reference these symbolic names instead of hardcoded dataset names. Changing one SET statement updates all steps automatically.
 
@@ -34,11 +34,11 @@ All DD statements in the job reference these symbolic names instead of hardcoded
 
 | Step | Program | Description |
 |---------|----------|---------------------------------------------------------------------------------------------------------------|
-| STEP010 | IEFBR14 | Delete existing datasets [`&INFILE`](DATA/TASK12.INPUT.JCL.txt), [`&RPTFILE`](DATA/TASK12.REPORT.JCL.txt), [`&TMPFILE`](DATA/TASK12.TEMP.JCL.txt) if they exist |
-| STEP020 | IEBGENER | Load 10 inline employee records into [`&INFILE`](DATA/TASK12.INPUT.JCL.txt), LRECL=80 |
-| STEP030 | SORT | Filter records with SALARY > 004000, sort by SALARY descending, save to [`&TMPFILE`](DATA/TASK12.TEMP.JCL.txt) |
-| STEP040 | IEFBR14 | Practice PARM passing (`PARM='REPORT,20260525'`), create empty [`&RPTFILE`](DATA/TASK12.REPORT.JCL.txt) as placeholder |
-| STEP050 | SORT | Reformat records from [`&TMPFILE`](DATA/TASK12.TEMP.JCL.txt) with OUTREC BUILD report header, print to SYSOUT |
+| STEP010 | IEFBR14 | Delete existing datasets [`&INFILE`](DATA/TASK12.JCL.INPUT.txt), [`&RPTFILE`](DATA/TASK12.JCL.REPORT.txt), [`&TMPFILE`](DATA/TASK12.JCL.TEMP.txt) if they exist |
+| STEP020 | IEBGENER | Load 10 inline employee records into [`&INFILE`](DATA/TASK12.JCL.INPUT.txt), LRECL=80 |
+| STEP030 | SORT | Filter records with SALARY > 004000, sort by SALARY descending, save to [`&TMPFILE`](DATA/TASK12.JCL.TEMP.txt) |
+| STEP040 | IEFBR14 | Practice PARM passing (`PARM='REPORT,20260525'`), create empty [`&RPTFILE`](DATA/TASK12.JCL.REPORT.txt) as placeholder |
+| STEP050 | SORT | Reformat records from [`&TMPFILE`](DATA/TASK12.JCL.TEMP.txt) with OUTREC BUILD report header, print to SYSOUT |
 
 ---
 
@@ -65,7 +65,7 @@ Record format: `LASTNAME(10) + FIRSTNAME(10) + ROLE(10) + SALARY(6)` - `LRECL=80
 | ROLE | 21 | 10 | CH | Job role |
 | SALARY | 31 | 6 | CH | Salary (zero-padded) |
 
-### Sample Input Records ([TASK12.INPUT.JCL.txt](DATA/TASK12.INPUT.JCL.txt))
+### Sample Input Records ([`TASK12.JCL.INPUT`](DATA/TASK12.JCL.INPUT.txt))
 
 ```
 IVANOV     IVAN       DEVELOPER  005000
@@ -127,7 +127,7 @@ Output record length: 22 + 10 + 6 = **38 bytes**
 
 ---
 
-## Final Result ([TASK12.TEMP.JCL.txt](DATA/TASK12.TEMP.JCL.txt))
+## Final Result ([`TASK12.JCL.TEMP`](DATA/TASK12.JCL.TEMP.txt))
 
 7 records with SALARY > 004000, sorted descending, then reformatted with report header by STEP050:
 
@@ -169,6 +169,6 @@ Printed to [SORTOUT.STEP050.txt](OUTPUT/SORTOUT.STEP050.txt) (SORT with OUTREC B
 
 - PETROV (003200), MOROZOV (002900), and ORLOV (003100) are excluded in STEP030 because their salary is not greater than 004000.
 - KOZLOV (004500) passes the INCLUDE filter because character `004500` > character `004000` when all values are zero-padded to the same length.
-- [`&RPTFILE`](DATA/TASK12.REPORT.JCL.txt) dataset created in STEP040 is empty - IEFBR14 only allocates the dataset but writes nothing to it. It serves as a placeholder for a real report writer program.
+- [`&RPTFILE`](DATA/TASK12.JCL.REPORT.txt) dataset created in STEP040 is empty - IEFBR14 only allocates the dataset but writes nothing to it. It serves as a placeholder for a real report writer program.
 - STEP050 uses `SORTOUT DD SYSOUT=*` instead of a dataset DD - this sends the reformatted records directly to the system output class instead of saving to disk.
 - The OUTREC literal `C'REPORT DATE: 20260525 '` is 22 characters (including trailing space) to align the name field at position 23 in the output record.
