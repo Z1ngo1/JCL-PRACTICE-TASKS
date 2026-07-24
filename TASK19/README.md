@@ -149,7 +149,7 @@ Displays full cluster definition and statistics.
 
 **SYSIN control statements:**
 ```
-LISTCAT ENTRIES(Z73460.TASK19.HLQ.EMPKSDS.JCL) ALL
+LISTCAT ENTRIES(Z73460.TASK19.JCL.EMPKSDS) ALL
 ```
 
 - `ENTRIES(...)` - Cluster name to list
