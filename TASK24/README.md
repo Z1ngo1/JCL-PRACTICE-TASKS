@@ -43,7 +43,7 @@ This job is a comprehensive multi-step pipeline combining multiple JCL technique
 
 ## Input Data Layout
 
-### Input Datasets (DATA/TASK24.HLQ)
+### Input Datasets 
 
 #### [EMPBASE](DATA/TASK24.JCL.EMPBASE.txt) - LRECL=40, 7 records
 
