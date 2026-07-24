@@ -1,8 +1,8 @@
 //TASK12   JOB (888),'MULTI STEP JOB',CLASS=A,MSGCLASS=A,               
 //             MSGLEVEL=(1,1),NOTIFY=&SYSUID                            
-//         SET INFILE='Z73460.TASK12.INPUT.JCL'                         
-//         SET TMPFILE='Z73460.TASK12.TEMP.JCL'                         
-//         SET RPTFILE='Z73460.TASK12.REPORT.JCL'                       
+//         SET INFILE='Z73460.TASK12.JCL.INPUT'                         
+//         SET TMPFILE='Z73460.TASK12.JCL.TEMP'                         
+//         SET RPTFILE='Z73460.TASK12.JCL.REPORT'                       
 //**********************************************************************
 //* TASK12: MULTI-STEP JOB WITH SET, PARM AND SYMBOLIC VARIABLES       *
 //* STEP010 - DELETE ALREADY EXISTING DATASETS (IF EXIST)              *
