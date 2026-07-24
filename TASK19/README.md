@@ -22,9 +22,9 @@ This job demonstrates VSAM KSDS (Key-Sequenced Data Set) management using IDCAMS
 
 | Step | Program | Description |
 |---------|----------|---------------------------------------------------------------------------------------------------------------|
-| STEP010 | IDCAMS | Delete KSDS cluster [`TASK19.HLQ.EMPKSDS.JCL`](DATA/TASK19.HLQ.EMPKSDS.JCL.txt) and sequential file [`TASK19.INFILE.JCL`](DATA/TASK19.INFILE.JCL.txt) if they exist; set MAXCC=0 if RC <= 8 |
+| STEP010 | IDCAMS | Delete KSDS cluster [`TASK19.JCL.EMPKSDS`](DATA/TASK19.JCL.EMPKSDS.txt) and sequential file [`TASK19.JCL.INFILE`](DATA/TASK19.JCL.INFILE.txt) if they exist; set MAXCC=0 if RC <= 8 |
 | STEP020 | IDCAMS | Define VSAM KSDS cluster with 3-byte key, 36-byte fixed records, FREESPACE(10,20); skip if STEP010 RC > 8 |
-| STEP030 | IEBGENER | Create sequential input file [`TASK19.INFILE.JCL`](DATA/TASK19.INFILE.JCL.txt) from 7 inline employee records, LRECL=36; skip if STEP010 RC > 8 |
+| STEP030 | IEBGENER | Create sequential input file [`TASK19.JCL.INFILE`](DATA/TASK19.JCL.INFILE.txt) from 7 inline employee records, LRECL=36; skip if STEP010 RC > 8 |
 | STEP040 | IDCAMS | REPRO: copy data from sequential file into KSDS cluster; skip if STEP020 or STEP030 RC != 0 |
 | STEP050 | IDCAMS | LISTCAT ALL: display full cluster definition and verify structure; skip if STEP040 RC != 0 |
 
@@ -46,8 +46,8 @@ This job demonstrates VSAM KSDS (Key-Sequenced Data Set) management using IDCAMS
 
 **SYSIN control statements:**
 ```
-DELETE Z73460.TASK19.HLQ.EMPKSDS.JCL CLUSTER PURGE
-DELETE Z73460.TASK19.INFILE.JCL NONVSAM SCRATCH PURGE
+DELETE Z73460.TASK19.JCL.EMPKSDS CLUSTER PURGE
+DELETE Z73460.TASK19.JCL.INFILE NONVSAM SCRATCH PURGE
 IF MAXCC <= 8 THEN SET MAXCC = 0
 ```
 
@@ -68,16 +68,16 @@ Defines a VSAM KSDS (Key-Sequenced Data Set) cluster.
 **SYSIN control statements:**
 ```
 DEFINE CLUSTER -
-  (NAME(Z73460.TASK19.HLQ.EMPKSDS.JCL) -
+  (NAME(Z73460.TASK19.JCL.EMPKSDS) -
    KEYS(3 0) -
    RECORDSIZE(36,36) -
    TRACKS(1 1) -
    INDEXED -
    FREESPACE(10,20)) -
 DATA -
-  (NAME(Z73460.TASK19.HLQ.EMPKSDS.JCL.DATA)) -
+  (NAME(Z73460.TASK19.JCL.EMPKSDS.DATA)) -
 INDEX -
-  (NAME(Z73460.TASK19.HLQ.EMPKSDS.JCL.INDEX))
+  (NAME(Z73460.TASK19.JCL.EMPKSDS.INDEX))
 ```
 
 | Parameter | Description |
@@ -119,7 +119,7 @@ RECORD FIELD=(36,1,,1)
 
 - `RECORD FIELD=(36,1,,1)` - Copy 36 bytes from input position 1 to output position 1
 
-**Output:** [`TASK19.INFILE.JCL`](DATA/TASK19.INFILE.JCL.txt) - LRECL=36, RECFM=FB
+**Output:** [`TASK19.JCL.INFILE`](DATA/TASK19.JCL.INFILE.txt) - LRECL=36, RECFM=FB
 
 ---
 
@@ -136,8 +136,8 @@ REPRO INFILE(INDD) -
 ```
 
 **DD Statements:**
-- `INDD` - Sequential input file: [`TASK19.INFILE.JCL`](DATA/TASK19.INFILE.JCL.txt)
-- `OUTDD` - KSDS cluster: [`TASK19.HLQ.EMPKSDS.JCL`](DATA/TASK19.HLQ.EMPKSDS.JCL.txt)
+- `INDD` - Sequential input file: [`TASK19.JCL.INFILE`](DATA/TASK19.JCL.INFILE.txt)
+- `OUTDD` - KSDS cluster: [`TASK19.JCL.EMPKSDS`](DATA/TASK19.JCL.EMPKSDS.txt)
 
 ---
 
@@ -157,9 +157,9 @@ LISTCAT ENTRIES(Z73460.TASK19.HLQ.EMPKSDS.JCL) ALL
 
 ---
 
-## Final Result ([`TASK19.HLQ.EMPKSDS.JCL`](DATA/TASK19.HLQ.EMPKSDS.JCL.txt))
+## Final Result ([`TASK19.JCL.EMPKSDS`](DATA/TASK19.JCL.EMPKSDS.txt))
 
-VSAM KSDS cluster [`TASK19.HLQ.EMPKSDS.JCL`](DATA/TASK19.HLQ.EMPKSDS.JCL.txt) created with 7 employee records:
+VSAM KSDS cluster [`TASK19.JCL.EMPKSDS`](DATA/TASK19.JCL.EMPKSDS.txt) created with 7 employee records:
 
 ```
 001IVANOV    DEVELOPER  005000
