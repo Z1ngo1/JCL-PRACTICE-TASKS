@@ -15,8 +15,8 @@
 //STEP010  EXEC PGM=IDCAMS                                              
 //SYSPRINT DD SYSOUT=*                                                  
 //SYSIN    DD *                                                         
-  DELETE Z73460.TASK19.HLQ.EMPKSDS.JCL CLUSTER PURGE                    
-  DELETE Z73460.TASK19.INFILE.JCL NONVSAM SCRATCH PURGE                 
+  DELETE Z73460.TASK19.JCL.EMPKSDS CLUSTER PURGE                    
+  DELETE Z73460.TASK19.JCL.INFILE NONVSAM SCRATCH PURGE                 
   IF MAXCC <= 8 THEN SET MAXCC = 0                                     
 /*                                                                      
 //**********************************************************************
@@ -29,16 +29,16 @@
 //SYSPRINT DD SYSOUT=*                                                  
 //SYSIN    DD *                                                         
   DEFINE CLUSTER -                                                      
-    (NAME(Z73460.TASK19.HLQ.EMPKSDS.JCL) -                              
+    (NAME(Z73460.TASK19.JCL.EMPKSDS) -                              
      KEYS(3 0) -                                                        
      RECORDSIZE(36,36) -                                                
      TRACKS(1 1) -                                                      
      INDEXED -                                                          
      FREESPACE(10,20)) -                                                
     DATA -                                                              
-    (NAME(Z73460.TASK19.HLQ.EMPKSDS.JCL.DATA)) -                        
+    (NAME(Z73460.TASK19.JCL.EMPKSDS.DATA)) -                        
     INDEX -                                                             
-    (NAME(Z73460.TASK19.HLQ.EMPKSDS.JCL.INDEX))                         
+    (NAME(Z73460.TASK19.JCL.EMPKSDS.INDEX))                         
 /*                                                                      
 //**********************************************************************
 //* BYPASSED THIS STEP IF STEP010 RC > 8                               *
@@ -55,7 +55,7 @@
 006NOVIKOV   DEVELOPER 006100                                           
 007POPOV     MANAGER   008200                                           
 /*                                                                      
-//SYSUT2   DD DSN=Z73460.TASK19.INFILE.JCL,                             
+//SYSUT2   DD DSN=Z73460.TASK19.JCL.INFILE,                             
 //            DISP=(NEW,CATLG,DELETE),                                  
 //            SPACE=(TRK,(1,1),RLSE),                                   
 //            DCB=(RECFM=FB,DSORG=PS,LRECL=36)                          
@@ -73,8 +73,8 @@
   REPRO INFILE(INDD) -                                                  
          OUTFILE(OUTDD)                                                 
 /*                                                                      
-//INDD     DD DSN=Z73460.TASK19.INFILE.JCL,DISP=SHR                     
-//OUTDD    DD DSN=Z73460.TASK19.HLQ.EMPKSDS.JCL,DISP=SHR                
+//INDD     DD DSN=Z73460.TASK19.JCL.INFILE,DISP=SHR                     
+//OUTDD    DD DSN=Z73460.TASK19.JCL.EMPKSDS,DISP=SHR                
 //**********************************************************************
 //* BYPASSED THIS STEP IF STEP040 RETURNED CODE NOT EQUAL 0            *
 //* LISTCAT ALL: PRINTS CLUSTER DEFINITION, DATA/INDEX COMPONENT INFO  *
@@ -83,6 +83,6 @@
 //STEP050  EXEC PGM=IDCAMS,COND=(00,NE,STEP040)                         
 //SYSPRINT DD SYSOUT=*                                                  
 //SYSIN    DD *                                                         
-  LISTCAT ENTRIES(Z73460.TASK19.HLQ.EMPKSDS.JCL) ALL                    
+  LISTCAT ENTRIES(Z73460.TASK19.JCL.EMPKSDS) ALL                    
 /*                                                                      
 //
