@@ -22,9 +22,9 @@ This job demonstrates IDCAMS dataset management operations: deleting a non-VSAM 
 
 | Step | Program | Description |
 |---------|----------|---------------------------------------------------------------------------------------------------------------|
-| STEP010 | IDCAMS | Delete dataset [`TASK18.HLQ.EMPFILE.JCL`](DATA/TASK18.HLQ.EMPFILE.JCL.txt) if it exists (NONVSAM SCRATCH PURGE); set MAXCC=0 if RC <= 8 |
-| STEP020 | IEFBR14 | Allocate new sequential file [`TASK18.HLQ.EMPFILE.JCL`](DATA/TASK18.HLQ.EMPFILE.JCL.txt), LRECL=80; skip if STEP010 RC > 8 |
-| STEP030 | IDCAMS | Load 5 inline employee records into [`TASK18.HLQ.EMPFILE.JCL`](DATA/TASK18.HLQ.EMPFILE.JCL.txt) via REPRO; skip if STEP020 RC != 0 |
+| STEP010 | IDCAMS | Delete dataset [`TASK18.JCL.EMPFILE`](DATA/TASK18.JCL.EMPFILE.txt) if it exists (NONVSAM SCRATCH PURGE); set MAXCC=0 if RC <= 8 |
+| STEP020 | IEFBR14 | Allocate new sequential file [`TASK18.JCL.EMPFILE`](DATA/TASK18.JCL.EMPFILE.txt), LRECL=80; skip if STEP010 RC > 8 |
+| STEP030 | IDCAMS | Load 5 inline employee records into [`TASK18.JCL.EMPFILE`](DATA/TASK18.JCL.EMPFILE.txt) via REPRO; skip if STEP020 RC != 0 |
 
 ---
 
@@ -42,7 +42,7 @@ This job demonstrates IDCAMS dataset management operations: deleting a non-VSAM 
 
 **SYSIN control statements:**
 ```
-DELETE Z73460.TASK18.HLQ.EMPFILE.JCL NONVSAM SCRATCH PURGE
+DELETE Z73460.TASK18.JCL.EMPFILE NONVSAM SCRATCH PURGE
 IF LASTCC <= 8 THEN SET MAXCC = 0
 ```
 
@@ -85,7 +85,7 @@ REPRO INFILE(INDD) -
 
 ---
 
-## Final Result ([TASK18.HLQ.EMPFILE.JCL.txt](DATA/TASK18.HLQ.EMPFILE.JCL.txt))
+## Final Result ([TASK18.JCL.EMPFILE.txt](DATA/TASK18.JCL.EMPFILE.txt))
 
 5 employee records loaded into the dataset:
 
