@@ -18,8 +18,8 @@
 //STEP010  EXEC PGM=IDCAMS                                              
 //SYSPRINT DD SYSOUT=*                                                  
 //SYSIN    DD *                                                         
-  DELETE Z73460.TASK21.HLQ.SRCLIB.JCL NONVSAM SCRATCH PURGE             
-  DELETE Z73460.TASK21.HLQ.TGTLIB.JCL NONVSAM SCRATCH PURGE             
+  DELETE Z73460.TASK21.JCL.SRCLIB NONVSAM SCRATCH PURGE             
+  DELETE Z73460.TASK21.JCL.TGTLIB NONVSAM SCRATCH PURGE             
   IF MAXCC <= 8 THEN SET MAXCC = 0                                      
 /*                                                                      
 //**********************************************************************
@@ -31,11 +31,11 @@
 //*   10 - DIRECTORY 10 BLOCKS (6 MEMBERS PER BLOCK)                   *
 //**********************************************************************
 //STEP020  EXEC PGM=IEFBR14,COND=(08,LT,STEP010)                        
-//CRTPDS1  DD DSN=Z73460.TASK21.HLQ.SRCLIB.JCL,                         
+//CRTPDS1  DD DSN=Z73460.TASK21.JCL.SRCLIB,                         
 //            DISP=(NEW,CATLG,DELETE),                                  
 //            SPACE=(TRK,(2,2,10)),                                     
 //            DCB=(RECFM=FB,DSORG=PO,LRECL=80,BLKSIZE=3200)             
-//CRTPDS2  DD DSN=Z73460.TASK21.HLQ.TGTLIB.JCL,                         
+//CRTPDS2  DD DSN=Z73460.TASK21.JCL.TGTLIB,                         
 //            DISP=(NEW,CATLG,DELETE),                                  
 //            SPACE=(TRK,(2,2,10)),                                     
 //            DCB=(RECFM=FB,DSORG=PO,LRECL=80,BLKSIZE=3200)             
@@ -51,7 +51,7 @@
 006NOVIKOV   DEVELOPER 006100                                           
 008SOKOLOV   DEVELOPER 005500                                           
 /*                                                                      
-//SYSUT2   DD DSN=Z73460.TASK21.HLQ.SRCLIB.JCL(MEMBER1),DISP=SHR        
+//SYSUT2   DD DSN=Z73460.TASK21.JCL.SRCLIB(MEMBER1),DISP=SHR        
 //SYSIN    DD DUMMY                                                     
 //**********************************************************************
 //* BYPASSED THIS STEP IF STEP020 RETURNED CODE NOT EQUAL 0            *
@@ -64,7 +64,7 @@
 005MOROZOV   ANALYST   002900                                           
 010ORLOV     ANALYST   003100                                           
 /*                                                                      
-//SYSUT2   DD DSN=Z73460.TASK21.HLQ.SRCLIB.JCL(MEMBER2),DISP=SHR        
+//SYSUT2   DD DSN=Z73460.TASK21.JCL.SRCLIB(MEMBER2),DISP=SHR        
 //SYSIN    DD DUMMY                                                     
 //**********************************************************************
 //* BYPASSED THIS STEP IF STEP020 RETURNED CODE NOT EQUAL 0            *
@@ -77,7 +77,7 @@
 007POPOV     MANAGER   008200                                           
 009LEBEDEV   MANAGER   006800                                           
 /*                                                                      
-//SYSUT2   DD DSN=Z73460.TASK21.HLQ.SRCLIB.JCL(MEMBER3),DISP=SHR        
+//SYSUT2   DD DSN=Z73460.TASK21.JCL.SRCLIB(MEMBER3),DISP=SHR        
 //SYSIN    DD DUMMY                                                     
 //**********************************************************************
 //* BYPASSED IF STEP030, STEP033 OR STEP036 RETURNED CODE NOT EQUAL 0  *
@@ -88,8 +88,8 @@
 //STEP040  EXEC PGM=IEBCOPY,                                            
 //           COND=((00,NE,STEP030),(00,NE,STEP033),(00,NE,STEP036))     
 //SYSPRINT DD SYSOUT=*                                                  
-//INPUT    DD DSN=Z73460.TASK21.HLQ.SRCLIB.JCL,DISP=SHR                 
-//OUTPUT   DD DSN=Z73460.TASK21.HLQ.TGTLIB.JCL,DISP=SHR                 
+//INPUT    DD DSN=Z73460.TASK21.JCL.SRCLIB,DISP=SHR                 
+//OUTPUT   DD DSN=Z73460.TASK21.JCL.TGTLIB,DISP=SHR                 
 //SYSIN    DD *                                                         
   COPY INDD=INPUT,OUTDD=OUTPUT                                          
   SELECT MEMBER=((MEMBER1,,R),(MEMBER3,,R))                             
@@ -102,7 +102,7 @@
 //**********************************************************************
 //STEP050  EXEC PGM=IEBCOPY,COND=(00,NE,STEP040)                        
 //SYSPRINT DD SYSOUT=*                                                  
-//SYSUT1   DD DSN=Z73460.TASK21.HLQ.SRCLIB.JCL,DISP=SHR                 
+//SYSUT1   DD DSN=Z73460.TASK21.JCL.SRCLIB,DISP=SHR                 
 //SYSIN    DD *                                                         
   COPY INDD=SYSUT1,OUTDD=SYSUT1                                         
 /*                                                                      
