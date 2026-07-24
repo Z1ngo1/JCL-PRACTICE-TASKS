@@ -10,10 +10,10 @@
 //* NOTE: SPACE PARAMETER USED IF DATASET DOES NOT EXIST               *
 //**********************************************************************
 //STEP010  EXEC PGM=IEFBR14                                             
-//DELDD1   DD DSN=Z73460.TASK6.INPUT.JCL,                               
+//DELDD1   DD DSN=Z73460.TASK6.JCL.INPUT,                               
 //            SPACE=(TRK,(1,0)),                                        
 //            DISP=(MOD,DELETE,DELETE)                                  
-//DELDD2   DD DSN=Z73460.TASK6.NEWFORM.JCL,                             
+//DELDD2   DD DSN=Z73460.TASK6.JCL.NEWFORM,                             
 //            SPACE=(TRK,(1,0)),                                        
 //            DISP=(MOD,DELETE,DELETE)                                  
 //**********************************************************************
@@ -36,7 +36,7 @@ MOROZOV   DMITRY    ANALYST
 NOVIKOV   OLEG      DEVELOPER                                           
 POPOV     ANDREY    MANAGER                                             
 /*                                                                      
-//SYSUT2   DD DSN=Z73460.TASK6.INPUT.JCL,                               
+//SYSUT2   DD DSN=Z73460.TASK6.JCL.INPUT,                               
 //            DISP=(NEW,CATLG,DELETE),                                  
 //            SPACE=(TRK,(1,1),RLSE),                                   
 //            DCB=(RECFM=FB,DSORG=PS,LRECL=30)                          
@@ -49,8 +49,8 @@ POPOV     ANDREY    MANAGER
 //STEP030  EXEC PGM=SORT,COND=(04,LT,STEP020)                           
 //SYSPRINT DD SYSOUT=*                                                  
 //SYSOUT   DD SYSOUT=*                                                  
-//SORTIN   DD DSN=Z73460.TASK6.INPUT.JCL,DISP=SHR                       
-//SORTOUT  DD DSN=Z73460.TASK6.NEWFORM.JCL,                             
+//SORTIN   DD DSN=Z73460.TASK6.JCL.INPUT,DISP=SHR                       
+//SORTOUT  DD DSN=Z73460.TASK6.JCL.NEWFORM,                             
 //            DISP=(NEW,CATLG,DELETE),                                  
 //            SPACE=(TRK,(1,1),RLSE),                                   
 //            DCB=(RECFM=FB,DSORG=PS,LRECL=21)                          
