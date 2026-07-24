@@ -1,7 +1,7 @@
 IDCAMS  SYSTEM SERVICES                                          
                                                                  
-  LISTCAT ENTRIES(Z73460.TASK24.HLQ.RESULT.JCL) GDG              
-GDG BASE ------ Z73460.TASK24.HLQ.RESULT.JCL                     
+  LISTCAT ENTRIES(Z73460.TASK24.JCL.RESULT) GDG              
+GDG BASE ------ Z73460.TASK24.JCL.RESULT                     
      IN-CAT --- CATALOG.ZOSO                                     
 IDCAMS  SYSTEM SERVICES                                          
          THE NUMBER OF ENTRIES PROCESSED WAS:                    
