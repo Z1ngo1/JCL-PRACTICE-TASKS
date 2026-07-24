@@ -22,8 +22,8 @@ This job reads the employee dataset produced by TASK7 and reorders its fields in
 
 | Step    | Program | Description                                                                                    |
 |---------|---------|------------------------------------------------------------------------------------------------|
-| STEP010 | IEFBR14 | Delete existing dataset [`TASK8.SWAP.JCL`](DATA/TASK8.SWAP.JCL.txt) if it exists              |
-| STEP020 | SORT    | Read [`TASK7.INPUT.JCL`](DATA/TASK7.INPUT.JCL.txt) and reorder fields using OUTREC BUILD, output LRECL=28 |
+| STEP010 | IEFBR14 | Delete existing dataset [`TASK8.JCL.SWAP`](DATA/TASK8.JCL.SWAP.txt) if it exists              |
+| STEP020 | SORT    | Read [`TASK7.JCL.INPUT`](DATA/TASK7.JCL.INPUT.txt) and reorder fields using OUTREC BUILD, output LRECL=28 |
 
 ---
 
@@ -47,7 +47,7 @@ Record format: `LASTNAME(10) + FIRSTNAME(10) + ROLE(10) + SALARY(6)` - `LRECL=36
 | ROLE      | 21       | 10     | CH     | Job role            |
 | SALARY    | 31       | 6      | CH     | Salary (zero-padded)|
 
-### Input Dataset ([TASK7.INPUT.JCL.txt](DATA/TASK7.INPUT.JCL.txt))
+### Input Dataset ([`TASK7.JCL.INPUT`](DATA/TASK7.JCL.INPUT.txt))
 
 ```
 IVANOV    IVAN      DEVELOPER 005000
@@ -91,7 +91,7 @@ ICE054I 0 RECORDS - IN: 7, OUT: 7
 
 All 7 records reformatted with fields swapped. ICE171I is informational - SORT detected the LRECL change from 36 to 28.
 
-### Swapped Result ([TASK8.SWAP.JCL.txt](DATA/TASK8.SWAP.JCL.txt))
+### Swapped Result ([`TASK8.JCL.SWAP`](DATA/TASK8.JCL.SWAP.txt))
 
 ```
 005000|IVANOV    |DEVELOPER 
@@ -110,7 +110,7 @@ SALARY now leads each record, FIRSTNAME is gone, pipes separate the fields.
 ## Key JCL Concepts Used
 
 - **OUTREC BUILD with field reordering** - unlike TASK6/TASK7 where fields kept their relative order, here SALARY (pos 31) is moved to the front of the output record
-- **Cross-task dataset reuse** - SORTIN reads [`TASK7.INPUT.JCL`](DATA/TASK7.INPUT.JCL.txt) directly, no inline data loaded in this job
+- **Cross-task dataset reuse** - SORTIN reads[`TASK7.JCL.INPUT`](DATA/TASK7.JCL.INPUT.txt) directly, no inline data loaded in this job
 - **Multiple C'|' literals in OUTREC** - two pipe delimiters inserted at different positions to separate three fields
 - **LRECL reduction via OUTREC** - input LRECL=36, output LRECL=28; ICE171I in SYSOUT is informational only
 
@@ -120,5 +120,5 @@ SALARY now leads each record, FIRSTNAME is gone, pipes separate the fields.
 
 - `SORT FIELDS=COPY` means no sorting is applied - records keep their original order, only the layout changes.
 - FIRSTNAME (bytes 11-20) is not referenced in OUTREC BUILD, so it is silently dropped from the output.
-- This task depends on TASK7 having already run and produced [`TASK7.INPUT.JCL`](DATA/TASK7.INPUT.JCL.txt) - no inline data is loaded here.
+- This task depends on TASK7 having already run and produced [`TASK7.JCL.INPUT`](DATA/TASK7.JCL.INPUT.txt) - no inline data is loaded here.
 - ICE171I in SYSOUT is not an error - it is SORT informing that the output LRECL differs from input LRECL due to OUTREC reformatting.
