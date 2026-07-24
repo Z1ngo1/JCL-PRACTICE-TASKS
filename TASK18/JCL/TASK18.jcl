@@ -12,7 +12,7 @@
 //STEP010  EXEC PGM=IDCAMS                                              
 //SYSPRINT DD SYSOUT=*                                                  
 //SYSIN    DD *                                                         
-  DELETE Z73460.TASK18.HLQ.EMPFILE.JCL NONVSAM SCRATCH PURGE            
+  DELETE Z73460.TASK18.JCL.EMPFILE NONVSAM SCRATCH PURGE            
   IF LASTCC <= 8 THEN SET MAXCC = 0                                     
 /*                                                                      
 //**********************************************************************
@@ -20,7 +20,7 @@
 //* ALLOCATE EMPTY SEQUENTIAL DATASET: RECFM=FB, LRECL=80, DSORG=PS    *
 //**********************************************************************
 //STEP020  EXEC PGM=IEFBR14,COND=(08,LT,STEP010)                        
-//EMPFILE  DD DSN=Z73460.TASK18.HLQ.EMPFILE.JCL,                        
+//EMPFILE  DD DSN=Z73460.TASK18.JCL.EMPFILE,                        
 //            DISP=(NEW,CATLG,DELETE),                                  
 //            SPACE=(TRK,(1,1)),                                        
 //            DCB=(RECFM=FB,DSORG=PS,LRECL=80)                          
@@ -38,7 +38,7 @@ SIDOROV   SERGEY    MANAGER   007800
 KOZLOV    ALEXEY    DEVELOPER 004500                                    
 MOROZOV   DMITRY    ANALYST   002900                                    
 /*                                                                      
-//OUTDD    DD DSN=Z73460.TASK18.HLQ.EMPFILE.JCL,DISP=SHR                
+//OUTDD    DD DSN=Z73460.TASK18.JCL.EMPFILE,DISP=SHR                
 //SYSIN    DD *                                                         
   REPRO INFILE(INDD) -                                                  
         OUTFILE(OUTDD)                                                  
