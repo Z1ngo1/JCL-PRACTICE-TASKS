@@ -11,10 +11,10 @@
 //* NOTE: SPACE PARAMETER USED IF DATASET DOES NOT EXIST               *
 //**********************************************************************
 //STEP010  EXEC PGM=IEFBR14                                             
-//DELDD1   DD DSN=Z73460.TASK7.INPUT.JCL,                               
+//DELDD1   DD DSN=Z73460.TASK7.JCL.INPUT,                               
 //            SPACE=(TRK,(1,0)),                                        
 //            DISP=(MOD,DELETE,DELETE)                                  
-//DELDD2   DD DSN=Z73460.TASK7.OUTPUT.JCL,                              
+//DELDD2   DD DSN=Z73460.TASK7.JCL.OUTPUT,                              
 //            SPACE=(TRK,(1,0)),                                        
 //            DISP=(MOD,DELETE,DELETE)                                  
 //**********************************************************************
@@ -37,7 +37,7 @@ MOROZOV   DMITRY    ANALYST   002900
 NOVIKOV   OLEG      DEVELOPER 006100                                    
 POPOV     ANDREY    MANAGER   008200                                    
 /*                                                                      
-//SYSUT2   DD DSN=Z73460.TASK7.INPUT.JCL,                               
+//SYSUT2   DD DSN=Z73460.TASK7.JCL.INPUT,                               
 //            DISP=(NEW,CATLG,DELETE),                                  
 //            SPACE=(TRK,(1,1),RLSE),                                   
 //            DCB=(RECFM=FB,DSORG=PS,LRECL=36)                          
@@ -49,8 +49,8 @@ POPOV     ANDREY    MANAGER   008200
 //STEP030  EXEC PGM=SORT,COND=(04,LT,STEP020)                           
 //SYSPRINT DD SYSOUT=*                                                  
 //SYSOUT   DD SYSOUT=*                                                  
-//SORTIN   DD DSN=Z73460.TASK7.INPUT.JCL,DISP=SHR                       
-//SORTOUT  DD DSN=Z73460.TASK7.OUTPUT.JCL,                              
+//SORTIN   DD DSN=Z73460.TASK7.JCL.INPUT,DISP=SHR                       
+//SORTOUT  DD DSN=Z73460.TASK7.JCL.OUTPUT,                              
 //            DISP=(NEW,CATLG,DELETE),                                  
 //            SPACE=(TRK,(1,1),RLSE),                                   
 //            DCB=(RECFM=FB,DSORG=PS,LRECL=20)                          
