@@ -11,10 +11,10 @@
 //* NOTE: SPACE PARAMETER USED IF DATASET DOES NOT EXIST               *
 //**********************************************************************
 //STEP010  EXEC PGM=IEFBR14                                             
-//DELDD1   DD DSN=Z73460.TASK10.INPUT.JCL,                              
+//DELDD1   DD DSN=Z73460.TASK10.JCL.INPUT,                              
 //            DISP=(MOD,DELETE,DELETE),                                 
 //            SPACE=(TRK,(1,0))                                         
-//DELDD2   DD DSN=Z73460.TASK10.FINAL.JCL,                              
+//DELDD2   DD DSN=Z73460.TASK10.JCL.FINAL,                              
 //            DISP=(MOD,DELETE,DELETE),                                 
 //            SPACE=(TRK,(1,0))                                         
 //**********************************************************************
@@ -34,7 +34,7 @@ NOVIKOV   OLEG      DEVELOPER 006100
 POPOV     ANDREY    MANAGER   008200                                    
 SOKOLOV   DENIS     DEVELOPER 005500                                    
 /*                                                                      
-//SYSUT2   DD DSN=Z73460.TASK10.INPUT.JCL,                              
+//SYSUT2   DD DSN=Z73460.TASK10.JCL.INPUT,                              
 //            DISP=(NEW,CATLG,DELETE),                                  
 //            SPACE=(TRK,(1,1),RLSE),                                   
 //            DCB=(RECFM=FB,DSORG=PS,LRECL=80)                          
@@ -46,7 +46,7 @@ SOKOLOV   DENIS     DEVELOPER 005500
 //STEP030  EXEC PGM=SORT,COND=(04,LT,STEP020)                           
 //SYSPRINT DD SYSOUT=*                                                  
 //SYSOUT   DD SYSOUT=*                                                  
-//SORTIN   DD DSN=Z73460.TASK10.INPUT.JCL,DISP=SHR                      
+//SORTIN   DD DSN=Z73460.TASK10.JCL.INPUT,DISP=SHR                      
 //SORTOUT  DD DSN=&&TEMP,                                               
 //            DISP=(NEW,PASS,DELETE),                                   
 //            SPACE=(TRK,(1,1),RLSE),                                   
@@ -65,7 +65,7 @@ SOKOLOV   DENIS     DEVELOPER 005500
 //SYSOUT   DD SYSOUT=*                                                  
 //SORTIN   DD DSN=&&TEMP,                                               
 //            DISP=(OLD,DELETE,DELETE)                                  
-//SORTOUT  DD DSN=Z73460.TASK10.FINAL.JCL,                              
+//SORTOUT  DD DSN=Z73460.TASK10.JCL.FINAL,                              
 //            DISP=(NEW,CATLG,DELETE),                                  
 //            SPACE=(TRK,(1,1),RLSE),                                   
 //            DCB=(RECFM=FB,DSORG=PS,LRECL=80)                          
@@ -80,7 +80,7 @@ SOKOLOV   DENIS     DEVELOPER 005500
 //**********************************************************************
 //STEP050  EXEC PGM=IEBGENER,COND=EVEN                                  
 //SYSPRINT DD SYSOUT=*                                                  
-//SYSUT1   DD DSN=Z73460.TASK10.FINAL.JCL,DISP=SHR                      
+//SYSUT1   DD DSN=Z73460.TASK10.JCL.FINAL,DISP=SHR                      
 //SYSUT2   DD SYSOUT=*                                                  
 //SYSIN    DD DUMMY                                                     
 //
