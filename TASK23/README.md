@@ -37,7 +37,7 @@ This job demonstrates Generation Data Group (GDG) operations: defining a GDG bas
 
 ## Generation Data Layout
 
-### GDG Generations (DATA/TASK23.HLQ.EMPGDG.JCL)
+### GDG Generations 
 
 #### [G0001V00](DATA/TASK23.JCL.EMPGDG.G0001V00.txt) (First Generation) - LRECL=36, 3 records
 
