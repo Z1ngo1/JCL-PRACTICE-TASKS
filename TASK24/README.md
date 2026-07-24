@@ -20,7 +20,7 @@ This job is a comprehensive multi-step pipeline combining multiple JCL technique
 |------|---------|-------------|
 | STEP005 | IDCAMS | LISTCAT to check if GDG base RESULT.JCL exists; RC=0 exists, RC=4 not found |
 | STEP007 | IDCAMS | DEFINE GDG base LIMIT(5) SCRATCH NOEMPTY; executed only if STEP005 RC >= 4 (IF/ENDIF) |
-| STEP010 | IEFBR14 | Delete [EMPBASE](DATA/TASK24.HLQ.EMPBASE.JCL.txt), [SALBASE](DATA/TASK24.HLQ.SALBASE.JCL.txt), EMPSORT using DISP=(MOD,DELETE,DELETE) |
+| STEP010 | IEFBR14 | Delete [EMPBASE](DATA/TASK24.JCL.EMPBASE.txt), [SALBASE](DATA/TASK24.JCL.SALBASE.txt), EMPSORT using DISP=(MOD,DELETE,DELETE) |
 | STEP020 | IEFBR14 | Create empty EMPBASE (LRECL=40) and SALBASE (LRECL=30) sequential datasets |
 | STEP030 | IEBGENER | Load 7 employee records into EMPBASE trimmed to 40 bytes; skip if STEP020 RC ≠ 0 |
 | STEP040 | IEBGENER | Load 7 salary records into SALBASE trimmed to 30 bytes; skip if STEP030 RC ≠ 0 |
@@ -45,7 +45,7 @@ This job is a comprehensive multi-step pipeline combining multiple JCL technique
 
 ### Input Datasets (DATA/TASK24.HLQ)
 
-#### [EMPBASE](DATA/TASK24.HLQ.EMPBASE.JCL.txt) - LRECL=40, 7 records
+#### [EMPBASE](DATA/TASK24.JCL.EMPBASE.txt) - LRECL=40, 7 records
 
 | Position | Length | Type | Description |
 |----------|--------|------|-------------|
@@ -67,7 +67,7 @@ Sample inline data:
 0007POPOV      MANAGER    F 1982
 ```
 
-#### [SALBASE](DATA/TASK24.HLQ.SALBASE.JCL.txt) - LRECL=30, 7 records
+#### [SALBASE](DATA/TASK24.JCL.SALBASE.txt) - LRECL=30, 7 records
 
 | Position | Length | Type | Description |
 |----------|--------|------|-------------|
@@ -87,9 +87,9 @@ Sample inline data:
 0007008200MANAGER
 ```
 
-### Output Dataset (DATA/TASK24.HLQ.RESULT.JCL)
+### Output Dataset 
 
-#### [RESULT GDG (+1)](DATA/TASK24.HLQ.RESULT.JCL.G0001V00.txt) - LRECL=60, 7 records
+#### [RESULT GDG (+1)](DATA/TASK24.JCL.RESULT.G0001V00.txt) - LRECL=60, 7 records
 
 > REFORMAT FIELDS=(F1:1,32,F2:1,28) = 60 bytes total; written by STEP060 SORT JOINKEYS
 
