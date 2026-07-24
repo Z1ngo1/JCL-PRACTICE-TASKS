@@ -16,14 +16,14 @@
 //STEP010  EXEC PGM=IDCAMS                                              
 //SYSPRINT DD SYSOUT=*                                                  
 //SYSIN    DD *                                                         
-  VERIFY DATASET(Z73460.TASK19.HLQ.EMPKSDS.JCL)                         
+  VERIFY DATASET(Z73460.TASK19.JCL.EMPKSDS)                         
 /*                                                                      
 //**********************************************************************
 //* DELETE ALREADY EXISTING DATASES IF EXIST                           *
 //* NOTE: SPACE PARAMETER USED IF DATASET DOES NOT EXIST               *
 //**********************************************************************
 //STEP015  EXEC PGM=IEFBR14                                             
-//DELDD1   DD DSN=Z73460.TASK20.HLQ.EMPBKUP.JCL,                        
+//DELDD1   DD DSN=Z73460.TASK20.JCL.EMPBKUP,                        
 //            DISP=(MOD,DELETE,DELETE),                                 
 //            SPACE=(TRK,(1,1))                                         
 //**********************************************************************
@@ -32,8 +32,8 @@
 //**********************************************************************
 //STEP020  EXEC PGM=IDCAMS,COND=((00,NE,STEP010),(00,NE,STEP015))                     
 //SYSPRINT DD SYSOUT=*                                                  
-//INDD     DD DSN=Z73460.TASK19.HLQ.EMPKSDS.JCL,DISP=SHR                
-//OUTDD    DD DSN=Z73460.TASK20.HLQ.EMPBKUP.JCL,                        
+//INDD     DD DSN=Z73460.TASK19.JCL.EMPKSDS,DISP=SHR                
+//OUTDD    DD DSN=Z73460.TASK20.JCL.EMPBKUP,                        
 //            DISP=(NEW,CATLG,DELETE),                                  
 //            SPACE=(TRK,(1,1),RLSE),                                   
 //            DCB=(RECFM=FB,DSORG=PS,LRECL=36)                          
@@ -49,7 +49,7 @@
 //STEP030  EXEC PGM=IDCAMS,COND=(00,NE,STEP020)                         
 //SYSPRINT DD SYSOUT=*                                                  
 //SYSIN    DD *                                                         
-  ALTER Z73460.TASK19.HLQ.EMPKSDS.JCL.DATA -                            
+  ALTER Z73460.TASK19.JCL.EMPKSDS.DATA -                            
         FREESPACE(10,30)                                                
 /*                                                                      
 //**********************************************************************
@@ -79,7 +79,7 @@
 //STEP040  EXEC PGM=IDCAMS,COND=((00,NE,STEP030),(00,NE,STEP035))       
 //SYSPRINT DD SYSOUT=*                                                  
 //TEMPREC  DD DSN=&&TEMPFILE,DISP=(OLD,DELETE)                          
-//OUTKSDS  DD DSN=Z73460.TASK19.HLQ.EMPKSDS.JCL,DISP=SHR                
+//OUTKSDS  DD DSN=Z73460.TASK19.JCL.EMPKSDS,DISP=SHR                
 //SYSIN    DD *                                                         
   REPRO INFILE(TEMPREC) -                                               
         OUTFILE(OUTKSDS)                                                
