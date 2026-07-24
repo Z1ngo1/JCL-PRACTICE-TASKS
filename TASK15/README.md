@@ -22,10 +22,10 @@ This job demonstrates SORT JOINKEYS to perform an inner join between two separat
 
 | Step | Program | Description |
 |---------|----------|---------------------------------------------------------------------------------------------------------------|
-| STEP010 | IEFBR14 | Delete existing datasets [`TASK15.EMPLS.JCL`](DATA/TASK15.EMPLS.JCL.txt), [`TASK15.SALARY.JCL`](DATA/TASK15.SALARY.JCL.txt), [`TASK15.JOIN.JCL`](DATA/TASK15.JOIN.JCL.txt) if they exist |
-| STEP020 | IEBGENER | Load 6 inline employee records (ID + NAME) into [`TASK15.EMPLS.JCL`](DATA/TASK15.EMPLS.JCL.txt), LRECL=20 |
-| STEP030 | IEBGENER | Load 5 inline salary records (ID + SALARY) into [`TASK15.SALARY.JCL`](DATA/TASK15.SALARY.JCL.txt), LRECL=9 |
-| STEP040 | SORT | Inner join [`TASK15.EMPLS.JCL`](DATA/TASK15.EMPLS.JCL.txt) and [`TASK15.SALARY.JCL`](DATA/TASK15.SALARY.JCL.txt) by ID (pos 1-3), output to [`TASK15.JOIN.JCL`](DATA/TASK15.JOIN.JCL.txt), LRECL=25 |
+| STEP010 | IEFBR14 | Delete existing datasets [`TASK15.JCL.EMPLS`](DATA/TASK15.JCL.EMPLS.txt), [`TASK15.JCL.SALARY`](DATA/TASK15.JCL.SALARY.txt), [`TASK15.JCL.JOIN`](DATA/TASK15.JCL.JOIN.txt) if they exist |
+| STEP020 | IEBGENER | Load 6 inline employee records (ID + NAME) into [`TASK15.JCL.EMPLS`](DATA/TASK15.JCL.EMPLS.txt), LRECL=20 |
+| STEP030 | IEBGENER | Load 5 inline salary records (ID + SALARY) into [`TASK15.JCL.SALARY`](DATA/TASK15.JCL.SALARY.txt), LRECL=9 |
+| STEP040 | SORT | Inner join [`TASK15.JCL.EMPLS`](DATA/TASK15.JCL.EMPLS.txt) and [`TASK15.JCL.SALARY`](DATA/TASK15.JCL.SALARY.txt) by ID (pos 1-3), output to [`TASK15.JCL.JOIN`](DATA/TASK15.JCL.JOIN.txt), LRECL=25 |
 
 ---
 
@@ -51,7 +51,7 @@ Format: `ID(3) + NAME(17)` - `LRECL=20`, `RECFM=FB`, `DSORG=PS`
 | ID | 1 | 3 | Employee ID (zero-padded) |
 | NAME | 4 | 17 | Employee name (last + first, space-padded) |
 
-Sample Input Records ([TASK15.EMPLS.JCL.txt](DATA/TASK15.EMPLS.JCL.txt))
+Sample Input Records ([`TASK15.JCL.EMPLS`](DATA/TASK15.JCL.EMPLS.txt))
 
 ```
 001IVANOV   IVAN
@@ -71,7 +71,7 @@ Format: `ID(3) + SALARY(6)` - `LRECL=9`, `RECFM=FB`, `DSORG=PS`
 | ID | 1 | 3 | Employee ID (matches File 1) |
 | SALARY | 4 | 6 | Salary (zero-padded) |
 
-Sample Input Records ([TASK15.SALARY.JCL.txt](DATA/TASK15.SALARY.JCL.txt))
+Sample Input Records ([`TASK15.JCL.SALARY`](DATA/TASK15.JCL.SALARY.txt))
 
 ```
 001005000
@@ -123,7 +123,7 @@ Output record length: 3 + 10 + 6 = **19 bytes** (padded to LRECL=25)
 
 ---
 
-## Final Result ([TASK15.JOIN.JCL.txt](DATA/TASK15.JOIN.JCL.txt))
+## Final Result ([`TASK15.JCL.JOIN`](DATA/TASK15.JCL.JOIN.txt))
 
 5 records joined by ID (ID 004 KOZLOV excluded - no salary match):
 
