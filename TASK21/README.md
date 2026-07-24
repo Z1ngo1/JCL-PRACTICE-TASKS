@@ -39,7 +39,7 @@ This job demonstrates PDS (Partitioned Data Set) operations using IEBCOPY utilit
 
 ## Member Data Layout
 
-### SRCLIB Members (DATA/TASK21.JCL.SRCLIB)
+### SRCLIB Members [SRCLIB](DATA/TASK21.JCL.SRCLIB)
 
 #### [MEMBER1](DATA/TASK21.JCL.SRCLIB/MEMBER1.txt) (Developers) - LRECL=80, 4 records
 
@@ -93,7 +93,7 @@ Sample inline data:
 009LEBEDEV   MANAGER     006800
 ```
 
-### TGTLIB Members (DATA/TASK21.JCL.TGTLIB)
+### TGTLIB Members [TGTLIB](DATA/TASK21.JCL.TGTLIB)
 
 > Copied from SRCLIB via IEBCOPY SELECT in STEP040 (MEMBER2 excluded intentionally)
 
