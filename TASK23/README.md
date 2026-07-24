@@ -39,7 +39,7 @@ This job demonstrates Generation Data Group (GDG) operations: defining a GDG bas
 
 ### GDG Generations (DATA/TASK23.HLQ.EMPGDG.JCL)
 
-#### [G0001V00](DATA/TASK23.HLQ.EMPGDG.JCL.G0001V00.txt) (First Generation) - LRECL=36, 3 records
+#### [G0001V00](DATA/TASK23.JCL.EMPGDG.G0001V00.txt) (First Generation) - LRECL=36, 3 records
 
 | Position | Length | Type | Description |
 |----------|--------|------|-------------|
@@ -56,7 +56,7 @@ Sample inline data:
 003SIDOROV   MANAGER     007800
 ```
 
-#### [G0002V00](DATA/TASK23.HLQ.EMPGDG.JCL.G0002V00.txt) (Second Generation) - LRECL=36, 4 records (updated salaries)
+#### [G0002V00](DATA/TASK23.JCL.EMPGDG.G0002V00.txt) (Second Generation) - LRECL=36, 4 records (updated salaries)
 
 | Position | Length | Type | Description |
 |----------|--------|------|-------------|
