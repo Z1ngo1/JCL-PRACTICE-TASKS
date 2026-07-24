@@ -22,11 +22,11 @@ This is a multi-step pipeline job that combines filtering, sorting, reformatting
 
 | Step    | Program  | Description                                                                                                   |
 |---------|----------|---------------------------------------------------------------------------------------------------------------|
-| STEP010 | IEFBR14  | Delete existing datasets [`TASK10.INPUT.JCL`](DATA/TASK10.INPUT.JCL.txt) and [`TASK10.FINAL.JCL`](DATA/TASK10.FINAL.JCL.txt) if they exist |
-| STEP020 | IEBGENER | Load 8 inline employee records into [`TASK10.INPUT.JCL`](DATA/TASK10.INPUT.JCL.txt), LRECL=80               |
+| STEP010 | IEFBR14  | Delete existing datasets [`TASK10.JCL.INPUT`](DATA/TASK10.JCL.INPUT.txt) and [`TASK10.JCL.FINAL`](DATA/TASK10.JCL.FINAL.txt) if they exist |
+| STEP020 | IEBGENER | Load 8 inline employee records into [`TASK10.JCL.INPUT`](DATA/TASK10.JCL.INPUT.txt), LRECL=80               |
 | STEP030 | SORT     | Filter DEVELOPER records from input, sort by SALARY descending, save to temporary dataset `&&TEMP`            |
-| STEP040 | SORT     | Read `&&TEMP`, reformat records with OUTREC BUILD: LASTNAME + `\|` + SALARY + 63 spaces, save to [`TASK10.FINAL.JCL`](DATA/TASK10.FINAL.JCL.txt) |
-| STEP050 | IEBGENER | Print [`TASK10.FINAL.JCL`](DATA/TASK10.FINAL.JCL.txt) to SYSOUT - runs even if previous steps failed (`COND=EVEN`) |
+| STEP040 | SORT     | Read `&&TEMP`, reformat records with OUTREC BUILD: LASTNAME + `\|` + SALARY + 63 spaces, save to [`TASK10.JCL.FINAL`](DATA/TASK10.JCL.FINAL.txt) |
+| STEP050 | IEBGENER | Print [`TASK10.JCL.FINAL`](DATA/TASK10.JCL.FINAL.txt) to SYSOUT - runs even if previous steps failed (`COND=EVEN`) |
 
 ---
 
@@ -53,7 +53,7 @@ Record format: `LASTNAME(10) + FIRSTNAME(10) + ROLE(10) + SALARY(6)` - `LRECL=80
 | ROLE      | 21       | 10     | CH     | Job role             |
 | SALARY    | 31       | 6      | CH     | Salary (zero-padded) |
 
-### Sample Input Records ([TASK10.INPUT.JCL.txt](DATA/TASK10.INPUT.JCL.txt))
+### Sample Input Records ([`TASK10.JCL.INPUT`](DATA/TASK10.JCL.INPUT.txt))
 
 ```
 IVANOV    IVAN      DEVELOPER 005000
@@ -112,7 +112,7 @@ Output record length: 10 + 1 + 6 + 63 = **80 bytes**
 
 ---
 
-## Final Result ([TASK10.FINAL.JCL.txt](DATA/TASK10.FINAL.JCL.txt))
+## Final Result ([`TASK10.JCL.FINAL`](DATA/TASK10.JCL.FINAL.txt))
 
 4 DEVELOPER records filtered, sorted by salary descending, then reformatted:
 
@@ -141,6 +141,6 @@ Printed to SYSOUT by STEP050 [SYSUT2.STEP050.txt](OUTPUT/SYSUT2.STEP050.txt) (IE
 
 - PETROV, SIDOROV, MOROZOV, POPOV are excluded in STEP030 because their ROLE is ANALYST or MANAGER.
 - `&&TEMP` is a temporary instream dataset - it is automatically deleted when the job ends or when STEP040 reads and deletes it with `DISP=(OLD,DELETE,DELETE)`.
-- STEP050 uses `SYSIN DD DUMMY` meaning IEBGENER does a straight copy from [`TASK10.FINAL.JCL`](DATA/TASK10.FINAL.JCL.txt) to SYSOUT with no editing.
+- STEP050 uses `SYSIN DD DUMMY` meaning IEBGENER does a straight copy from [`TASK10.JCL.FINAL`](DATA/TASK10.JCL.FINAL.txt) to SYSOUT with no editing.
 - This task is the first multi-step pipeline in this repository where two SORT steps work sequentially on the same data stream.
 - `INCLUDE COND=(21,9,CH,EQ,C'DEVELOPER')` compares 9 bytes from position 21 in the record against the 9-char literal `DEVELOPER`. The remaining 1 byte of the ROLE field (position 30, trailing space) is not compared - no padding needed in the literal.
