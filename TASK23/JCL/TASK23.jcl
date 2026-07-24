@@ -17,8 +17,8 @@
 //STEP010  EXEC PGM=IDCAMS                                              
 //SYSPRINT DD SYSOUT=*                                                  
 //SYSIN    DD *                                                         
-  DELETE Z73460.TASK23.HLQ.EMPGDG.JCL.*                                 
-  DELETE Z73460.TASK23.HLQ.EMPGDG.JCL GDG PURGE                         
+  DELETE Z73460.TASK23.JCL.EMPGDG.*                                 
+  DELETE Z73460.TASK23.JCL.EMPGDG GDG PURGE                         
   IF MAXCC <=8 THEN SET MAXCC = 0                                       
 /*                                                                      
 //**********************************************************************
@@ -33,7 +33,7 @@
 //STEP020  EXEC PGM=IDCAMS,COND=(08,LT,STEP010)                         
 //SYSPRINT DD SYSOUT=*                                                  
 //SYSIN    DD *                                                         
-  DEFINE GDG(NAME(Z73460.TASK23.HLQ.EMPGDG.JCL) -                       
+  DEFINE GDG(NAME(Z73460.TASK23.JCL.EMPGDG) -                       
          LIMIT(3) -                                                     
          SCRATCH -                                                      
          NOEMPTY)                                                       
@@ -56,7 +56,7 @@
 002PETROV    ANALYST   003200                                           
 003SIDOROV   MANAGER   007800                                           
 /*                                                                      
-//SYSUT2   DD DSN=Z73460.TASK23.HLQ.EMPGDG.JCL(+1),                     
+//SYSUT2   DD DSN=Z73460.TASK23.JCL.EMPGDG(+1),                     
 //            DISP=(NEW,CATLG,DELETE),                                  
 //            UNIT=SYSDA,                                               
 //            SPACE=(TRK,(1,1)),                                        
@@ -80,7 +80,7 @@
 003SIDOROV   MANAGER   008000                                           
 004KOZLOV    DEVELOPER 004500                                           
 /*                                                                      
-//SYSUT2   DD DSN=Z73460.TASK23.HLQ.EMPGDG.JCL(+2),                     
+//SYSUT2   DD DSN=Z73460.TASK23.JCL.EMPGDG(+2),                     
 //            DISP=(NEW,CATLG,DELETE),                                  
 //            UNIT=SYSDA,                                               
 //            SPACE=(TRK,(1,1)),                                        
@@ -92,7 +92,7 @@
 //**********************************************************************
 //STEP050  EXEC PGM=IEBGENER,COND=(00,NE,STEP040)                       
 //SYSPRINT DD SYSOUT=*                                                  
-//SYSUT1   DD DSN=Z73460.TASK23.HLQ.EMPGDG.JCL(+1),DISP=SHR             
+//SYSUT1   DD DSN=Z73460.TASK23.JCL.EMPGDG(+1),DISP=SHR             
 //SYSUT2   DD SYSOUT=*                                                  
 //SYSIN    DD DUMMY                                                     
 //**********************************************************************
@@ -102,7 +102,7 @@
 //**********************************************************************
 //STEP060  EXEC PGM=IEBGENER,COND=(00,NE,STEP040)                       
 //SYSPRINT DD SYSOUT=*                                                  
-//SYSUT1   DD DSN=Z73460.TASK23.HLQ.EMPGDG.JCL(+2),DISP=SHR             
+//SYSUT1   DD DSN=Z73460.TASK23.JCL.EMPGDG(+2),DISP=SHR             
 //SYSUT2   DD SYSOUT=*                                                  
 //SYSIN    DD DUMMY                                                     
 //
