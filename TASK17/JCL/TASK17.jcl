@@ -53,10 +53,10 @@
 //* NOTE: SPACE PARAMETER USED IF DATASET DOES NOT EXIST               *
 //**********************************************************************
 //STEP010  EXEC PGM=IEFBR14                                             
-//DELDD1   DD DSN=Z73460.TASK17.EMPLLIST.JCL,                           
+//DELDD1   DD DSN=Z73460.TASK17.JCL.EMPLLIST,                           
 //            DISP=(MOD,DELETE,DELETE),                                 
 //            SPACE=(TRK,(1,0))                                         
-//DELDD2   DD DSN=Z73460.TASK17.SALARY.JCL,                             
+//DELDD2   DD DSN=Z73460.TASK17.JCL.SALARY,                             
 //            DISP=(MOD,DELETE,DELETE),                                 
 //            SPACE=(TRK,(1,0))                                         
 //**********************************************************************
@@ -77,7 +77,7 @@
 009LEBEDEV   MANAGER                                                    
 010ORLOV     ANALYST                                                    
 /*                                                                      
-//SYSUT2   DD DSN=Z73460.TASK17.EMPLLIST.JCL,                           
+//SYSUT2   DD DSN=Z73460.TASK17.JCL.EMPLLIST,                           
 //           DISP=(NEW,CATLG,DELETE),                                   
 //           SPACE=(TRK,(1,1),RLSE),                                    
 //           DCB=(RECFM=FB,DSORG=PS,LRECL=26)                           
@@ -101,7 +101,7 @@
 008005500                                                               
 009006800                                                               
 /*                                                                      
-//SYSUT2   DD DSN=Z73460.TASK17.SALARY.JCL,                             
+//SYSUT2   DD DSN=Z73460.TASK17.JCL.SALARY,                             
 //            DISP=(NEW,CATLG,DELETE),                                  
 //            SPACE=(TRK,(1,1),RLSE),                                   
 //            DCB=(RECFM=FB,DSORG=PS,LRECL=9)                           
@@ -117,8 +117,8 @@
 //STEP040  EXEC PGM=SORT,COND=((04,LT,STEP020),(04,LT,STEP030))         
 //SYSPRINT DD SYSOUT=*                                                  
 //SYSOUT   DD SYSOUT=*                                                  
-//SORTJNF1 DD DSN=Z73460.TASK17.EMPLLIST.JCL,DISP=SHR                   
-//SORTJNF2 DD DSN=Z73460.TASK17.SALARY.JCL,DISP=SHR                     
+//SORTJNF1 DD DSN=Z73460.TASK17.JCL.EMPLLIST,DISP=SHR                   
+//SORTJNF2 DD DSN=Z73460.TASK17.JCL.SALARY,DISP=SHR                     
 //SORTOUT  DD DSN=&&JOINED,                                             
 //            DISP=(NEW,PASS,DELETE),                                   
 //            SPACE=(TRK,(1,1)),                                        
