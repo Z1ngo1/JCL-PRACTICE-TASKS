@@ -22,10 +22,10 @@ This job demonstrates SORT JOINKEYS to perform a left outer join between two sep
 
 | Step | Program | Description |
 |---------|----------|-----------------------------------------------------------------------------------------------------------------------------------------------|
-| STEP010 | IEFBR14 | Delete existing datasets [`TASK16.EMPLLIST.JCL`](DATA/TASK16.EMPLLIST.JCL.txt), [`TASK16.SALARY.JCL`](DATA/TASK16.SALARY.JCL.txt), [`TASK16.RESULT.JCL`](DATA/TASK16.RESULT.JCL.txt) if they exist |
-| STEP020 | IEBGENER | Load 7 inline employee records (ID + NAME) into [`TASK16.EMPLLIST.JCL`](DATA/TASK16.EMPLLIST.JCL.txt), LRECL=20 |
-| STEP030 | IEBGENER | Load 6 inline salary records (ID + SALARY) into [`TASK16.SALARY.JCL`](DATA/TASK16.SALARY.JCL.txt), LRECL=9 |
-| STEP040 | SORT | Left outer join [`TASK16.EMPLLIST.JCL`](DATA/TASK16.EMPLLIST.JCL.txt) and [`TASK16.SALARY.JCL`](DATA/TASK16.SALARY.JCL.txt) by ID (pos 1-3), output to [`TASK16.RESULT.JCL`](DATA/TASK16.RESULT.JCL.txt), LRECL=29 |
+| STEP010 | IEFBR14 | Delete existing datasets [`TASK16.JCL.EMPLLIST`](DATA/TASK16.JCL.EMPLLIST.txt), [`TASK16.JCL.SALARY`](DATA/TASK16.JCL.SALARY.txt), [`TASK16.JCL.RESULT`](DATA/TASK16.JCL.RESULT.txt) if they exist |
+| STEP020 | IEBGENER | Load 7 inline employee records (ID + NAME) into [`TASK16.JCL.EMPLLIST`](DATA/TASK16.JCL.EMPLLIST.txt), LRECL=20 |
+| STEP030 | IEBGENER | Load 6 inline salary records (ID + SALARY) into [`TASK16.JCL.SALARY`](DATA/TASK16.JCL.SALARY.txt), LRECL=9 |
+| STEP040 | SORT | Left outer join [`TASK16.JCL.EMPLLIST`](DATA/TASK16.JCL.EMPLLIST.txt) and [`TASK16.JCL.SALARY`](DATA/TASK16.JCL.SALARY.txt) by ID (pos 1-3), output to [`TASK16.JCL.RESULT`](DATA/TASK16.JCL.RESULT.txt), LRECL=29 |
 
 ---
 
@@ -51,7 +51,7 @@ Format: `ID(3) + NAME(17)` - `LRECL=20`, `RECFM=FB`, `DSORG=PS`
 | ID | 1 | 3 | Employee ID (zero-padded) |
 | NAME | 4 | 17 | Employee name (last + first, space-padded) |
 
-Sample Input Records ([TASK16.EMPLLIST.JCL.txt](DATA/TASK16.EMPLLIST.JCL.txt))
+Sample Input Records ([`TASK16.JCL.EMPLLIST`](DATA/TASK16.JCL.EMPLLIST.txt))
 
 ```
 001IVANOV    IVAN
@@ -72,7 +72,7 @@ Format: `ID(3) + SALARY(6)` - `LRECL=9`, `RECFM=FB`, `DSORG=PS`
 | ID | 1 | 3 | Employee ID (matches File 1) |
 | SALARY | 4 | 6 | Salary (zero-padded) |
 
-Sample Input Records ([TASK16.SALARY.JCL.txt](DATA/TASK16.SALARY.JCL.txt))
+Sample Input Records ([`TASK16.JCL.SALARY`](DATA/TASK16.JCL.SALARY.txt))
 
 ```
 001005000
@@ -126,7 +126,7 @@ Output record length: 20 + 6 + 3 = **29 bytes** (LRECL=29)
 
 ---
 
-## Final Result ([TASK16.RESULT.JCL.txt](DATA/TASK16.RESULT.JCL.txt))
+## Final Result ([`TASK16.JCL.RESULT`](DATA/TASK16.JCL.RESULT.txt))
 
 7 records - all employees included; missing salaries filled with `000000`:
 
